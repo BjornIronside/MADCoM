@@ -1,0 +1,1108 @@
+NAME : F9_g-6
+UPPER BOUND : 444369
+NODES : 788
+EDGES_REQ : 686
+EDGES_NOREQ : 410
+VEHICLES : 58
+CAPACITY : 168000
+----
+COSTE_TOTAL_REQ : 84701
+EDGE_REQ_LIST :
+( 3, 4)   cost 97    demand 15476
+( 9, 10)   cost 204    demand 3060
+( 12, 13)   cost 181    demand 42026
+( 14, 15)   cost 122    demand 40562
+( 16, 17)   cost 33    demand 714
+( 18, 19)   cost 55    demand 19235
+( 21, 22)   cost 174    demand 10341
+( 23, 21)   cost 99    demand 40700
+( 21, 24)   cost 35    demand 4350
+( 25, 26)   cost 119    demand 6256
+( 6, 29)   cost 39    demand 11724
+( 30, 31)   cost 215    demand 7684
+( 31, 32)   cost 484    demand 6620
+( 33, 34)   cost 3    demand 1700
+( 36, 37)   cost 79    demand 5372
+( 39, 40)   cost 17    demand 10200
+( 41, 42)   cost 152    demand 20982
+( 43, 44)   cost 98    demand 36435
+( 48, 44)   cost 119    demand 17112
+( 49, 50)   cost 107    demand 7920
+( 52, 47)   cost 166    demand 24353
+( 56, 57)   cost 140    demand 27191
+( 58, 48)   cost 90    demand 9013
+( 59, 60)   cost 226    demand 3536
+( 53, 61)   cost 84    demand 15589
+( 57, 52)   cost 153    demand 24892
+( 44, 56)   cost 111    demand 16747
+( 61, 62)   cost 22    demand 9095
+( 60, 58)   cost 111    demand 23484
+( 55, 59)   cost 213    demand 9458
+( 68, 69)   cost 58    demand 6120
+( 70, 71)   cost 55    demand 29502
+( 72, 71)   cost 62    demand 25049
+( 73, 74)   cost 19    demand 27082
+( 71, 73)   cost 57    demand 2720
+( 75, 69)   cost 56    demand 3825
+( 76, 68)   cost 194    demand 2312
+( 77, 78)   cost 84    demand 16363
+( 79, 80)   cost 121    demand 3424
+( 81, 82)   cost 47    demand 7140
+( 83, 84)   cost 98    demand 15045
+( 89, 90)   cost 244    demand 27093
+( 92, 93)   cost 51    demand 1870
+( 94, 95)   cost 110    demand 32001
+( 97, 98)   cost 104    demand 26069
+( 98, 83)   cost 56    demand 12689
+( 100, 101)   cost 108    demand 14331
+( 102, 100)   cost 145    demand 2023
+( 103, 104)   cost 71    demand 5729
+( 103, 105)   cost 98    demand 3213
+( 105, 106)   cost 88    demand 7674
+( 107, 103)   cost 67    demand 32568
+( 108, 106)   cost 257    demand 7334
+( 109, 110)   cost 97    demand 16538
+( 111, 109)   cost 96    demand 21964
+( 112, 113)   cost 150    demand 16728
+( 113, 114)   cost 85    demand 12444
+( 117, 116)   cost 93    demand 13495
+( 120, 119)   cost 107    demand 26118
+( 121, 122)   cost 91    demand 4352
+( 123, 121)   cost 128    demand 884
+( 121, 124)   cost 74    demand 1122
+( 128, 126)   cost 72    demand 1785
+( 129, 130)   cost 182    demand 1037
+( 136, 132)   cost 97    demand 1516
+( 137, 138)   cost 228    demand 3960
+( 139, 140)   cost 197    demand 9208
+( 141, 142)   cost 56    demand 17760
+( 144, 145)   cost 133    demand 26091
+( 65, 146)   cost 43    demand 10652
+( 147, 155)   cost 93    demand 25872
+( 156, 141)   cost 20    demand 5712
+( 143, 157)   cost 92    demand 15164
+( 150, 158)   cost 88    demand 10540
+( 157, 156)   cost 81    demand 4284
+( 160, 144)   cost 143    demand 24034
+( 161, 162)   cost 91    demand 3332
+( 163, 164)   cost 121    demand 10472
+( 164, 161)   cost 94    demand 2312
+( 165, 163)   cost 104    demand 8704
+( 162, 166)   cost 101    demand 13396
+( 167, 166)   cost 144    demand 6630
+( 168, 169)   cost 83    demand 2312
+( 143, 36)   cost 154    demand 19540
+( 37, 170)   cost 118    demand 3162
+( 169, 167)   cost 57    demand 8896
+( 171, 168)   cost 204    demand 19062
+( 79, 171)   cost 139    demand 10608
+( 173, 174)   cost 49    demand 8432
+( 179, 175)   cost 77    demand 9235
+( 180, 181)   cost 125    demand 8445
+( 175, 177)   cost 60    demand 7346
+( 181, 182)   cost 70    demand 16918
+( 183, 184)   cost 175    demand 17204
+( 185, 186)   cost 176    demand 1593
+( 186, 138)   cost 157    demand 6647
+( 187, 188)   cost 69    demand 816
+( 189, 190)   cost 219    demand 23994
+( 192, 190)   cost 170    demand 9598
+( 193, 194)   cost 84    demand 15155
+( 196, 197)   cost 76    demand 17060
+( 160, 198)   cost 60    demand 18513
+( 198, 199)   cost 90    demand 4556
+( 202, 203)   cost 56    demand 16600
+( 203, 205)   cost 48    demand 765
+( 209, 210)   cost 112    demand 2715
+( 211, 212)   cost 207    demand 19806
+( 212, 213)   cost 98    demand 13090
+( 215, 216)   cost 76    demand 13260
+( 217, 218)   cost 238    demand 23732
+( 221, 222)   cost 133    demand 29931
+( 223, 38)   cost 356    demand 15308
+( 224, 225)   cost 22    demand 1020
+( 225, 226)   cost 162    demand 13511
+( 227, 228)   cost 180    demand 4250
+( 232, 233)   cost 213    demand 11304
+( 234, 235)   cost 213    demand 9078
+( 236, 237)   cost 273    demand 25548
+( 238, 50)   cost 183    demand 20193
+( 239, 240)   cost 86    demand 9350
+( 241, 239)   cost 66    demand 16513
+( 243, 127)   cost 102    demand 765
+( 244, 245)   cost 142    demand 30779
+( 246, 247)   cost 131    demand 12597
+( 248, 249)   cost 129    demand 7866
+( 252, 30)   cost 108    demand 1020
+( 253, 254)   cost 120    demand 3893
+( 255, 256)   cost 105    demand 32640
+( 182, 257)   cost 129    demand 17517
+( 258, 255)   cost 117    demand 14288
+( 259, 260)   cost 132    demand 21725
+( 265, 266)   cost 112    demand 19431
+( 266, 164)   cost 75    demand 2244
+( 267, 268)   cost 76    demand 29390
+( 264, 261)   cost 60    demand 7276
+( 268, 265)   cost 95    demand 5712
+( 159, 270)   cost 228    demand 23686
+( 270, 269)   cost 116    demand 25322
+( 275, 276)   cost 35    demand 13634
+( 277, 172)   cost 25    demand 12767
+( 107, 274)   cost 44    demand 6052
+( 282, 271)   cost 39    demand 4420
+( 272, 275)   cost 29    demand 3668
+( 284, 282)   cost 113    demand 15470
+( 286, 280)   cost 74    demand 23304
+( 258, 117)   cost 112    demand 15065
+( 273, 278)   cost 74    demand 8840
+( 117, 107)   cost 59    demand 16014
+( 268, 288)   cost 81    demand 21868
+( 288, 289)   cost 35    demand 1904
+( 288, 81)   cost 59    demand 18256
+( 292, 268)   cost 101    demand 10710
+( 81, 169)   cost 145    demand 10421
+( 293, 294)   cost 64    demand 3400
+( 297, 298)   cost 35    demand 5168
+( 299, 171)   cost 88    demand 13025
+( 263, 298)   cost 101    demand 16558
+( 300, 301)   cost 120    demand 14984
+( 304, 305)   cost 122    demand 2244
+( 306, 307)   cost 120    demand 9512
+( 308, 309)   cost 116    demand 2346
+( 310, 311)   cost 118    demand 15751
+( 312, 310)   cost 226    demand 29958
+( 313, 312)   cost 65    demand 1397
+( 314, 315)   cost 203    demand 7624
+( 315, 313)   cost 252    demand 4262
+( 316, 317)   cost 254    demand 23640
+( 318, 319)   cost 105    demand 23172
+( 320, 321)   cost 109    demand 9299
+( 322, 323)   cost 109    demand 18974
+( 324, 325)   cost 53    demand 28648
+( 326, 327)   cost 76    demand 6664
+( 328, 329)   cost 77    demand 10710
+( 330, 331)   cost 225    demand 21920
+( 285, 332)   cost 242    demand 8690
+( 51, 333)   cost 86    demand 4318
+( 54, 334)   cost 208    demand 16872
+( 46, 335)   cost 44    demand 30859
+( 336, 337)   cost 85    demand 17647
+( 338, 178)   cost 261    demand 33355
+( 339, 338)   cost 90    demand 15521
+( 178, 180)   cost 16    demand 2040
+( 274, 339)   cost 110    demand 13685
+( 115, 255)   cost 96    demand 204
+( 340, 179)   cost 86    demand 9996
+( 341, 182)   cost 76    demand 5372
+( 342, 343)   cost 111    demand 15725
+( 344, 343)   cost 144    demand 23018
+( 346, 347)   cost 96    demand 2443
+( 348, 349)   cost 138    demand 20474
+( 350, 351)   cost 151    demand 425
+( 352, 353)   cost 221    demand 16762
+( 354, 355)   cost 427    demand 32582
+( 356, 357)   cost 424    demand 28461
+( 358, 359)   cost 134    demand 19342
+( 198, 360)   cost 163    demand 14099
+( 361, 152)   cost 221    demand 27439
+( 362, 149)   cost 238    demand 48449
+( 363, 150)   cost 253    demand 31750
+( 364, 158)   cost 271    demand 28498
+( 365, 157)   cost 307    demand 26376
+( 366, 287)   cost 175    demand 7820
+( 368, 109)   cost 205    demand 42971
+( 142, 369)   cost 148    demand 23831
+( 370, 371)   cost 68    demand 9604
+( 157, 372)   cost 152    demand 25393
+( 297, 299)   cost 81    demand 15045
+( 376, 377)   cost 62    demand 12121
+( 77, 373)   cost 48    demand 4284
+( 110, 93)   cost 128    demand 14528
+( 382, 376)   cost 140    demand 7412
+( 379, 383)   cost 47    demand 3264
+( 384, 364)   cost 67    demand 3264
+( 354, 385)   cost 46    demand 9214
+( 358, 363)   cost 61    demand 2312
+( 91, 356)   cost 70    demand 12665
+( 365, 354)   cost 42    demand 3604
+( 386, 110)   cost 136    demand 4080
+( 387, 201)   cost 29    demand 22765
+( 388, 200)   cost 30    demand 425
+( 389, 388)   cost 34    demand 4896
+( 390, 387)   cost 35    demand 6545
+( 391, 232)   cost 46    demand 3643
+( 392, 390)   cost 85    demand 36680
+( 389, 393)   cost 152    demand 32841
+( 238, 396)   cost 202    demand 5780
+( 396, 391)   cost 120    demand 4802
+( 399, 400)   cost 77    demand 15873
+( 402, 403)   cost 81    demand 16318
+( 404, 218)   cost 94    demand 1734
+( 407, 221)   cost 57    demand 17255
+( 408, 392)   cost 141    demand 16104
+( 158, 409)   cost 228    demand 9043
+( 410, 299)   cost 202    demand 24504
+( 151, 411)   cost 106    demand 29574
+( 262, 412)   cost 135    demand 31911
+( 165, 413)   cost 220    demand 25169
+( 64, 416)   cost 218    demand 22804
+( 66, 417)   cost 213    demand 27718
+( 418, 419)   cost 106    demand 9996
+( 420, 421)   cost 89    demand 9591
+( 424, 425)   cost 80    demand 12342
+( 426, 427)   cost 90    demand 6494
+( 12, 428)   cost 74    demand 5746
+( 266, 429)   cost 110    demand 22731
+( 150, 430)   cost 228    demand 20943
+( 161, 431)   cost 166    demand 14999
+( 432, 267)   cost 132    demand 12580
+( 168, 432)   cost 158    demand 20914
+( 261, 433)   cost 132    demand 18041
+( 434, 435)   cost 259    demand 24520
+( 271, 436)   cost 46    demand 20868
+( 437, 438)   cost 259    demand 27003
+( 75, 437)   cost 131    demand 25854
+( 440, 438)   cost 99    demand 26279
+( 438, 439)   cost 56    demand 30060
+( 74, 440)   cost 131    demand 18626
+( 441, 293)   cost 229    demand 25076
+( 442, 441)   cost 56    demand 7922
+( 444, 295)   cost 296    demand 28280
+( 76, 445)   cost 97    demand 9265
+( 279, 76)   cost 32    demand 3400
+( 447, 42)   cost 170    demand 17209
+( 448, 124)   cost 119    demand 1886
+( 449, 312)   cost 98    demand 493
+( 450, 451)   cost 13    demand 4080
+( 452, 453)   cost 10    demand 4080
+( 453, 454)   cost 9    demand 8925
+( 455, 456)   cost 9    demand 8925
+( 465, 466)   cost 127    demand 3730
+( 133, 468)   cost 103    demand 862
+( 132, 472)   cost 112    demand 1282
+( 473, 132)   cost 146    demand 1010
+( 28, 195)   cost 190    demand 8585
+( 474, 473)   cost 120    demand 568
+( 38, 475)   cost 67    demand 25062
+( 130, 476)   cost 8    demand 6757
+( 478, 85)   cost 57    demand 4165
+( 128, 478)   cost 251    demand 26194
+( 242, 128)   cost 59    demand 2040
+( 45, 479)   cost 230    demand 46858
+( 480, 227)   cost 156    demand 18632
+( 224, 130)   cost 87    demand 6208
+( 227, 481)   cost 35    demand 15088
+( 484, 4)   cost 102    demand 6630
+( 476, 38)   cost 105    demand 12920
+( 483, 486)   cost 92    demand 6824
+( 487, 489)   cost 64    demand 12648
+( 490, 491)   cost 79    demand 17623
+( 491, 492)   cost 116    demand 17845
+( 457, 458)   cost 53    demand 4352
+( 338, 494)   cost 235    demand 2040
+( 91, 495)   cost 401    demand 25928
+( 443, 294)   cost 236    demand 36347
+( 37, 497)   cost 158    demand 10965
+( 498, 47)   cost 260    demand 19436
+( 239, 500)   cost 76    demand 16495
+( 501, 502)   cost 387    demand 28183
+( 503, 7)   cost 60    demand 17391
+( 485, 504)   cost 128    demand 18120
+( 86, 463)   cost 62    demand 10849
+( 118, 87)   cost 360    demand 6624
+( 507, 300)   cost 82    demand 612
+( 247, 465)   cost 103    demand 3298
+( 513, 514)   cost 135    demand 17413
+( 284, 515)   cost 112    demand 16122
+( 516, 517)   cost 73    demand 15720
+( 515, 490)   cost 80    demand 20732
+( 518, 122)   cost 94    demand 23394
+( 331, 521)   cost 71    demand 14501
+( 523, 518)   cost 88    demand 17352
+( 522, 525)   cost 68    demand 5780
+( 60, 526)   cost 94    demand 10404
+( 526, 314)   cost 114    demand 16310
+( 55, 527)   cost 201    demand 21018
+( 528, 527)   cost 43    demand 6238
+( 278, 494)   cost 184    demand 17221
+( 530, 531)   cost 90    demand 6324
+( 532, 529)   cost 73    demand 510
+( 324, 534)   cost 68    demand 16456
+( 535, 324)   cost 78    demand 9933
+( 533, 535)   cost 74    demand 6548
+( 494, 532)   cost 50    demand 4556
+( 248, 246)   cost 97    demand 2030
+( 536, 248)   cost 135    demand 4929
+( 527, 537)   cost 127    demand 7616
+( 508, 304)   cost 81    demand 2880
+( 493, 448)   cost 307    demand 1988
+( 540, 510)   cost 73    demand 772
+( 543, 509)   cost 256    demand 6663
+( 137, 544)   cost 88    demand 11380
+( 545, 27)   cost 183    demand 2040
+( 546, 544)   cost 138    demand 4403
+( 547, 546)   cost 183    demand 204
+( 512, 545)   cost 156    demand 9536
+( 314, 543)   cost 407    demand 25605
+( 542, 549)   cost 115    demand 3050
+( 551, 552)   cost 97    demand 1954
+( 310, 555)   cost 93    demand 19176
+( 498, 553)   cost 63    demand 6426
+( 318, 52)   cost 70    demand 4352
+( 52, 556)   cost 100    demand 8262
+( 555, 557)   cost 74    demand 6392
+( 559, 511)   cost 819    demand 4488
+( 562, 563)   cost 182    demand 4080
+( 191, 562)   cost 177    demand 10404
+( 544, 511)   cost 223    demand 4352
+( 23, 560)   cost 85    demand 1700
+( 565, 566)   cost 149    demand 13481
+( 565, 568)   cost 48    demand 2040
+( 49, 569)   cost 338    demand 48849
+( 185, 568)   cost 137    demand 8296
+( 511, 139)   cost 103    demand 15555
+( 139, 185)   cost 93    demand 6664
+( 24, 571)   cost 119    demand 23800
+( 24, 572)   cost 164    demand 2040
+( 167, 573)   cost 102    demand 25243
+( 574, 162)   cost 165    demand 27252
+( 576, 577)   cost 50    demand 13928
+( 355, 575)   cost 102    demand 4318
+( 112, 336)   cost 75    demand 12104
+( 577, 559)   cost 77    demand 13437
+( 572, 578)   cost 103    demand 2586
+( 579, 580)   cost 150    demand 10710
+( 571, 578)   cost 121    demand 22426
+( 581, 572)   cost 316    demand 9399
+( 187, 581)   cost 84    demand 976
+( 580, 187)   cost 82    demand 1580
+( 93, 582)   cost 266    demand 20104
+( 582, 559)   cost 177    demand 19161
+( 559, 583)   cost 271    demand 31635
+( 580, 184)   cost 82    demand 1654
+( 186, 580)   cost 91    demand 904
+( 140, 186)   cost 87    demand 1440
+( 584, 585)   cost 25    demand 1632
+( 586, 174)   cost 227    demand 16285
+( 567, 174)   cost 48    demand 1275
+( 584, 587)   cost 78    demand 7429
+( 189, 588)   cost 83    demand 16269
+( 561, 189)   cost 165    demand 25644
+( 590, 591)   cost 139    demand 18240
+( 592, 590)   cost 78    demand 2720
+( 594, 194)   cost 142    demand 17456
+( 194, 595)   cost 147    demand 1360
+( 593, 594)   cost 132    demand 18671
+( 593, 597)   cost 286    demand 37189
+( 398, 601)   cost 236    demand 25066
+( 602, 599)   cost 85    demand 850
+( 604, 603)   cost 94    demand 5202
+( 15, 604)   cost 128    demand 11206
+( 577, 114)   cost 162    demand 16802
+( 114, 604)   cost 64    demand 1428
+( 605, 208)   cost 140    demand 24834
+( 208, 607)   cost 103    demand 28160
+( 406, 446)   cost 86    demand 19439
+( 596, 564)   cost 103    demand 17472
+( 605, 596)   cost 226    demand 25880
+( 446, 612)   cost 104    demand 1734
+( 408, 203)   cost 83    demand 8976
+( 203, 210)   cost 150    demand 8160
+( 210, 611)   cost 148    demand 21511
+( 206, 613)   cost 115    demand 1346
+( 612, 206)   cost 69    demand 3536
+( 614, 615)   cost 73    demand 1146
+( 607, 594)   cost 232    demand 23878
+( 204, 613)   cost 109    demand 4967
+( 615, 610)   cost 74    demand 612
+( 404, 204)   cost 88    demand 16949
+( 616, 216)   cost 100    demand 4080
+( 216, 212)   cost 104    demand 8840
+( 616, 211)   cost 109    demand 13430
+( 617, 616)   cost 105    demand 12240
+( 211, 618)   cost 92    demand 4114
+( 617, 215)   cost 116    demand 21012
+( 306, 486)   cost 115    demand 9027
+( 2, 619)   cost 162    demand 18841
+( 2, 213)   cost 100    demand 19655
+( 4, 620)   cost 91    demand 1224
+( 396, 479)   cost 264    demand 24279
+( 619, 477)   cost 123    demand 16919
+( 217, 619)   cost 250    demand 1938
+( 405, 217)   cost 79    demand 15929
+( 625, 624)   cost 79    demand 16305
+( 402, 624)   cost 197    demand 14654
+( 624, 227)   cost 191    demand 26283
+( 626, 627)   cost 49    demand 24008
+( 625, 626)   cost 115    demand 15219
+( 394, 625)   cost 160    demand 27446
+( 504, 219)   cost 75    demand 24742
+( 223, 131)   cost 140    demand 17578
+( 623, 482)   cost 165    demand 18021
+( 40, 5)   cost 131    demand 31715
+( 5, 10)   cost 129    demand 24081
+( 628, 629)   cost 192    demand 4165
+( 480, 630)   cost 127    demand 28825
+( 631, 136)   cost 142    demand 2596
+( 136, 632)   cost 108    demand 2362
+( 401, 631)   cost 85    demand 14280
+( 469, 634)   cost 106    demand 19416
+( 403, 635)   cost 85    demand 3740
+( 135, 637)   cost 77    demand 670
+( 639, 135)   cost 87    demand 1802
+( 395, 641)   cost 85    demand 2040
+( 642, 635)   cost 72    demand 16490
+( 641, 640)   cost 44    demand 1112
+( 468, 641)   cost 62    demand 1428
+( 631, 472)   cost 93    demand 1785
+( 644, 599)   cost 70    demand 1870
+( 645, 234)   cost 88    demand 2278
+( 646, 647)   cost 129    demand 12121
+( 647, 645)   cost 189    demand 4988
+( 234, 644)   cost 102    demand 918
+( 397, 233)   cost 76    demand 6727
+( 649, 650)   cost 79    demand 2584
+( 650, 645)   cost 82    demand 1224
+( 651, 650)   cost 166    demand 2872
+( 652, 651)   cost 155    demand 10626
+( 651, 647)   cost 76    demand 1180
+( 654, 653)   cost 179    demand 14455
+( 653, 649)   cost 143    demand 7956
+( 237, 655)   cost 258    demand 30483
+( 570, 237)   cost 214    demand 21074
+( 655, 598)   cost 110    demand 11220
+( 655, 656)   cost 34    demand 7225
+( 621, 478)   cost 263    demand 21310
+( 126, 244)   cost 279    demand 51192
+( 505, 630)   cost 86    demand 25604
+( 119, 249)   cost 153    demand 16245
+( 657, 658)   cost 70    demand 23733
+( 63, 657)   cost 144    demand 25321
+( 550, 662)   cost 440    demand 5775
+( 663, 35)   cost 164    demand 35065
+( 664, 665)   cost 269    demand 26577
+( 666, 668)   cost 64    demand 23802
+( 669, 552)   cost 252    demand 5911
+( 663, 670)   cost 176    demand 9180
+( 524, 669)   cost 181    demand 765
+( 125, 669)   cost 82    demand 3570
+( 541, 125)   cost 118    demand 2158
+( 522, 251)   cost 53    demand 29652
+( 538, 543)   cost 192    demand 9102
+( 669, 251)   cost 91    demand 612
+( 660, 671)   cost 37    demand 16065
+( 506, 253)   cost 144    demand 12302
+( 673, 671)   cost 39    demand 3145
+( 548, 673)   cost 117    demand 14450
+( 253, 548)   cost 180    demand 7582
+( 303, 673)   cost 288    demand 21070
+( 309, 551)   cost 184    demand 2030
+( 53, 675)   cost 70    demand 10619
+( 675, 674)   cost 179    demand 6208
+( 678, 679)   cost 68    demand 1078
+( 680, 681)   cost 68    demand 1122
+( 677, 682)   cost 45    demand 398
+( 518, 676)   cost 220    demand 10454
+( 680, 678)   cost 82    demand 1496
+( 683, 684)   cost 190    demand 1720
+( 684, 557)   cost 94    demand 918
+( 685, 686)   cost 122    demand 17653
+( 687, 683)   cost 74    demand 3298
+( 686, 56)   cost 151    demand 28620
+( 56, 688)   cost 99    demand 15640
+( 689, 685)   cost 360    demand 26456
+( 277, 689)   cost 144    demand 24739
+( 694, 688)   cost 255    demand 17885
+( 688, 556)   cost 291    demand 24791
+( 526, 694)   cost 187    demand 18084
+( 697, 682)   cost 92    demand 238
+( 523, 695)   cost 210    demand 2200
+( 693, 698)   cost 205    demand 9978
+( 697, 692)   cost 111    demand 11346
+( 315, 695)   cost 88    demand 471
+( 695, 676)   cost 90    demand 612
+( 122, 700)   cost 41    demand 17721
+( 701, 690)   cost 255    demand 27387
+( 701, 702)   cost 84    demand 2040
+( 700, 703)   cost 107    demand 442
+( 703, 317)   cost 36    demand 1112
+( 699, 701)   cost 75    demand 20060
+( 684, 691)   cost 206    demand 568
+( 698, 684)   cost 94    demand 2720
+( 704, 499)   cost 70    demand 8503
+( 488, 705)   cost 109    demand 22248
+( 706, 707)   cost 95    demand 17311
+( 685, 704)   cost 89    demand 24834
+( 708, 706)   cost 85    demand 2201
+( 704, 711)   cost 97    demand 1020
+( 711, 710)   cost 145    demand 14457
+( 712, 713)   cost 86    demand 18302
+( 57, 712)   cost 84    demand 29451
+( 713, 714)   cost 25    demand 17340
+( 712, 709)   cost 118    demand 12019
+( 276, 715)   cost 151    demand 16677
+( 715, 707)   cost 338    demand 18130
+( 716, 717)   cost 47    demand 4114
+( 718, 48)   cost 229    demand 22728
+( 719, 706)   cost 336    demand 12512
+( 706, 718)   cost 56    demand 8942
+( 272, 719)   cost 140    demand 14996
+( 492, 708)   cost 177    demand 19981
+( 282, 492)   cost 285    demand 25156
+( 705, 321)   cost 75    demand 15045
+( 321, 323)   cost 77    demand 16015
+( 323, 58)   cost 142    demand 26408
+( 535, 327)   cost 181    demand 21383
+( 327, 720)   cost 26    demand 3740
+( 329, 520)   cost 202    demand 22450
+( 534, 721)   cost 211    demand 33470
+( 721, 521)   cost 225    demand 38446
+( 721, 59)   cost 60    demand 6480
+( 720, 330)   cost 79    demand 935
+( 533, 326)   cost 179    demand 36380
+( 328, 519)   cost 201    demand 24640
+( 101, 722)   cost 74    demand 7605
+( 332, 99)   cost 70    demand 17770
+( 517, 96)   cost 219    demand 5836
+( 516, 723)   cost 74    demand 10642
+( 724, 722)   cost 74    demand 6885
+( 715, 689)   cost 65    demand 4634
+( 719, 715)   cost 65    demand 2142
+( 725, 726)   cost 195    demand 19261
+( 535, 334)   cost 82    demand 32050
+( 334, 726)   cost 75    demand 15024
+( 727, 728)   cost 60    demand 23477
+( 728, 181)   cost 93    demand 11339
+( 348, 502)   cost 72    demand 13809
+( 502, 49)   cost 156    demand 25558
+( 729, 727)   cost 96    demand 19099
+( 145, 340)   cost 258    demand 40438
+( 728, 348)   cost 23    demand 10200
+( 344, 730)   cost 112    demand 9438
+( 731, 732)   cost 44    demand 1292
+( 93, 731)   cost 151    demand 24276
+( 731, 344)   cost 111    demand 11917
+( 345, 733)   cost 112    demand 13787
+( 733, 145)   cost 77    demand 5132
+( 734, 342)   cost 99    demand 18991
+( 734, 735)   cost 67    demand 16592
+( 730, 734)   cost 40    demand 8704
+( 736, 176)   cost 149    demand 16932
+( 346, 737)   cost 152    demand 816
+( 727, 346)   cost 98    demand 8660
+( 738, 575)   cost 166    demand 18034
+( 386, 738)   cost 265    demand 8400
+( 739, 351)   cost 82    demand 19465
+( 582, 739)   cost 126    demand 10132
+( 350, 739)   cost 77    demand 1904
+( 740, 350)   cost 74    demand 20328
+( 741, 78)   cost 26    demand 3017
+( 78, 378)   cost 62    demand 4352
+( 459, 742)   cost 23    demand 13906
+( 742, 741)   cost 35    demand 7684
+( 743, 744)   cost 52    demand 4675
+( 364, 743)   cost 188    demand 28441
+( 744, 745)   cost 27    demand 595
+( 741, 359)   cost 75    demand 5508
+( 359, 746)   cost 92    demand 10402
+( 746, 743)   cost 69    demand 12954
+( 384, 746)   cost 178    demand 38511
+( 747, 153)   cost 94    demand 19646
+( 381, 747)   cost 67    demand 11628
+( 747, 748)   cost 112    demand 14795
+( 368, 749)   cost 101    demand 9758
+( 385, 368)   cost 97    demand 9877
+( 749, 156)   cost 127    demand 11696
+( 749, 199)   cost 97    demand 13260
+( 199, 111)   cost 111    demand 9180
+( 111, 732)   cost 139    demand 13487
+( 372, 750)   cost 56    demand 17867
+( 751, 258)   cost 101    demand 19210
+( 750, 369)   cost 83    demand 8160
+( 36, 372)   cost 96    demand 15329
+( 370, 108)   cost 101    demand 9622
+( 108, 752)   cost 82    demand 22653
+( 144, 752)   cost 118    demand 22213
+( 752, 753)   cost 98    demand 4080
+( 753, 105)   cost 128    demand 5698
+( 286, 754)   cost 156    demand 9792
+( 96, 722)   cost 73    demand 1700
+( 490, 755)   cost 78    demand 13515
+( 754, 100)   cost 73    demand 14121
+( 756, 754)   cost 74    demand 6290
+( 755, 756)   cost 73    demand 2975
+( 280, 756)   cost 165    demand 8449
+( 283, 755)   cost 176    demand 20806
+( 755, 723)   cost 109    demand 19745
+( 753, 751)   cost 141    demand 39339
+( 751, 757)   cost 63    demand 18768
+( 409, 758)   cost 66    demand 1278
+( 37, 409)   cost 111    demand 12512
+( 758, 430)   cost 21    demand 2200
+( 430, 270)   cost 88    demand 6392
+( 759, 269)   cost 99    demand 20884
+( 170, 759)   cost 201    demand 11557
+( 410, 298)   cost 83    demand 12770
+( 759, 410)   cost 125    demand 40697
+( 760, 761)   cost 106    demand 9004
+( 762, 763)   cost 76    demand 3220
+( 764, 762)   cost 61    demand 2312
+( 763, 263)   cost 95    demand 21710
+( 769, 770)   cost 81    demand 15847
+( 771, 766)   cost 92    demand 13039
+( 426, 772)   cost 35    demand 6120
+( 773, 12)   cost 40    demand 3332
+( 420, 761)   cost 73    demand 22580
+( 417, 775)   cost 71    demand 7568
+( 67, 417)   cost 196    demand 29216
+( 775, 418)   cost 118    demand 37225
+( 418, 774)   cost 53    demand 12937
+( 422, 771)   cost 106    demand 6460
+( 776, 777)   cost 77    demand 4012
+( 778, 779)   cost 58    demand 8908
+( 777, 259)   cost 90    demand 17288
+( 774, 422)   cost 60    demand 9843
+( 779, 776)   cost 54    demand 6825
+( 776, 762)   cost 129    demand 13294
+( 155, 776)   cost 391    demand 12340
+( 777, 763)   cost 130    demand 15624
+( 154, 777)   cost 391    demand 28867
+( 779, 764)   cost 127    demand 4556
+( 772, 414)   cost 114    demand 18180
+( 780, 781)   cost 83    demand 11118
+( 781, 264)   cost 136    demand 24357
+( 782, 781)   cost 63    demand 13787
+( 412, 291)   cost 139    demand 14640
+( 773, 366)   cost 115    demand 11118
+( 783, 778)   cost 122    demand 19826
+( 147, 783)   cost 269    demand 37406
+( 148, 784)   cost 219    demand 22622
+( 775, 416)   cost 131    demand 15764
+( 416, 784)   cost 56    demand 12600
+( 413, 785)   cost 34    demand 6392
+( 785, 292)   cost 99    demand 17625
+( 163, 429)   cost 102    demand 30529
+( 429, 413)   cost 80    demand 19890
+( 265, 431)   cost 78    demand 19571
+( 785, 265)   cost 97    demand 23586
+( 433, 432)   cost 106    demand 17641
+( 297, 433)   cost 97    demand 18890
+( 444, 169)   cost 177    demand 9384
+( 284, 434)   cost 133    demand 15540
+( 434, 496)   cost 68    demand 11832
+( 786, 787)   cost 163    demand 6460
+( 278, 445)   cost 124    demand 40947
+( 787, 68)   cost 39    demand 15521
+( 445, 68)   cost 112    demand 10166
+EDGE_NOREQ_LIST :
+( 0, 1)   cost 41
+( 2, 3)   cost 15
+( 5, 6)   cost 89
+( 7, 8)   cost 54
+( 9, 11)   cost 10
+( 11, 8)   cost 10
+( 20, 18)   cost 50
+( 27, 25)   cost 55
+( 25, 28)   cost 141
+( 29, 11)   cost 17
+( 34, 35)   cost 162
+( 38, 39)   cost 54
+( 45, 46)   cost 86
+( 47, 41)   cost 61
+( 46, 51)   cost 63
+( 51, 53)   cost 23
+( 54, 55)   cost 79
+( 62, 63)   cost 69
+( 63, 54)   cost 6
+( 50, 45)   cost 45
+( 64, 65)   cost 75
+( 66, 67)   cost 147
+( 74, 75)   cost 9
+( 85, 86)   cost 105
+( 87, 88)   cost 6
+( 91, 89)   cost 40
+( 83, 96)   cost 24
+( 99, 98)   cost 71
+( 116, 115)   cost 28
+( 118, 119)   cost 122
+( 124, 125)   cost 85
+( 126, 127)   cost 115
+( 129, 131)   cost 22
+( 132, 133)   cost 26
+( 134, 135)   cost 40
+( 133, 134)   cost 102
+( 90, 143)   cost 11
+( 66, 65)   cost 63
+( 147, 95)   cost 30
+( 64, 148)   cost 66
+( 149, 150)   cost 72
+( 151, 152)   cost 16
+( 153, 154)   cost 47
+( 154, 152)   cost 56
+( 149, 159)   cost 9
+( 160, 142)   cost 34
+( 153, 155)   cost 16
+( 151, 159)   cost 53
+( 158, 90)   cost 65
+( 95, 148)   cost 15
+( 170, 79)   cost 71
+( 172, 166)   cost 480
+( 177, 178)   cost 17
+( 180, 177)   cost 21
+( 191, 192)   cost 10
+( 195, 196)   cost 26
+( 200, 201)   cost 31
+( 204, 202)   cost 56
+( 206, 207)   cost 188
+( 208, 207)   cost 13
+( 211, 214)   cost 79
+( 219, 220)   cost 112
+( 229, 230)   cost 23
+( 231, 229)   cost 105
+( 242, 243)   cost 16
+( 32, 250)   cost 19
+( 251, 30)   cost 57
+( 45, 257)   cost 27
+( 256, 179)   cost 28
+( 261, 262)   cost 32
+( 263, 264)   cost 51
+( 263, 260)   cost 24
+( 269, 259)   cost 46
+( 262, 267)   cost 70
+( 271, 272)   cost 36
+( 273, 274)   cost 35
+( 70, 102)   cost 21
+( 278, 279)   cost 57
+( 280, 281)   cost 67
+( 145, 258)   cost 92
+( 283, 281)   cost 7
+( 285, 102)   cost 69
+( 70, 286)   cost 55
+( 276, 277)   cost 26
+( 285, 279)   cost 13
+( 283, 284)   cost 82
+( 290, 287)   cost 40
+( 291, 292)   cost 36
+( 290, 291)   cost 100
+( 295, 296)   cost 59
+( 293, 295)   cost 34
+( 296, 171)   cost 185
+( 302, 303)   cost 109
+( 337, 113)   cost 28
+( 345, 344)   cost 43
+( 290, 367)   cost 172
+( 373, 374)   cost 54
+( 375, 77)   cost 65
+( 378, 375)   cost 25
+( 379, 373)   cost 14
+( 374, 380)   cost 48
+( 381, 379)   cost 63
+( 380, 379)   cost 72
+( 376, 380)   cost 24
+( 380, 381)   cost 55
+( 365, 356)   cost 25
+( 383, 361)   cost 35
+( 362, 378)   cost 33
+( 358, 362)   cost 13
+( 384, 363)   cost 17
+( 352, 386)   cost 51
+( 352, 385)   cost 14
+( 375, 361)   cost 18
+( 364, 91)   cost 70
+( 388, 387)   cost 26
+( 232, 241)   cost 83
+( 390, 214)   cost 23
+( 214, 389)   cost 11
+( 394, 395)   cost 23
+( 49, 238)   cost 58
+( 397, 398)   cost 66
+( 397, 241)   cost 29
+( 399, 394)   cost 22
+( 221, 395)   cost 33
+( 398, 401)   cost 73
+( 402, 400)   cost 18
+( 405, 406)   cost 12
+( 403, 406)   cost 89
+( 405, 404)   cost 94
+( 414, 366)   cost 70
+( 367, 415)   cost 62
+( 439, 281)   cost 26
+( 437, 440)   cost 11
+( 441, 443)   cost 59
+( 446, 204)   cost 142
+( 374, 457)   cost 51
+( 458, 459)   cost 46
+( 401, 20)   cost 89
+( 407, 20)   cost 25
+( 408, 218)   cost 40
+( 460, 461)   cost 130
+( 87, 462)   cost 44
+( 463, 464)   cost 179
+( 466, 467)   cost 12
+( 464, 87)   cost 7
+( 28, 196)   cost 194
+( 469, 470)   cost 84
+( 470, 471)   cost 39
+( 468, 407)   cost 89
+( 196, 469)   cost 85
+( 19, 460)   cost 116
+( 461, 463)   cost 115
+( 471, 133)   cost 153
+( 195, 474)   cost 95
+( 472, 20)   cost 88
+( 477, 475)   cost 62
+( 479, 242)   cost 18
+( 85, 461)   cost 87
+( 481, 482)   cost 44
+( 482, 224)   cost 28
+( 220, 480)   cost 7
+( 4, 483)   cost 81
+( 477, 484)   cost 11
+( 485, 220)   cost 81
+( 487, 488)   cost 56
+( 314, 493)   cost 23
+( 496, 443)   cost 55
+( 499, 498)   cost 232
+( 116, 339)   cost 77
+( 504, 407)   cost 231
+( 461, 485)   cost 8
+( 505, 485)   cost 116
+( 506, 505)   cost 178
+( 464, 506)   cost 6
+( 88, 506)   cost 7
+( 300, 88)   cost 44
+( 462, 300)   cost 6
+( 462, 465)   cost 82
+( 508, 507)   cost 130
+( 509, 510)   cost 6
+( 460, 504)   cost 8
+( 511, 512)   cost 206
+( 519, 488)   cost 29
+( 322, 331)   cost 33
+( 491, 516)   cost 25
+( 520, 322)   cost 45
+( 520, 320)   cost 32
+( 513, 522)   cost 79
+( 517, 487)   cost 14
+( 519, 320)   cost 47
+( 122, 524)   cost 25
+( 316, 513)   cost 61
+( 524, 316)   cost 45
+( 521, 60)   cost 54
+( 493, 523)   cost 68
+( 529, 530)   cost 23
+( 467, 509)   cost 4
+( 530, 533)   cost 74
+( 246, 467)   cost 85
+( 534, 55)   cost 63
+( 120, 537)   cost 21
+( 538, 536)   cost 14
+( 536, 120)   cost 25
+( 537, 538)   cost 29
+( 508, 466)   cost 10
+( 510, 539)   cost 3
+( 448, 541)   cost 82
+( 539, 542)   cost 12
+( 541, 308)   cost 71
+( 302, 254)   cost 101
+( 304, 302)   cost 80
+( 308, 540)   cost 112
+( 27, 547)   cost 10
+( 546, 545)   cost 11
+( 254, 548)   cost 174
+( 549, 550)   cost 83
+( 539, 551)   cost 102
+( 542, 508)   cost 8
+( 553, 554)   cost 33
+( 556, 310)   cost 98
+( 318, 554)   cost 12
+( 193, 191)   cost 110
+( 28, 558)   cost 83
+( 560, 547)   cost 107
+( 192, 561)   cost 254
+( 564, 193)   cost 87
+( 561, 23)   cost 86
+( 1, 192)   cost 357
+( 558, 564)   cost 57
+( 569, 236)   cost 76
+( 511, 570)   cost 363
+( 236, 570)   cost 68
+( 568, 183)   cost 38
+( 28, 23)   cost 12
+( 574, 573)   cost 19
+( 355, 357)   cost 73
+( 575, 112)   cost 24
+( 336, 576)   cost 34
+( 140, 137)   cost 3
+( 512, 544)   cost 20
+( 567, 584)   cost 55
+( 558, 561)   cost 10
+( 1, 563)   cost 12
+( 0, 589)   cost 77
+( 456, 453)   cost 19
+( 589, 451)   cost 22
+( 589, 590)   cost 88
+( 562, 593)   cost 60
+( 596, 194)   cost 103
+( 598, 599)   cost 70
+( 598, 600)   cost 110
+( 601, 602)   cost 13
+( 603, 583)   cost 53
+( 17, 603)   cost 33
+( 606, 207)   cost 141
+( 608, 609)   cost 90
+( 207, 610)   cost 99
+( 607, 611)   cost 110
+( 610, 611)   cost 101
+( 605, 609)   cost 7
+( 612, 606)   cost 180
+( 609, 606)   cost 6
+( 613, 209)   cost 40
+( 209, 615)   cost 75
+( 392, 616)   cost 81
+( 213, 306)   cost 54
+( 408, 617)   cost 88
+( 215, 213)   cost 135
+( 622, 623)   cost 15
+( 624, 622)   cost 64
+( 222, 625)   cost 84
+( 219, 626)   cost 83
+( 403, 223)   cost 78
+( 623, 129)   cost 8
+( 131, 622)   cost 14
+( 630, 628)   cost 70
+( 230, 633)   cost 26
+( 600, 633)   cost 49
+( 474, 469)   cost 29
+( 633, 229)   cost 23
+( 230, 474)   cost 67
+( 636, 608)   cost 39
+( 635, 636)   cost 247
+( 634, 197)   cost 76
+( 608, 634)   cost 81
+( 637, 638)   cost 82
+( 134, 637)   cost 81
+( 640, 399)   cost 85
+( 472, 468)   cost 27
+( 642, 402)   cost 85
+( 400, 643)   cost 85
+( 640, 639)   cost 74
+( 642, 643)   cost 18
+( 643, 639)   cost 3
+( 473, 471)   cost 27
+( 638, 636)   cost 63
+( 471, 638)   cost 93
+( 470, 608)   cost 140
+( 231, 632)   cost 29
+( 231, 473)   cost 80
+( 599, 632)   cost 73
+( 648, 602)   cost 75
+( 648, 601)   cost 63
+( 653, 651)   cost 77
+( 244, 86)   cost 35
+( 463, 505)   cost 8
+( 465, 507)   cost 6
+( 249, 247)   cost 95
+( 657, 61)   cost 51
+( 659, 660)   cost 16
+( 250, 661)   cost 62
+( 250, 659)   cost 8
+( 661, 659)   cost 64
+( 664, 666)   cost 61
+( 662, 32)   cost 10
+( 667, 664)   cost 13
+( 550, 552)   cost 21
+( 661, 667)   cost 53
+( 667, 663)   cost 13
+( 541, 543)   cost 15
+( 671, 672)   cost 38
+( 672, 662)   cost 16
+( 660, 672)   cost 8
+( 305, 303)   cost 81
+( 549, 305)   cost 80
+( 309, 125)   cost 70
+( 674, 118)   cost 71
+( 676, 677)   cost 79
+( 682, 680)   cost 20
+( 678, 683)   cost 65
+( 688, 313)   cost 113
+( 690, 691)   cost 40
+( 313, 692)   cost 91
+( 692, 687)   cost 47
+( 693, 687)   cost 25
+( 313, 693)   cost 91
+( 695, 696)   cost 79
+( 696, 677)   cost 92
+( 696, 697)   cost 45
+( 698, 555)   cost 74
+( 692, 693)   cost 38
+( 676, 699)   cost 111
+( 694, 315)   cost 114
+( 317, 699)   cost 47
+( 708, 705)   cost 4
+( 707, 685)   cost 107
+( 709, 710)   cost 35
+( 553, 710)   cost 34
+( 714, 711)   cost 25
+( 709, 554)   cost 35
+( 707, 716)   cost 57
+( 720, 329)   cost 25
+( 330, 721)   cost 68
+( 326, 84)   cost 11
+( 84, 328)   cost 40
+( 101, 99)   cost 6
+( 532, 332)   cost 60
+( 723, 724)   cost 72
+( 62, 725)   cost 13
+( 729, 176)   cost 25
+( 340, 176)   cost 77
+( 732, 345)   cost 19
+( 733, 730)   cost 39
+( 342, 736)   cost 44
+( 729, 347)   cost 76
+( 351, 738)   cost 53
+( 370, 369)   cost 3
+( 751, 752)   cost 38
+( 754, 722)   cost 107
+( 756, 724)   cost 108
+( 765, 764)   cost 32
+( 766, 765)   cost 69
+( 423, 767)   cost 65
+( 761, 768)   cost 62
+( 768, 767)   cost 108
+( 767, 769)   cost 18
+( 769, 765)   cost 39
+( 768, 423)   cost 12
+( 766, 769)   cost 32
+( 420, 774)   cost 21
+( 761, 424)   cost 66
+( 772, 424)   cost 35
+( 773, 426)   cost 30
+( 778, 771)   cost 7
+( 764, 780)   cost 81
+( 415, 770)   cost 59
+( 415, 780)   cost 13
+( 414, 770)   cost 6
+( 412, 782)   cost 32
+( 367, 366)   cost 44
+( 367, 782)   cost 99
+( 784, 783)   cost 98
+( 431, 574)   cost 90
+( 496, 442)   cost 59
+( 442, 444)   cost 62
+( 69, 294)   cost 14
+( 665, 666)   cost 1
+( 13, 287)   cost 211
+( 8, 9)   cost 18
+( 115, 256)   cost 163
+( 176, 175)   cost 93
+( 195, 600)   cost 198
+( 226, 7)   cost 69
+( 422, 423)   cost 107
+( 296, 497)   cost 336
+( 565, 567)   cost 182
+( 456, 451)   cost 38
+( 621, 398)   cost 72
+( 648, 233)   cost 178
+( 683, 690)   cost 93
+DEPOT : 0

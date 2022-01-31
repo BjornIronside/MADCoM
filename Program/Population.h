@@ -51,7 +51,7 @@ class Population
    // Education procedure (LS)
    void education(Individu * indiv);
 
-   // Place an individual in the population
+   // Place an individual in the population, keeping it sorted by solution cost
    // Returns its position
    int placeIndividu (SousPop * pop, Individu * indiv);
 
@@ -73,7 +73,7 @@ class Population
    // compute the biased fitness of the individuals in the population
    void evalExtFit(SousPop * pop);
 
-   // add an individual in the population
+   // add an individual in the population and perform survivor selection if it exceeds maximum size
    int addIndividu (Individu * indiv);
 
    // add all individuals from another population

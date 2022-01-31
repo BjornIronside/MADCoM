@@ -79,6 +79,7 @@ public:
 			   33 MDCARP (Multi-depot CARP)
 			   34 NEARP-TP (NEARP with Turn penalties) --> also set the flag "TURN_PENALTIES" when compiling
 			   35 MM-kWRPP (Min-Max Windy Rural Postman Problem)
+			   36 MCARP (Mixed Capacitated Arc Routing Problem)
 			   */
 	int type ;
 	bool multiDepot ; // is there multiple depots in the problem
@@ -197,6 +198,7 @@ public:
 	void ar_parseOtherLinesNEARP();
 	void ar_computeDistancesNodes();
 	void ar_parseOtherLinesNEARP_TP();
+	void ar_parseOtherLinesMCARP();
 	int ar_tempIndexDepot ;
 	int parsing_courNbArcs ;
 
