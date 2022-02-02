@@ -26,140 +26,141 @@
 #include "Noeud.h"
 #include "Individu.h"
 
-using namespace std ;
+using namespace std;
 
 // Structure to manage a sub-population (feasible or infeasible solutions)
 struct SousPop
 {
-	// Individuals
-	vector <Individu *> individus ;
+    // Individuals
+    vector<Individu *> individus;
 
-	// Number of Individuals
-	int nbIndiv ;
+    // Number of Individuals
+    int nbIndiv;
 };
 
 class Population
 {
-   private:
+private:
+    // List to remember which of the 50 previous individuals were feasible in terms of load capacity
+    list<bool> listeValiditeCharge;
 
-   // List to remember which of the 50 previous individuals were feasible in terms of load capacity
-   list <bool> listeValiditeCharge ;
+    // List to remember which of the 50 previous individuals were feasible in terms of max travel time
+    list<bool> listeValiditeTemps;
 
-   // List to remember which of the 50 previous individuals were feasible in terms of max travel time
-   list <bool> listeValiditeTemps ;
+    // Education procedure (LS)
+    void education(Individu *indiv);
 
-   // Education procedure (LS)
-   void education(Individu * indiv);
+    // Place an individual in the population, keeping it sorted by solution cost
+    // Returns its position
+    int placeIndividu(SousPop *pop, Individu *indiv);
 
-   // Place an individual in the population, keeping it sorted by solution cost
-   // Returns its position
-   int placeIndividu (SousPop * pop, Individu * indiv);
+public:
+    // Access to the parameters of the problem
+    Params *params;
 
-   public:
+    // clock time when the best individual was found
+    clock_t timeBest;
 
-   // Access to the parameters of the problem
-   Params * params ;
+    // Auxiliary data structure (Individual) with all local search data structures
+    // To do the LS on a given individual, we simply copy in this individual and run the LS there.
+    Individu *trainer;
 
-   // clock time when the best individual was found
-   clock_t timeBest ;
+    // check if there is already a solution with the same fitness in the population
+    bool fitExist(SousPop *pop, Individu *indiv);
 
-   // Auxiliary data structure (Individual) with all local search data structures
-   // To do the LS on a given individual, we simply copy in this individual and run the LS there.
-   Individu * trainer;
-	   
-   // check if there is already a solution with the same fitness in the population
-   bool fitExist ( SousPop * pop, Individu * indiv ) ;
+    // compute the biased fitness of the individuals in the population
+    void evalExtFit(SousPop *pop);
 
-   // compute the biased fitness of the individuals in the population
-   void evalExtFit(SousPop * pop);
+    // add an individual in the population and perform survivor selection if it exceeds maximum size
+    int addIndividu(Individu *indiv);
 
-   // add an individual in the population and perform survivor selection if it exceeds maximum size
-   int addIndividu (Individu * indiv);
+    // add all individuals from another population
+    int addAllIndividus(Population *pop);
 
-   // add all individuals from another population
-   int addAllIndividus (Population * pop);
+    // remove an individual in the population (chosen accoding to the biased fitness)
+    void removeIndividu(SousPop *pop, int p);
 
-   // remove an individual in the population (chosen accoding to the biased fitness)
-   void removeIndividu(SousPop * pop, int p);
-   
-   // subprocedure that chooses an individual to be removed
-   int selectCompromis (SousPop * souspop) ; 
+    // subprocedure that chooses an individual to be removed
+    int selectCompromis(SousPop *souspop);
 
-   // update the table of distance (Hamming distance) between individuals to know their proximity
-   void updateProximity (SousPop * pop, Individu * indiv);
+    // update the table of distance (Hamming distance) between individuals to know their proximity
+    void updateProximity(SousPop *pop, Individu *indiv);
 
-   // Diversification procedure (replace a large part of the population by new random solutions)
-   void diversify ();
+    // Diversification procedure (replace a large part of the population by new random solutions)
+    void diversify();
 
-   // Clear (no more individual in the population), used only in the ILS version of the code
-   void clear();
-	   
-   // Feasible and Infeasible subpopulations
-   SousPop * valides;
-   SousPop * invalides;
+    // Clear (no more individual in the population), used only in the ILS version of the code
+    void clear();
 
-   // Get one individual per binary tournament
-   Individu * getIndividuBinT ();
+    // Feasible and Infeasible subpopulations
+    SousPop *valides;
+    SousPop *invalides;
 
-   // Get one individual with uniform probability in a percentage of the best
-   Individu * getIndividuPourc (int pourcentage);
+    // Get one individual per binary tournament
+    Individu *getIndividuBinT();
 
-   // Get best feasible individual
-   Individu * getIndividuBestValide ();
+    // Get one individual with uniform probability in a percentage of the best
+    Individu *getIndividuPourc(int pourcentage);
 
-   // Get best infeasible individual
-   Individu * getIndividuBestInvalide ();
+    // Get best feasible individual
+    Individu *getIndividuBestValide();
 
-   // when the penalty coefficient change, need to recompute properly the fitness of the individuals in the population
-   void validatePen (SousPop * souspop);
+    // Get best infeasible individual
+    Individu *getIndividuBestInvalide();
 
-   //////////////////////////////////////////////////////////
+    // when the penalty coefficient change, need to recompute properly the fitness of the individuals in the population
+    void validatePen(SousPop *souspop);
 
-   // Print the best solution in a file
-   void ExportBest (string nomFichier) ;
+    //////////////////////////////////////////////////////////
 
-   // Solution check
-   // Verifies the cost and feasibility of the solution
-   // Using only the instance data and the shortest path data (not relying on the auxiliary data structures)
-   bool solutionChecker(vector < vector < vector < int > > > & allRoutes, vector < vector < vector < pair <int,int > > > > & allRoutesArcs, double expectedCost, double expectedMaxRoute);
-   
-   // Print the best solution in the BKS file, only if its better than the previous BKS
-   void ExportBKS (string nomFichier) ;
+    // Print the best solution in a file
+    void ExportBest(string nomFichier);
 
-   /* FUNCTIONS FOR REGULAR PRINTOUTS OF THE STATUS OF THE POPULATION */
+    // Solution check
+    // Verifies the cost and feasibility of the solution
+    // Using only the instance data and the shortest path data (not relying on the auxiliary data structures)
+    bool solutionChecker(vector<vector<vector<int>>> &allRoutes, vector<vector<vector<pair<int, int>>>> &allRoutesArcs, double expectedCost, double expectedMaxRoute);
 
-   // get the fraction of valid individuals with respect to the load constraint
-   double fractionValidesCharge () ;
+    // Print the best solution in the BKS file, only if its better than the previous BKS
+    void ExportBKS(string nomFichier);
 
-   // get the fraction of valid individuals with respect to the time constraint
-   double fractionValidesTemps () ;
+    /* FUNCTIONS FOR REGULAR PRINTOUTS OF THE STATUS OF THE POPULATION */
 
-   // get the diversity of the population
-   double getDiversity(SousPop * pop);
+    // get the fraction of valid individuals with respect to the load constraint
+    double fractionValidesCharge();
 
-   // get the average cost of a feasible solution in the population
-   double getMoyenneValides ();
+    // get the fraction of valid individuals with respect to the time constraint
+    double fractionValidesTemps();
 
-   // get the average cost of an infeasible solution in the population
-   double getMoyenneInvalides ();
+    // Get the fraction of individuals that are mutants in a subpopulation
+    double getFractionMutants(SousPop *pop);
 
-   // get the average age of feasible solutions
-   double getAgeValides ();
+    // get the diversity of the population
+    double getDiversity(SousPop *pop);
 
-   // print a small report of the status of the population
-   void afficheEtat(int NbIter);
+    // get the average cost of a feasible solution in the population
+    double getMoyenneValides();
 
-   // update the count of valid individuals
-   void updateNbValides (Individu * indiv);
+    // get the average cost of an infeasible solution in the population
+    double getMoyenneInvalides();
 
-   // update the age of the individuals
-   void updateAge ();
+    // get the average age of feasible solutions
+    double getAgeValides();
 
-   // Constructor
-   Population(Params * params);
+    // print a small report of the status of the population
+    void afficheEtat(int NbIter);
 
-   // Destructor
-   ~Population();
+    // update the count of valid individuals
+    void updateNbValides(Individu *indiv);
+
+    // update the age of the individuals
+    void updateAge();
+
+    // Constructor
+    Population(Params *params);
+
+    // Destructor
+    ~Population();
 };
 
 #endif

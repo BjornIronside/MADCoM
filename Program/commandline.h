@@ -22,6 +22,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <ctime>
 using namespace std;
 
 class commandline
@@ -46,7 +47,13 @@ class commandline
 		// nbDepots, if given (used to generate the MDCARP instances)
 		int nbDep ;
 
+        // Results folder
+        string resultsFolder;
+
         // instance path
+        string instance_path;
+
+        // instance name
         string instance_name;
 
 		// output path

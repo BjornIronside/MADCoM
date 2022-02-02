@@ -34,6 +34,9 @@ void Params::setMethodParams()
 	penalityCapa = 50;		// Initial penalties (will evolve during the search)
 	penalityLength = 50;	// Initial penalties (will evolve during the search)
 
+	mutationProb = 0.25;    // Probability of mutation
+	beta = 0.10;			// Number of virtual tasks in the next layer of hierarchical decomposition is between [1, beta*nbVT]
+	
 	// The ELS/ILS requires slightly different parameter setting to get the right number of children and solutions, as specified in Prins 2009
 	if (isILS_general)
 	{

@@ -34,7 +34,6 @@ Population::Population(Params *params) : params(params)
 	trainer->localSearch = new LocalSearch(params, trainer); // Initialize the LS structure
 
 	// Creating the initial populations
-	cout << "Creating the initial population";
 	for (int i = 0; i < params->mu && (!params->isSearchingFeasible || !feasibleFound); i++)
 	{
 		randomIndiv = new Individu(params, true);
@@ -753,6 +752,17 @@ double Population::fractionValidesTemps()
 	return double(count) / 50.;
 }
 
+double Population::getFractionMutants(SousPop *pop)
+{
+	if (pop->nbIndiv == 0)
+		return 0.0;
+	double count{0};
+	for (auto ind : pop->individus)
+		if (ind->isMutant)
+			count += 1.0;
+	return count/pop->nbIndiv;
+}
+
 double Population::getDiversity(SousPop *pop)
 {
 	double total = 0;
@@ -863,7 +873,7 @@ void Population::afficheEtat(int nbIter)
 	// Some traces to observe the status of the population
 	cout.precision(8);
 
-	cout << "It " << nbIter << " | Sol ";
+	cout << "It " << nbIter << " | Best ";
 
 	if (getIndividuBestValide() != NULL)
 		cout << getIndividuBestValide()->coutSol.distance << " " << getIndividuBestValide()->coutSol.routes << " ";
@@ -875,8 +885,9 @@ void Population::afficheEtat(int nbIter)
 	else
 		cout << "NO-INVALID";
 
-	cout << " | Moy " << getMoyenneValides() << " " << getMoyenneInvalides()
-		 << " | Div " << getDiversity(valides) << " " << getDiversity(invalides) << endl
+	cout << " | Mean " << getMoyenneValides() << " " << getMoyenneInvalides() << endl
+		 << " | Div " << getDiversity(valides) << " " << getDiversity(invalides) 
+		 << " | Mut " << getFractionMutants(valides) << " " << getFractionMutants(invalides) << endl
 		 << " | Val " << fractionValidesCharge() << " " << fractionValidesTemps()
 		 << " | Pen " << params->penalityCapa << " " << params->penalityLength
 		 << " | Pop " << valides->nbIndiv << " " << invalides->nbIndiv;

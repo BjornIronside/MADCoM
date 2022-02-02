@@ -1,0 +1,17 @@
+>Setup Terminal
+cd C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM
+cd C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM\Program
+--------
+>Example Runs Commands
+madcom "C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM\Instances\CARP\F9_g-6.txt" -type 30
+
+madcom "C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM\Instances\CARP\Beijing-1.txt" -type 30
+
+madcom "C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM\Instances\MCARP\mval10D.txt" -type 36
+
+madcom "C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM\Instances\MCARP\Lpr-a-01.txt" -type 36
+---------
+>GDB Commands 
+r "C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM\Instances\CARP\F9_g-6.txt" -type 30
+
+r "C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM\Instances\CARP\gdb10.dat" -type 30

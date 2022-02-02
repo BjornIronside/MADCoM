@@ -72,9 +72,15 @@ void Mutator::decompose()
         else
             end = mutant->chromR[1][i + 1];
 
-        // 10% chance of splitting the route into two virtual tasks
-        if (rand() % 10 == 0)
+        // 10% chance of splitting the route into two virtual tasks if it has more than one service
+        if (end -  begin > 1 && rand() % 10 == 0)
         {
+            if (end - begin == 1)
+                {
+                    cout << begin << ' ' << end << mutant->nbRoutes << '\n';
+                    mutant->printGiantTour();
+                    mutant->printRoutes();
+                }
             mid = (rand() % (end - begin - 1)) + begin + 1;
             // cout << mid << ' ';
 
@@ -410,7 +416,7 @@ void Mutator::printAuxStructures()
 Mutator::Mutator(Params *params) : params(params)
 {
     maxClusters = max((int)sqrt(params->nbClients), 1);
-    beta = 0.1;
+    beta = params->beta;
 }
 
 Mutator::~Mutator()

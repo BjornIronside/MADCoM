@@ -184,6 +184,12 @@ public:
 	// The preprocessing effort could also be limited to O(n^4/3) using hierarchies as in Irnich 2008 (JOC)
 	int sizeSD ; // Default 10
 
+	// Mutation parameters
+	// Probability of mutation
+	double mutationProb; // Default 0.25
+	// Number of virtual tasks in the next layer of hierarchical decomposition is between [1, beta*nbVT]
+	double beta; // Default 0.10
+
 	/* ------------------------  PARSING ROUTINES  -------------------- */
 
 	// incoming data stream

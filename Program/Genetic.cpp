@@ -41,6 +41,11 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 	CoutSol bestSolFeasibility;
 	clock_t debut = clock(); // When iterating several time the HGA (e.g. PCARP, the time limit applies to one iteration -- fleet size or max distance value)
 
+	// Initializing random distribution
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_real_distribution<> dis(0.0, 1.0);
+
 	if (population->getIndividuBestValide() != NULL)
 		bestSolFeasibility = population->getIndividuBestValide()->coutSol;
 	else
@@ -64,7 +69,7 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 
 		if (!params->periodique && !params->multiDepot)
 		{
-			if (rand() % 4 == 0) // Mutation
+			if (dis(gen) < params->mutationProb) // Mutation
 				mutate();
 			else
 				crossOX(); // Pick OX crossover if its a single-period problem
@@ -108,7 +113,7 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 					cout << "BY MUTATION ";
 				else
 					cout << "BY CROSSOVER ";
-				cout << population->getIndividuBestValide()->coutSol.evaluation << " distance : " << rejeton->coutSol.distance << " nbRoutes : " << endl
+				cout << population->getIndividuBestValide()->coutSol.evaluation << " distance : " << rejeton->coutSol.distance << " nbRoutes : " << rejeton->coutSol.routes << endl
 					 << endl;
 			}
 			if (traces && population->valides->nbIndiv == 0)
