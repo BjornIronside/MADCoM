@@ -21,6 +21,10 @@ public:
     // Pointer towards the individual to mutate
     Individu *mutant;
 
+    // Generate an individual using Hierarchical Decomposition
+    // Initial Virtual Task set is equal to the set of all services
+    void generate(Individu *indi);
+    
     // Mutate the individual
     void mutate(Individu *indi);
 
@@ -28,14 +32,8 @@ public:
     int nbVT;
     vector<vector<int>> virtualTaskSet;
 
-    // Decompose the routes of an individual to generate a virtual task set
+    // Break the routes of an individual to generate a virtual task set
     void decompose();
-
-    // Distance matrix between virtual tasks
-    vector<vector<double>> distMatrix;
-
-    // Generate distance matrix
-    void generateDistMatrix();
 
     // Hierarchical Decomposition generates a giant tour
     void hierarchicalDecomposition();
@@ -48,21 +46,29 @@ public:
     int nbClusters;
     // Total deviation we want to minimize
     double td;
+    // Distance matrix between virtual tasks
+    vector<vector<double>> distMatrix;
     // Vector with the indices of the virtual tasks that are currently medoids
     vector<int> medoids;
-    // Ammount of total deviation lost if a medoid is removed
+    // Amount of total deviation lost if a medoid is removed
     vector<double> removalLoss;
     // Index of the medoid virtual task closest to each of the virtual tasks
     vector<int> nearest;
     // Distance to the nearest and second nearest medoids
     vector<double> distNearest;
     vector<double> distSecond;
-    
+
+    // Generate distance matrix
+    void generateDistMatrix();
+
     // Cluster virtual task set
     void cluster();
 
     // Random sampling initialization of medoids
     void randomSampling();
+
+    // Calculate initial total deviation
+    void calculateInitialTD();
 
     // Update auxiliary structures and compute removal loss
     void updateAuxStructures();
@@ -72,7 +78,7 @@ public:
 
     // Initialize virtual task set and distance matrix
     void initializeAuxStructures();
-    
+
     // Clears virtual task set and distance matrix
     void clearStructures();
 

@@ -33,10 +33,14 @@ Population::Population(Params *params) : params(params)
 	delete trainer->localSearch;
 	trainer->localSearch = new LocalSearch(params, trainer); // Initialize the LS structure
 
+	// Create the mutator
+	mutator = new Mutator(params);
+
 	// Creating the initial populations
 	for (int i = 0; i < params->mu && (!params->isSearchingFeasible || !feasibleFound); i++)
 	{
 		randomIndiv = new Individu(params, true);
+		mutator->generate(randomIndiv);
 		education(randomIndiv);
 		addIndividu(randomIndiv);
 		updateNbValides(randomIndiv);

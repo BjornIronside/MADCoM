@@ -9,7 +9,26 @@ void Mutator::mutate(Individu *indi)
     decompose();
     hierarchicalDecomposition();
     updateMutant();
-    
+
+    // Clean up for next mutation
+    clearStructures();
+    virtualTaskSet.clear();
+}
+
+void Mutator::generate(Individu *indi)
+{
+    // Copy pointer
+    mutant = indi;
+    // Form initial VT set consisting of all services
+    nbVT = params->nbClients;
+    for (int i{1}; i <= params->nbClients; i++)
+    {
+        virtualTaskSet.push_back(vector<int>(1,i));
+    }
+    // Generate Giant Tour
+    hierarchicalDecomposition();
+    updateMutant();
+
     // Clean up for next mutation
     clearStructures();
     virtualTaskSet.clear();
@@ -40,7 +59,7 @@ void Mutator::hierarchicalDecomposition()
             cluster();
             groupVirtualTasks();
         }
-        
+
         // Clearing for next iteration
         medoids.clear();
         removalLoss.clear();
@@ -73,14 +92,14 @@ void Mutator::decompose()
             end = mutant->chromR[1][i + 1];
 
         // 10% chance of splitting the route into two virtual tasks if it has more than one service
-        if (end -  begin > 1 && rand() % 10 == 0)
+        if (end - begin > 1 && rand() % 10 == 0)
         {
             if (end - begin == 1)
-                {
-                    cout << begin << ' ' << end << mutant->nbRoutes << '\n';
-                    mutant->printGiantTour();
-                    mutant->printRoutes();
-                }
+            {
+                cout << begin << ' ' << end << mutant->nbRoutes << '\n';
+                mutant->printGiantTour();
+                mutant->printRoutes();
+            }
             mid = (rand() % (end - begin - 1)) + begin + 1;
             // cout << mid << ' ';
 
@@ -134,34 +153,16 @@ void Mutator::clearStructures()
 
 void Mutator::cluster()
 {
-
     //  Selecting the first medoids randomly
     randomSampling();
     for (int i{0}; i < nbClusters; i++)
     {
         removalLoss.push_back(0.0); // Initializing removal loss
-        nearest[medoids[i]] = i; // To identify the VTs that are medoids
+        nearest[medoids[i]] = i;    // To identify the VTs that are medoids
     }
 
     // Calculate initial total deviation
-    td = 0;
-    double min_dist{1.e20};
-    for (int xc{0}; xc < nbVT; xc++)
-    {
-        // Check if xc is a medoid
-        if (medoids[nearest[xc]] == xc)
-        {
-            continue;
-        }
-
-        min_dist = 1.e20;
-        for (int mi : medoids)
-        {
-            if (distMatrix[xc][mi] < min_dist)
-                min_dist = distMatrix[xc][mi];
-        }
-        td += min_dist;
-    }
+    calculateInitialTD();
 
     // Updating the auxiliary structures
     updateAuxStructures();
@@ -249,6 +250,54 @@ void Mutator::randomSampling()
     medoids.erase(medoids.begin() + nbClusters, medoids.end());
 }
 
+void Mutator::calculateInitialTD()
+{
+    td = 0;
+    double min_dist{1.e20};
+    double dist2Medoid;
+    // Initialization Case
+    if (nbVT == params->nbClients)
+    {
+        for (int xc{0}; xc < nbVT; xc++)
+        {
+            // Check if xc is a medoid
+            if (medoids[nearest[xc]] == xc)
+            {
+                continue;
+            }
+
+            min_dist = 1.e20;
+            for (int mi : medoids)
+            {
+                dist2Medoid = params->timeCost[xc+1][mi+1];
+                if (dist2Medoid < min_dist)
+                    min_dist = dist2Medoid;
+            }
+            td += min_dist;
+        }
+    }
+    // Standard Case
+    else
+    {
+        for (int xc{0}; xc < nbVT; xc++)
+        {
+            // Check if xc is a medoid
+            if (medoids[nearest[xc]] == xc)
+            {
+                continue;
+            }
+
+            min_dist = 1.e20;
+            for (int mi : medoids)
+            {
+                if (distMatrix[xc][mi] < min_dist)
+                    min_dist = distMatrix[xc][mi];
+            }
+            td += min_dist;
+        }
+    }
+}
+
 void Mutator::initializeAuxStructures()
 {
     // Temp vector for distance matrix between VTs
@@ -267,36 +316,71 @@ void Mutator::initializeAuxStructures()
 void Mutator::updateAuxStructures()
 {
     int i;
-
+    double dist2Medoid;
     // Reset removal loss
     for (int j{0}; j < nbClusters; j++)
     {
         removalLoss[j] = 0;
     }
-    for (int xo{0}; xo < nbVT; xo++)
+
+    // Initialization Case
+    if (nbVT == params->nbClients)
     {
-        distNearest[xo] = 1.e20;
-        distSecond[xo] = 1.e20;
-        i = 0;
-        for (int mi : medoids)
+        for (int xo{0}; xo < nbVT; xo++)
         {
-            if (distMatrix[xo][mi] < distSecond[xo])
+            distNearest[xo] = 1.e20;
+            distSecond[xo] = 1.e20;
+            i = 0;
+            for (int mi : medoids)
             {
-                if (distMatrix[xo][mi] < distNearest[xo])
+                dist2Medoid = params->timeCost[xo+1][mi+1];
+                if (dist2Medoid < distSecond[xo])
                 {
-                    // If mi becomes the closest medoid, then the previous closest medoid is now the second closest
-                    distSecond[xo] = distNearest[xo];
-                    distNearest[xo] = distMatrix[xo][mi];
-                    nearest[xo] = i;
+                    if (dist2Medoid < distNearest[xo])
+                    {
+                        // If mi becomes the closest medoid, then the previous closest medoid is now the second closest
+                        distSecond[xo] = distNearest[xo];
+                        distNearest[xo] = dist2Medoid;
+                        nearest[xo] = i;
+                    }
+                    else
+                    {
+                        distSecond[xo] = dist2Medoid;
+                    }
                 }
-                else
-                {
-                    distSecond[xo] = distMatrix[xo][mi];
-                }
+                i++;
             }
-            i++;
+            removalLoss[nearest[xo]] += distSecond[xo] - distNearest[xo];
         }
-        removalLoss[nearest[xo]] += distSecond[xo] - distNearest[xo];
+    }
+    // Standard Case
+    else
+    {
+        for (int xo{0}; xo < nbVT; xo++)
+        {
+            distNearest[xo] = 1.e20;
+            distSecond[xo] = 1.e20;
+            i = 0;
+            for (int mi : medoids)
+            {
+                if (distMatrix[xo][mi] < distSecond[xo])
+                {
+                    if (distMatrix[xo][mi] < distNearest[xo])
+                    {
+                        // If mi becomes the closest medoid, then the previous closest medoid is now the second closest
+                        distSecond[xo] = distNearest[xo];
+                        distNearest[xo] = distMatrix[xo][mi];
+                        nearest[xo] = i;
+                    }
+                    else
+                    {
+                        distSecond[xo] = distMatrix[xo][mi];
+                    }
+                }
+                i++;
+            }
+            removalLoss[nearest[xo]] += distSecond[xo] - distNearest[xo];
+        }
     }
 }
 

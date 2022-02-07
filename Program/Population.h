@@ -25,6 +25,7 @@
 #include <time.h>
 #include "Noeud.h"
 #include "Individu.h"
+#include "Mutation.h"
 
 using namespace std;
 
@@ -64,6 +65,9 @@ public:
     // Auxiliary data structure (Individual) with all local search data structures
     // To do the LS on a given individual, we simply copy in this individual and run the LS there.
     Individu *trainer;
+
+    // Mutator used to generate initial population
+    Mutator *mutator;
 
     // check if there is already a solution with the same fitness in the population
     bool fitExist(SousPop *pop, Individu *indiv);
