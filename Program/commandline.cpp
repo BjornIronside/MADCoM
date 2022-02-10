@@ -83,7 +83,7 @@ commandline::commandline(int argc, char *argv[])
 
 	// default values
 	instance_path = string(argv[1]);
-	resultsFolder = "C:/Users/diogo/OneDrive/Documentos/IST/Master Thesis/MADCoM/Results";
+	resultsFolder = "../Results";
 	cpu_time = 300; // Five minutes is default CPU time
 	seed = 0;
 	type = -1;
@@ -123,6 +123,7 @@ commandline::commandline(int argc, char *argv[])
 		cout << "-type 33 = MDCARP" << endl;
 		cout << "-type 34 = MCGRP-TP" << endl;
 		cout << "-type 35 = MM-kWRPP" << endl;
+		cout << "-type 36 = MCARP" << endl;
 		command_ok = false;
 		return;
 	}

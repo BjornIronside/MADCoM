@@ -1,0 +1,10 @@
+SOLVERS: gencarp madcom
+RUNS: 5
+TIME_LIMIT: 1800
+INSTANCES:
+egl-g2-E.dat
+F1-g_6.txt
+Hefei-10.txt
+Beijing-6.txt
+Beijing-9.txt
+S2_g-6.txt

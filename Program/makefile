@@ -1,7 +1,7 @@
 all : madcom
 
 CCC = g++
-CCFLAGS = -O3 -Wall -g 
+CCFLAGS = -O3 -Wall 
 LIBS= -lm
 TARGETDIR=.
 CPPFLAGS += \
