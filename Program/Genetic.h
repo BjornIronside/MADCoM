@@ -58,15 +58,13 @@ public:
 	Individu *rejeton;
 	Individu *rejeton2;
 	Individu *rejetonP1;
-	Individu *rejetonP2;
 	Individu *rejetonBestFound;
 	Individu *rejetonBestFoundAll;
 
 	// Pointer towards the parameters of the problem
 	Params *params;
 
-	// Mutator class
-	Mutator *mutator;
+	
 
 	// Running the algorithm until "maxIterations" total iterations have been reached,
 	// or "maxIterNonProd" consecutive iterations without improvement have been reached

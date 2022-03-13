@@ -1,4 +1,10 @@
 import main
+import os
+
+TYPE_FOLDER = {
+    30: 'CARP',
+    36: 'MCARP'
+}
 
 
 def generate_batch_file(config_filename, batch_filename, log_filename):
@@ -9,17 +15,21 @@ def generate_batch_file(config_filename, batch_filename, log_filename):
     added_flags = f"-t {time_limit}"
 
     # Reading Instances
+    all_instances = set(os.listdir('../Instances/CARP') + os.listdir('../Instances/MCARP'))
     instance_list = []
     instance_types = []
     config_file.readline()  # Instances header
     for line in config_file:
         instance_name = line.strip()
+        if instance_name not in all_instances:
+            raise Exception("Instance not found. Please check if the instance name is written correctly.")
         instance_list.append(instance_name)
-        if instance_name[:3] == 'Lpr' or instance_name[:4] == 'mval': # MCARP Instances
+        if instance_name[:3] == 'Lpr' or instance_name[:4] == 'mval':  # MCARP Instances
             instance_types.append(36)
         else:
             instance_types.append(30)
 
+    # Writing batch file
     output_file = open(batch_filename, 'w')
     print("ECHO OFF\n", file=output_file)
     for solver in solvers:
@@ -31,17 +41,15 @@ def generate_batch_file(config_filename, batch_filename, log_filename):
                 print(line, file=output_file)
                 print(f"{line} >> {log_filename}", file=output_file)
                 # Command to solve the instance
-                if ins_type == 30:
-                    ins_folder = 'CARP'
-                else:
-                    ins_folder = 'MCARP'
-                print(f"{solver} \"{main.INSTANCES_FOLDER}/{ins_folder}/{instance}\" -type {ins_type} {added_flags}", file=output_file)
+
+                print(f"{solver} \"{main.INSTANCES_FOLDER}/{TYPE_FOLDER[ins_type]}/{instance}\" "
+                      f"-type {ins_type} {added_flags}", file=output_file)
         print('\n', file=output_file)
 
     # Close files
     config_file.close()
     output_file.close()
-    
+
 
 if __name__ == '__main__':
     generate_batch_file(config_filename='automaton_config.txt',

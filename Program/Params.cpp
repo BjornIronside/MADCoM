@@ -34,9 +34,13 @@ void Params::setMethodParams()
 	penalityCapa = 50;		// Initial penalties (will evolve during the search)
 	penalityLength = 50;	// Initial penalties (will evolve during the search)
 
+	useRCO_decomposition = true; 
 	mutationProb = 0.25;    // Probability of mutation
 	beta = 0.10;			// Number of virtual tasks in the next layer of hierarchical decomposition is between [1, beta*nbVT]
-	
+	goodLinkCutProb = 0.05; // Probability of cutting a good link
+	poorLinkCutProb = 0.20; // Probability of cutting a poor link
+
+
 	// The ELS/ILS requires slightly different parameter setting to get the right number of children and solutions, as specified in Prins 2009
 	if (isILS_general)
 	{
@@ -770,6 +774,7 @@ void Params::ar_InitializeDistanceNodes()
 
 void Params::ar_computeDistancesNodes()
 {
+	cout << "Applying Floyd-Warshall algorithm\n";
 	for (int ii = 0; ii <= ar_NodesNonRequired + ar_NodesRequired; ii++)
 		ar_distanceNodes[ii][ii] = 0;
 	// simple application of the Floyd Warshall algorithm
@@ -788,6 +793,7 @@ void Params::ar_computeDistancesNodes()
 	// Then, we would still like to include some distance information between services.
 	// The distance between two services is the minimum distance between the closest endpoints of the edge
 	// This is used by the granular search
+	cout << "Computing minimum distance between services\n";
 	double d;
 	timeCost = new double *[nbClients + nbDepots + 1];
 	for (int i = 0; i < nbClients + nbDepots; i++)

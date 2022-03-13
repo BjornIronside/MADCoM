@@ -18,7 +18,7 @@
 
 #include "Population.h"
 
-Population::Population(Params *params) : params(params)
+Population::Population(Params *params, Mutator *mutator) : params(params), mutator(mutator) 
 {
 	Individu *randomIndiv;
 	valides = new SousPop();
@@ -28,13 +28,12 @@ Population::Population(Params *params) : params(params)
 	double temp, temp2;
 	bool feasibleFound = false;
 
+	cout << "Generating initial population\n";
+
 	// Create the trainer
 	trainer = new Individu(params, true);
 	delete trainer->localSearch;
 	trainer->localSearch = new LocalSearch(params, trainer); // Initialize the LS structure
-
-	// Create the mutator
-	mutator = new Mutator(params);
 
 	// Creating the initial populations
 	for (int i = 0; i < params->mu && (!params->isSearchingFeasible || !feasibleFound); i++)
@@ -448,8 +447,8 @@ void Population::ExportBest(string nomFichier)
 		// we set a high penalty, so Split and LS does not have the bad idea to create an infeasible solution from the best known feasible one
 		temp = params->penalityCapa;
 		temp2 = params->penalityLength;
-		params->penalityCapa = 100000;
-		params->penalityLength = 100000;
+		params->penalityCapa = 10000000;
+		params->penalityLength = 10000000;
 		education(bestValide);
 		loc = trainer->localSearch;
 		params->penalityCapa = temp;

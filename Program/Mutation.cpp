@@ -6,7 +6,10 @@ void Mutator::mutate(Individu *indi)
     mutant = indi;
 
     // Mutation
-    decompose();
+    if (params->useRCO_decomposition)
+        rcoDecompose();
+    else
+        decompose();
     hierarchicalDecomposition();
     updateMutant();
 
@@ -23,7 +26,7 @@ void Mutator::generate(Individu *indi)
     nbVT = params->nbClients;
     for (int i{1}; i <= params->nbClients; i++)
     {
-        virtualTaskSet.push_back(vector<int>(1,i));
+        virtualTaskSet.push_back(vector<int>(1, i));
     }
     // Generate Giant Tour
     hierarchicalDecomposition();
@@ -121,6 +124,128 @@ void Mutator::decompose()
         }
     }
     nbVT = (int)virtualTaskSet.size();
+}
+
+void Mutator::rcoDecompose()
+{
+    // mutant->printRoutes();
+    double avgTaskRank{calculateAverageTaskRank()};
+
+    // Decomposing the routes of the solution using RCO
+    int begin;
+    int end;
+    int nVehicles{params->nombreVehicules[1]};
+    vector<int> goodLinks;
+    vector<int> poorLinks;
+    int goodCut{-1};
+    int poorCut{-1};
+
+    // Iterate through the routes of the solution
+    for (int i{nVehicles - mutant->nbRoutes}; i < nVehicles; i++)
+    {
+        virtualTaskSet.push_back(vector<int>());
+
+        // Beginning and end of route
+        begin = mutant->chromR[1][i];
+        if (i == nVehicles - 1) // Final route
+            end = mutant->chromT[1].size();
+        else
+            end = mutant->chromR[1][i + 1];
+
+        // Classify each link as good or poor
+        for (int j{begin}; j < end - 1; j++)
+        {
+            if (taskRankMatrix[mutant->chromT[1][j]][mutant->chromT[1][j + 1]] < avgTaskRank)
+                goodLinks.push_back(j);
+            else
+                poorLinks.push_back(j);
+        }
+        // Randomly decide whether to cut a good or poor link
+        if (!goodLinks.empty() && dis01(mt) < goodLinkCutProb)
+            goodCut = goodLinks[rand() % goodLinks.size()];
+        if (!poorLinks.empty() && dis01(mt) < poorLinkCutProb)
+            poorCut = poorLinks[rand() % poorLinks.size()];
+
+        // Cut the route into virtual tasks at the selected links
+        if (goodCut > -1) // A good link is going to be cut
+        {
+            if (poorCut > -1) // Cut a good and poor link
+            {
+                int a{min(goodCut, poorCut)};
+                int b{max(goodCut, poorCut)};
+
+                for (int j{begin}; j <= a; j++)
+                    virtualTaskSet.back().push_back(mutant->chromT[1][j]);
+
+                virtualTaskSet.push_back(vector<int>());
+
+                for (int j{a + 1}; j <= b; j++)
+                    virtualTaskSet.back().push_back(mutant->chromT[1][j]);
+
+                virtualTaskSet.push_back(vector<int>());
+
+                for (int j{b + 1}; j < end; j++)
+                    virtualTaskSet.back().push_back(mutant->chromT[1][j]);
+            }
+            else // Cut only at the good link
+            {
+                for (int j{begin}; j <= goodCut; j++)
+                    virtualTaskSet.back().push_back(mutant->chromT[1][j]);
+
+                virtualTaskSet.push_back(vector<int>());
+
+                for (int j{goodCut + 1}; j < end; j++)
+                    virtualTaskSet.back().push_back(mutant->chromT[1][j]);
+            }
+        }
+        else if (poorCut > -1) // Cut only at the poor link
+        {
+            for (int j{begin}; j <= poorCut; j++)
+                virtualTaskSet.back().push_back(mutant->chromT[1][j]);
+
+            virtualTaskSet.push_back(vector<int>());
+
+            for (int j{poorCut + 1}; j < end; j++)
+                virtualTaskSet.back().push_back(mutant->chromT[1][j]);
+        }
+        else // Don't cut, i.e. the whole route is a virtual task
+        {
+            for (int j{begin}; j < end; j++)
+            {
+                virtualTaskSet.back().push_back(mutant->chromT[1][j]);
+            }
+        }
+
+        // Reset aux variables
+        goodCut = -1;
+        poorCut = -1;
+        goodLinks.clear();
+        poorLinks.clear();
+    }
+    nbVT = (int)virtualTaskSet.size();
+    // printVTSet();
+}
+
+double Mutator::calculateAverageTaskRank()
+{
+    int begin;
+    int end;
+    int nVehicles{params->nombreVehicules[1]};
+    double sumRanks{0.0};
+
+    for (int i{nVehicles - mutant->nbRoutes}; i < nVehicles; i++)
+    {
+        // Beginning and end of route
+        begin = mutant->chromR[1][i];
+        if (i == nVehicles - 1) // Final route
+            end = mutant->chromT[1].size();
+        else
+            end = mutant->chromR[1][i + 1];
+
+        for (int j{begin}; j < end - 1; j++)
+            sumRanks += taskRankMatrix[mutant->chromT[1][j]][mutant->chromT[1][j + 1]];
+    }
+    return sumRanks / (params->nbClients - mutant->nbRoutes);
 }
 
 void Mutator::generateDistMatrix()
@@ -269,7 +394,7 @@ void Mutator::calculateInitialTD()
             min_dist = 1.e20;
             for (int mi : medoids)
             {
-                dist2Medoid = params->timeCost[xc+1][mi+1];
+                dist2Medoid = params->timeCost[xc + 1][mi + 1];
                 if (dist2Medoid < min_dist)
                     min_dist = dist2Medoid;
             }
@@ -333,7 +458,7 @@ void Mutator::updateAuxStructures()
             i = 0;
             for (int mi : medoids)
             {
-                dist2Medoid = params->timeCost[xo+1][mi+1];
+                dist2Medoid = params->timeCost[xo + 1][mi + 1];
                 if (dist2Medoid < distSecond[xo])
                 {
                     if (dist2Medoid < distNearest[xo])
@@ -477,6 +602,20 @@ void Mutator::printDistMatrix()
     cout << '\n';
 }
 
+void Mutator::printTaskRankMatrix()
+{
+    cout << "\nDistance Matrix:\n";
+    for (auto row : taskRankMatrix)
+    {
+        for (int d : row)
+        {
+            cout << d << ' ';
+        }
+        cout << '\n';
+    }
+    cout << '\n';
+}
+
 void Mutator::printAuxStructures()
 {
     cout << "\nMedoids:\n";
@@ -497,10 +636,50 @@ void Mutator::printAuxStructures()
     cout << '\n';
 }
 
+void Mutator::computeTaskRankMatrix()
+{
+    int taskMatSize{params->nbClients + params->nbDepots};
+    vector<int> temp(taskMatSize, 1);
+
+    for (int task = 0; task < taskMatSize; task++)
+    {
+        taskRankMatrix.push_back(temp);
+        // Argsort the row of timeCost
+        vector<int> idx(taskMatSize);
+        iota(idx.begin(), idx.end(), 0); // Initialize vector with 1,2,3,...
+        stable_sort(idx.begin(), idx.end(), [task, this](int i1, int i2)
+                    { return params->timeCost[task][i1] < params->timeCost[task][i2]; }); // Sorted indexes
+
+        int currentRank{1};
+        taskRankMatrix[task][idx[0]] = currentRank++;
+
+        for (int i{1}; i < taskMatSize; ++i)
+        {
+            if (params->timeCost[task][idx[i]] == params->timeCost[task][idx[i - 1]])
+            {
+                taskRankMatrix[task][idx[i]] = taskRankMatrix[task][idx[i - 1]];
+                ++currentRank;
+            }
+            else
+                taskRankMatrix[task][idx[i]] = currentRank++;
+        }
+    }
+}
+
 Mutator::Mutator(Params *params) : params(params)
 {
+    cout << "Initializing mutator\n";
     maxClusters = max((int)sqrt(params->nbClients), 1);
     beta = params->beta;
+    goodLinkCutProb = params->goodLinkCutProb;
+    poorLinkCutProb = params->poorLinkCutProb;
+    if (params->useRCO_decomposition)
+        computeTaskRankMatrix();
+
+    // Initializing random distribution
+    random_device rd;
+    mt = mt19937();
+    dis01 = uniform_real_distribution<>(0.0, 1.0);
 }
 
 Mutator::~Mutator()

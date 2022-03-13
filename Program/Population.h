@@ -161,7 +161,7 @@ public:
     void updateAge();
 
     // Constructor
-    Population(Params *params);
+    Population(Params *params, Mutator *mutator);
 
     // Destructor
     ~Population();

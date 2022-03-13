@@ -528,7 +528,7 @@ void Genetic::crossPIX()
 
 void Genetic::mutate()
 {
-	mutator->mutate(rejeton);
+	population->mutator->mutate(rejeton);
 	rejeton->isMutant = true;
 }
 
@@ -538,22 +538,29 @@ Genetic::Genetic(Params *params, Population *population, clock_t ticks, bool tra
 		freqClient.push_back(params->cli[i].freq);
 
 	// Creating the Individuals that serve to perform the Local Search and other operations
-	rejeton = new Individu(params, true);
-	rejeton2 = new Individu(params, true);
-	rejetonP1 = new Individu(params, true);
-	rejetonP2 = new Individu(params, true);
-	rejetonBestFound = new Individu(params, true);
-	rejetonBestFoundAll = new Individu(params, true);
-	rejeton->localSearch = new LocalSearch(params, rejeton);
-	mutator = new Mutator(params);
-}
+	cout << "Creating individuals for local search\n";
 
+	rejeton = new Individu(params, true);
+	rejeton->localSearch = new LocalSearch(params, rejeton);
+
+	// ILS Individus
+	if (params->isILS_general)
+	{
+		rejetonP1 = new Individu(params, true);
+		rejetonBestFoundAll = new Individu(params, true);
+	}
+	// HGA Individus
+	else
+	{
+		rejeton2 = new Individu(params, true);
+		rejetonBestFound = new Individu(params, true);
+	}
+}
 Genetic::~Genetic(void)
 {
 	delete rejeton;
 	delete rejeton2;
 	delete rejetonP1;
-	delete rejetonP2;
 	delete rejetonBestFound;
 	delete rejetonBestFoundAll;
 }

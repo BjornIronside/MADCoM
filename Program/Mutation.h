@@ -5,6 +5,8 @@
 #include "Individu.h"
 #include <stdlib.h>
 #include <vector>
+#include <numeric>
+#include <random>
 using namespace std;
 
 class Mutator
@@ -14,12 +16,18 @@ public:
     // Parameters of mutation
     double beta;
     int maxClusters;
+    double goodLinkCutProb;
+    double poorLinkCutProb;
 
     // Pointer towards the parameters of the problem
     Params *params;
 
     // Pointer towards the individual to mutate
     Individu *mutant;
+
+    // Variables for drawing random numbers
+    mt19937 mt;
+    uniform_real_distribution<> dis01;
 
     // Generate an individual using Hierarchical Decomposition
     // Initial Virtual Task set is equal to the set of all services
@@ -32,13 +40,19 @@ public:
     int nbVT;
     vector<vector<int>> virtualTaskSet;
 
-    // Break the routes of an individual to generate a virtual task set
+    // Randomly breaks the routes of an individual to generate a virtual task set
     void decompose();
+
+    // Route Cutting Off Decomposition
+    vector<vector<int>> taskRankMatrix;
+    void computeTaskRankMatrix();
+    void rcoDecompose();
+    double calculateAverageTaskRank();
 
     // Hierarchical Decomposition generates a giant tour
     void hierarchicalDecomposition();
 
-    // Updates the giant tour chromosome of the individual being ,utated
+    // Updates the giant tour chromosome of the individual being mutated
     void updateMutant();
 
     // Clustering auxiliary data structures
@@ -82,10 +96,11 @@ public:
     // Clears virtual task set and distance matrix
     void clearStructures();
 
-    // Prints virtual task set for debugging purposes
+    // Prints variables for debugging purposes
     void printVTSet();
     void printDistMatrix();
     void printAuxStructures();
+    void printTaskRankMatrix();
 
     // Constructor
     Mutator(Params *params);
