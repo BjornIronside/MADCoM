@@ -69,12 +69,18 @@ void Mutator::hierarchicalDecomposition()
     }
 }
 
-void Mutator::updateMutant()
+bool Mutator::updateMutant()
 {
+    bool successfulMutation{false};
     for (int i{0}; i < params->nbClients; i++)
     {
-        mutant->chromT[1][i] = virtualTaskSet[0][i];
+        if (mutant->chromT[1][i] != virtualTaskSet[0][i])
+        {
+            mutant->chromT[1][i] = virtualTaskSet[0][i];
+            successfulMutation = true;
+        }
     }
+    return successfulMutation;
 }
 
 void Mutator::decompose()
@@ -118,9 +124,7 @@ void Mutator::decompose()
         else
         {
             for (int j{begin}; j < end; j++)
-            {
                 virtualTaskSet.back().push_back(mutant->chromT[1][j]);
-            }
         }
     }
     nbVT = (int)virtualTaskSet.size();
@@ -151,6 +155,13 @@ void Mutator::rcoDecompose()
             end = mutant->chromT[1].size();
         else
             end = mutant->chromR[1][i + 1];
+
+        if (end - begin <= 1) // Route has only one service, cutting is impossible
+        {
+            for (int j{begin}; j < end; j++)
+                virtualTaskSet.back().push_back(mutant->chromT[1][j]);
+            continue;
+        }
 
         // Classify each link as good or poor
         for (int j{begin}; j < end - 1; j++)
@@ -211,9 +222,7 @@ void Mutator::rcoDecompose()
         else // Don't cut, i.e. the whole route is a virtual task
         {
             for (int j{begin}; j < end; j++)
-            {
                 virtualTaskSet.back().push_back(mutant->chromT[1][j]);
-            }
         }
 
         // Reset aux variables

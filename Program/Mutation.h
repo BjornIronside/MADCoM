@@ -52,8 +52,8 @@ public:
     // Hierarchical Decomposition generates a giant tour
     void hierarchicalDecomposition();
 
-    // Updates the giant tour chromosome of the individual being mutated
-    void updateMutant();
+    // Updates the giant tour chromosome of the individual being mutated and outputs true if the giant tour chromosome changed
+    bool updateMutant();
 
     // Clustering auxiliary data structures
     // Number of clusters
