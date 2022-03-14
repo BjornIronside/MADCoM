@@ -1,7 +1,9 @@
-SOLVERS: gencarp madcom
+SOLVERS: madcom madcom_hd
 RUNS: 5
 TIME_LIMIT: 3600
 INSTANCES:
 Beijing-3.txt
 Hefei-10.txt
 Beijing-5.txt
+egl-g2-E.dat
+F1_g-6.txt
