@@ -47,12 +47,6 @@ class commandline
 		// nbDepots, if given (used to generate the MDCARP instances)
 		int nbDep ;
 
-        // Fraction of initial population to generate using Hierarchical Decomposition
-        double fractionHD;
-
-        // Mutation Probability
-        double mutationProb;
-
         // Results folder
         string resultsFolder;
 
@@ -79,7 +73,6 @@ class commandline
         // destructor
         ~commandline();
 
-        // Getters
         string get_path_to_instance();
         string get_path_to_solution();
         string get_path_to_BKS();
@@ -88,8 +81,6 @@ class commandline
 		int get_nbVeh();
 		int get_nbDep();
         int get_seed();
-        double get_fractionHD();
-        double get_mutationProb();
 
         // say if the commandline is valid
         bool is_valid();

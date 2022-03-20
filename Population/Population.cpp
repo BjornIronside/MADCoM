@@ -28,9 +28,9 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 	double temp, temp2;
 	bool feasibleFound = false;
 
-	
+	cout << "Generating initial population\n";
 	double nbHD{ceil(params->fractionHD * params->mu)};
-	cout << "Generating initial population, " << nbHD << " HD individuals\n";
+
 	// Create the trainer
 	trainer = new Individu(params, true);
 	delete trainer->localSearch;
@@ -41,9 +41,7 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 	{
 		randomIndiv = new Individu(params, true);
 		if (i <= nbHD)
-		{
 			mutator->generate(randomIndiv);
-		}
 		education(randomIndiv);
 		addIndividu(randomIndiv);
 		updateNbValides(randomIndiv);

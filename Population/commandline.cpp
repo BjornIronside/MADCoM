@@ -89,8 +89,6 @@ commandline::commandline(int argc, char *argv[])
 	type = -1;
 	nbVeh = -1;
 	nbDep = -1;
-	fractionHD = 1.0;
-	mutationProb = 0.25;
 
 	// reading the commandline parameters
 	for (int i = 2; i < argc; i += 2)
@@ -109,25 +107,12 @@ commandline::commandline(int argc, char *argv[])
 			nbVeh = atoi(argv[i + 1]);
 		else if (string(argv[i]) == "-dep")
 			nbDep = atoi(argv[i + 1]);
-		else if (string(argv[i]) == "-hdf")
-			fractionHD = atof(argv[i + 1]);
-		else if (string(argv[i]) == "-mutprob")
-			mutationProb = atof(argv[i + 1]);
 		else
 		{
 			cout << "Non-recognized command : " << string(argv[i]) << endl;
 			command_ok = false;
 		}
 	}
-
-	if (fractionHD > 1.0)
-		fractionHD = 1.0;
-	if (fractionHD < 0.0)
-		fractionHD = 0.0;
-	if (mutationProb > 1.0)
-		mutationProb = 1.0;
-	if (mutationProb < 0.0)
-		mutationProb = 0.0;
 
 	if (type == -1)
 	{
@@ -191,16 +176,6 @@ int commandline::get_nbVeh()
 int commandline::get_nbDep()
 {
 	return nbDep;
-}
-
-double commandline::get_fractionHD()
-{
-	return fractionHD;
-}
-
-double commandline::get_mutationProb()
-{
-	return mutationProb;
 }
 
 int commandline::get_cpu_time()

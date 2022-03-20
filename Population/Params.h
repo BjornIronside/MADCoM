@@ -236,7 +236,7 @@ public:
 	void shuffleProches();
 
 	// constructor
-	Params(string nomInstance, string nomSolution, string nomBKS, int seedRNG, int type, int nbVeh, int nbDep, bool isSearchingFeasible, double fractionHD, double mutationProb);
+	Params(string nomInstance, string nomSolution, string nomBKS, int seedRNG, int type, int nbVeh, int nbDep, bool isSearchingFeasible);
 
 	// destructor
 	~Params(void);

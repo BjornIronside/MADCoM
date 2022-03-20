@@ -34,8 +34,9 @@ void Params::setMethodParams()
 	penalityCapa = 50;		// Initial penalties (will evolve during the search)
 	penalityLength = 50;	// Initial penalties (will evolve during the search)
 
-	useRCO_decomposition = true; 
-	// mutationProb = 0.25;    // Probability of mutation
+	fractionHD = 0.5;
+	useRCO_decomposition = false; 
+	mutationProb = 0.25;    // Probability of mutation
 	beta = 0.10;			// Number of virtual tasks in the next layer of hierarchical decomposition is between [1, beta*nbVT]
 	goodLinkCutProb = 0.05; // Probability of cutting a good link
 	poorLinkCutProb = 0.20; // Probability of cutting a poor link
@@ -685,7 +686,7 @@ void Params::setPatterns_PCARP(Client *myCli)
 	}
 }
 
-Params::Params(string nomInstance, string nomSolution, string nomBKS, int seedRNG, int type, int nbVeh, int nbDep, bool isSearchingFeasible, double fractionHD, double mutationProb) : type(type), nbVehiculesPerDep(nbVeh), nbDepots(nbDep), isSearchingFeasible(isSearchingFeasible), fractionHD(fractionHD), mutationProb(mutationProb)
+Params::Params(string nomInstance, string nomSolution, string nomBKS, int seedRNG, int type, int nbVeh, int nbDep, bool isSearchingFeasible) : type(type), nbVehiculesPerDep(nbVeh), nbDepots(nbDep), isSearchingFeasible(isSearchingFeasible)
 {
 	// Main constructor of Params
 	pathToInstance = nomInstance;
