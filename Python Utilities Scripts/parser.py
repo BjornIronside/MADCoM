@@ -3,6 +3,8 @@ import os
 from datetime import datetime as dt
 from datetime import timedelta as td
 
+SOLVERS = {'madcom', 'madcom_hd', 'gencarp'}
+
 
 def results_parser(instance_list, start_date=None, end_date=None):
     if not start_date:
@@ -36,12 +38,12 @@ def logfile_parser(log_filename):
     instance_list = set()
     start_date = None
     end_date = None
-    tolerance = td(minutes=5)
+    tolerance = td(minutes=10)
     with open(log_filename) as f:
         for line in f:
             spl = line.split()
             # Beginning of solver results
-            if len(spl) == 1:
+            if spl[0] in SOLVERS:
                 if len(instance_list) and start_date is not None and end_date is not None:
                     results_parser(instance_list, start_date - tolerance, end_date + tolerance)
                     instance_list = set()
@@ -77,4 +79,4 @@ if __name__ == '__main__':
     # end_date = dt.now()
     # results_parser(instance_list, start_date, end_date)
 
-    logfile_parser('../Program/log.txt')
+    logfile_parser('../Program/log 3600.txt')

@@ -62,21 +62,26 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 	while (nbIterNonProd < maxIterNonProd && (clock() - debut <= ticks) && (!params->isSearchingFeasible || population->getIndividuBestValide() == NULL))
 	{
 		// CROSSOVER
-		parent1 = population->getIndividuBinT();	  // Pick two individuals per binary tournament
-		parent2 = population->getIndividuBinT();	  // Pick two individuals per binary tournament
-		rejeton->recopieIndividu(rejeton, parent1);	  // Put them in adequate data structures
-		rejeton2->recopieIndividu(rejeton2, parent2); // Put them in adequate data structures
+		parent1 = population->getIndividuBinT();	// Pick an individual per binary tournament
+		rejeton->recopieIndividu(rejeton, parent1); // Put it in adequate data structures
 
 		if (!params->periodique && !params->multiDepot)
 		{
 			if (dis(gen) < params->mutationProb) // Mutation
 				mutate();
 			else
-				crossOX(); // Pick OX crossover if its a single-period problem
+			{
+				crossOX();									  // Pick OX crossover if its a single-period problem
+				parent2 = population->getIndividuBinT();	  // Pick another individual per binary tournament
+				rejeton2->recopieIndividu(rejeton2, parent2); // Put it in adequate data structures
+			}
 		}
 		else
-			crossPIX(); // Otherwise PIX (see Vidal et al 2012 -- OR)
-
+		{
+			crossPIX();									  // Otherwise PIX (see Vidal et al 2012 -- OR)
+			parent2 = population->getIndividuBinT();	  // Pick another individual per binary tournament
+			rejeton2->recopieIndividu(rejeton2, parent2); // Put it in adequate data structures
+		}
 		// SPLIT
 		rejeton->generalSplit();
 
@@ -155,7 +160,7 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 			cout << " | inter2opt " << rejeton->localSearch->nbInter2Opt;
 			cout << " | intra2opt " << rejeton->localSearch->nbIntra2Opt;
 			cout << " | " << endl;
-			cout << " | NbTotalCutsMutation: " << (population->mutator->nbRandomCuts+population->mutator->nbGoodCuts + population->mutator->nbPoorCuts);
+			cout << " | NbMutations: " << population->mutator->nbMutations;
 			cout << " | GoodCuts " << population->mutator->nbGoodCuts;
 			cout << " | PoorCuts " << population->mutator->nbPoorCuts;
 			cout << " | RandomCuts " << population->mutator->nbRandomCuts;

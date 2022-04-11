@@ -35,6 +35,7 @@ public:
     
     // Mutate the individual
     void mutate(Individu *indi);
+    int nbMutations;
 
     // Virtual task set
     int nbVT;

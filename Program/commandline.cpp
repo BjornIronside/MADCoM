@@ -159,6 +159,8 @@ commandline::commandline(int argc, char *argv[])
 	}
 	SetDefaultOutput(string(argv[1]));
 	command_ok = true;
+	cout << "Mutation Probability: " << mutationProb << '\n';
+	cout << "HD Fraction: " << fractionHD << '\n';
 }
 
 commandline::~commandline() {}

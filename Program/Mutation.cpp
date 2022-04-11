@@ -2,6 +2,7 @@
 
 void Mutator::mutate(Individu *indi)
 {
+    // cout << "Mutation on Individual with Cost: " << indi->coutSol.evaluation << '\n';
     // Copy pointer
     mutant = indi;
 
@@ -16,6 +17,8 @@ void Mutator::mutate(Individu *indi)
     // Clean up for next mutation
     clearStructures();
     virtualTaskSet.clear();
+
+    nbMutations += 1;
 }
 
 void Mutator::generate(Individu *indi)
@@ -692,6 +695,7 @@ Mutator::Mutator(Params *params) : params(params)
     nbRandomCuts = 0;
     nbPoorCuts = 0;
     nbGoodCuts = 0;
+    nbMutations = 0;
 }
 
 Mutator::~Mutator()

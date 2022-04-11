@@ -31,6 +31,7 @@ Individu::Individu(Params *params, bool createAllStructures) : params(params)
 	p1.dep = 0;
 	p1.pat = 0;
 	localSearch = new LocalSearch();
+	isMutant = false;
 
 	// Initializing the chromosome structures
 	for (int i = 0; i <= params->nbDays; i++)
@@ -160,6 +161,7 @@ void Individu::recopieIndividu(Individu *destination, Individu *source)
 	destination->pred = source->pred;
 	destination->toPlace.clear();
 	destination->toPlace = source->toPlace;
+	destination->isMutant = source->isMutant;
 }
 
 void Individu::shakingSwap(int nbShak)
