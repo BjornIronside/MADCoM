@@ -79,4 +79,4 @@ if __name__ == '__main__':
     # end_date = dt.now()
     # results_parser(instance_list, start_date, end_date)
 
-    logfile_parser('../Program/log 3600.txt')
+    logfile_parser('../Program/log.txt')
