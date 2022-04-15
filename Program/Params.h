@@ -29,6 +29,7 @@
 #include <algorithm>
 #include "Client.h"
 #include "Vehicle.h"
+#include "commandline.h"
 using namespace std;
 
 // little function used to clear some arrays
@@ -209,7 +210,7 @@ public:
 	void setMethodParams();
 
 	// get the data from the stream
-	void preleveDonnees(string nomInstance);
+	void preleveDonnees();
 	void ar_parseOtherLinesCARP(); // some sub-procedures when reading the various instance formats
 	void ar_parseOtherLinesNEARP();
 	void ar_computeDistancesNodes();
@@ -236,7 +237,7 @@ public:
 	void shuffleProches();
 
 	// constructor
-	Params(string nomInstance, string nomSolution, string nomBKS, int seedRNG, int type, int nbVeh, int nbDep, bool isSearchingFeasible, double fractionHD, double mutationProb);
+	Params(commandline c, int veh, bool isSearchingFeasible);
 
 	// destructor
 	~Params(void);

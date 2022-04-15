@@ -34,12 +34,11 @@ void Params::setMethodParams()
 	penalityCapa = 50;		// Initial penalties (will evolve during the search)
 	penalityLength = 50;	// Initial penalties (will evolve during the search)
 
-	useRCO_decomposition = true; 
+	useRCO_decomposition = true;
 	// mutationProb = 0.25;    // Probability of mutation
-	beta = 0.10;			// Number of virtual tasks in the next layer of hierarchical decomposition is between [1, beta*nbVT]
-	goodLinkCutProb = 0.05; // Probability of cutting a good link
-	poorLinkCutProb = 0.20; // Probability of cutting a poor link
-
+	beta = 0.10; // Number of virtual tasks in the next layer of hierarchical decomposition is between [1, beta*nbVT]
+	// goodLinkCutProb = 0.05; // Probability of cutting a good link
+	// poorLinkCutProb = 0.20; // Probability of cutting a poor link
 
 	// The ELS/ILS requires slightly different parameter setting to get the right number of children and solutions, as specified in Prins 2009
 	if (isILS_general)
@@ -52,7 +51,7 @@ void Params::setMethodParams()
 	}
 }
 
-void Params::preleveDonnees(string nomInstance)
+void Params::preleveDonnees()
 {
 	// Main method to read a problem instance
 	vector<Vehicle> tempI;
@@ -418,7 +417,6 @@ void Params::calculeStructures()
 		cli[i].computeVisitsDyn(nbDays, ancienNbDays);
 		cli[i].computeJourSuiv(nbDays, ancienNbDays);
 	}
-	
 }
 
 void Params::getClient(int i, Client *myCli)
@@ -685,27 +683,35 @@ void Params::setPatterns_PCARP(Client *myCli)
 	}
 }
 
-Params::Params(string nomInstance, string nomSolution, string nomBKS, int seedRNG, int type, int nbVeh, int nbDep, bool isSearchingFeasible, double fractionHD, double mutationProb) : type(type), nbVehiculesPerDep(nbVeh), nbDepots(nbDep), isSearchingFeasible(isSearchingFeasible), fractionHD(fractionHD), mutationProb(mutationProb)
+Params::Params(commandline c, int veh, bool isSearchingFeasible) : nbVehiculesPerDep(veh), isSearchingFeasible(isSearchingFeasible)
 {
+	type = c.get_type();
+	nbDepots = c.get_nbDep();
+
+	fractionHD = c.get_fractionHD();
+	mutationProb = c.get_mutationProb();
+	goodLinkCutProb = c.get_goodCutProb();
+	poorLinkCutProb = c.get_poorCutProb();
+
 	// Main constructor of Params
-	pathToInstance = nomInstance;
-	pathToSolution = nomSolution;
-	pathToBKS = nomBKS;
+	pathToInstance = c.get_path_to_instance();
+	pathToSolution = c.get_path_to_solution();
+	pathToBKS = c.get_path_to_BKS();
 	borne = 2.0;
 	sizeSD = 10;
 
-	seed = seedRNG;
+	seed = c.get_seed();
 	if (seed == 0) // using the time to generate a seed when seed = 0
 		srand((unsigned int)time(NULL));
 	else
 		srand(seed);
 
 	// Opening the instance file
-	fichier.open(nomInstance.c_str());
+	fichier.open(c.get_path_to_instance().c_str());
 
 	// Reading the instance file
 	if (fichier.is_open())
-		preleveDonnees(nomInstance);
+		preleveDonnees();
 	else
 		throw string(" Impossible to find instance file ");
 

@@ -91,6 +91,8 @@ commandline::commandline(int argc, char *argv[])
 	nbDep = -1;
 	fractionHD = 1.0;
 	mutationProb = 0.25;
+	goodCutProb = 0.05;
+	poorCutProb = 0.20;
 
 	// reading the commandline parameters
 	for (int i = 2; i < argc; i += 2)
@@ -113,6 +115,10 @@ commandline::commandline(int argc, char *argv[])
 			fractionHD = atof(argv[i + 1]);
 		else if (string(argv[i]) == "-mutprob")
 			mutationProb = atof(argv[i + 1]);
+		else if (string(argv[i]) == "-gcprob")
+			goodCutProb = atof(argv[i + 1]);
+		else if (string(argv[i]) == "-pcprob")
+			poorCutProb = atof(argv[i + 1]);
 		else
 		{
 			cout << "Non-recognized command : " << string(argv[i]) << endl;
@@ -124,10 +130,6 @@ commandline::commandline(int argc, char *argv[])
 		fractionHD = 1.0;
 	if (fractionHD < 0.0)
 		fractionHD = 0.0;
-	if (mutationProb > 1.0)
-		mutationProb = 1.0;
-	if (mutationProb < 0.0)
-		mutationProb = 0.0;
 
 	if (type == -1)
 	{
@@ -161,6 +163,8 @@ commandline::commandline(int argc, char *argv[])
 	command_ok = true;
 	cout << "Mutation Probability: " << mutationProb << '\n';
 	cout << "HD Fraction: " << fractionHD << '\n';
+	cout << "Good Link Cut Probability: " << goodCutProb << '\n';
+	cout << "Poor Link Cut Probability: " << poorCutProb << '\n';
 }
 
 commandline::~commandline() {}
@@ -203,6 +207,16 @@ double commandline::get_fractionHD()
 double commandline::get_mutationProb()
 {
 	return mutationProb;
+}
+
+double commandline::get_goodCutProb()
+{
+	return goodCutProb;
+}
+
+double commandline::get_poorCutProb()
+{
+	return poorCutProb;
 }
 
 int commandline::get_cpu_time()

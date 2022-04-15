@@ -53,6 +53,10 @@ class commandline
         // Mutation Probability
         double mutationProb;
 
+        // Cutting Probabilities
+        double goodCutProb;
+        double poorCutProb;
+
         // Results folder
         string resultsFolder;
 
@@ -90,6 +94,8 @@ class commandline
         int get_seed();
         double get_fractionHD();
         double get_mutationProb();
+        double get_goodCutProb();
+        double get_poorCutProb();
 
         // say if the commandline is valid
         bool is_valid();

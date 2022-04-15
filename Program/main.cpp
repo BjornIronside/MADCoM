@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 			nb_ticks_allowed = c.get_cpu_time() * CLOCKS_PER_SEC;
 
 			// initialisation of the Parameters
-			mesParametres = new Params(c.get_path_to_instance(), c.get_path_to_solution(), c.get_path_to_BKS(), c.get_seed(), c.get_type(), c.get_nbVeh(), c.get_nbDep(), false, c.get_fractionHD(), c.get_mutationProb());
+			mesParametres = new Params(c, c.get_nbVeh(), false);
 
 			// Running the algorithm
 			mutator = new Mutator(mesParametres);
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 			while (validExist) // A feasible solution has been found, we can continue to decrease (either the number of vehicles or the distance constraint, depending on the case)
 			{
 				// Setting the parameters of the next problem
-				mesParametresTab.push_back(new Params(c.get_path_to_instance(), c.get_path_to_solution(), c.get_path_to_BKS(), c.get_seed(), c.get_type(), veh, c.get_nbDep(), true, c.get_fractionHD(), c.get_mutationProb()));
+				mesParametresTab.push_back(new Params(c, veh, true));
 				nbpop = (int)mesParametresTab.size();
 				nbOverallLoop++; // counting the number of subproblems which have been resolved
 
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
 			{
 				veh++;
 				cout << "######### Second phase : minimizing Distance with " << veh << " vehicles" << endl;
-				mesParametres2 = new Params(c.get_path_to_instance(), c.get_path_to_solution(), c.get_path_to_BKS(), c.get_seed(), c.get_type(), veh, c.get_nbDep(), false, c.get_fractionHD(), c.get_mutationProb());
+				mesParametres2 = new Params(c, veh, false);
 				mutator = new Mutator(mesParametres2);
 				population2 = new Population(mesParametres2, mutator);
 				if (nbpop >= 1 && populationTab[nbpop - 1]->getIndividuBestValide() != NULL)
