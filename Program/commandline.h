@@ -57,6 +57,9 @@ class commandline
         double goodCutProb;
         double poorCutProb;
 
+        // Mutation Tournament Size
+        int mutTournSize;
+
         // Results folder
         string resultsFolder;
 
@@ -96,6 +99,7 @@ class commandline
         double get_mutationProb();
         double get_goodCutProb();
         double get_poorCutProb();
+        int get_mutTournSize();
 
         // say if the commandline is valid
         bool is_valid();

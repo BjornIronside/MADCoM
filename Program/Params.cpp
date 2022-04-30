@@ -692,6 +692,8 @@ Params::Params(commandline c, int veh, bool isSearchingFeasible) : nbVehiculesPe
 	mutationProb = c.get_mutationProb();
 	goodLinkCutProb = c.get_goodCutProb();
 	poorLinkCutProb = c.get_poorCutProb();
+	mutTournSize = c.get_mutTournSize();
+	cout << mutTournSize;
 
 	// Main constructor of Params
 	pathToInstance = c.get_path_to_instance();

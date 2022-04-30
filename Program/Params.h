@@ -193,6 +193,8 @@ public:
 	double fractionHD;
 	// Which decomposition algorithm to use: true->RCO, false->random
 	bool useRCO_decomposition;
+	// Mutation Tournament Size
+	int mutTournSize;
 	// Probability of mutation
 	double mutationProb; // Default 0.25
 	// Number of virtual tasks in the next layer of hierarchical decomposition is between [1, beta*nbVT]

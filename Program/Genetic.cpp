@@ -61,27 +61,33 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 
 	while (nbIterNonProd < maxIterNonProd && (clock() - debut <= ticks) && (!params->isSearchingFeasible || population->getIndividuBestValide() == NULL))
 	{
-		// CROSSOVER
-		parent1 = population->getIndividuBinT();	// Pick an individual per binary tournament
-		rejeton->recopieIndividu(rejeton, parent1); // Put it in adequate data structures
-
 		if (!params->periodique && !params->multiDepot)
 		{
 			if (dis(gen) < params->mutationProb) // Mutation
-				mutate();
-			else
 			{
+				parent1 = population->getIndividuTournament(params->mutTournSize);  // Pick an individual using tournament of size mutTournSize
+				rejeton->recopieIndividu(rejeton, parent1);     					// Put it in adequate data structure
+				mutate();															// Mutation
+			}
+
+			else // CROSSOVER
+			{
+				parent1 = population->getIndividuBinT();	  // Pick two individuals per binary tournament
+				parent2 = population->getIndividuBinT();	  
+				rejeton->recopieIndividu(rejeton, parent1);	  // Put them in adequate data structures
+				rejeton2->recopieIndividu(rejeton2, parent2); 
 				crossOX();									  // Pick OX crossover if its a single-period problem
-				parent2 = population->getIndividuBinT();	  // Pick another individual per binary tournament
-				rejeton2->recopieIndividu(rejeton2, parent2); // Put it in adequate data structures
 			}
 		}
-		else
+		else // CROSSOVER
 		{
+			parent1 = population->getIndividuBinT();	  // Pick two individuals per binary tournament
+			parent2 = population->getIndividuBinT();	  
+			rejeton->recopieIndividu(rejeton, parent1);	  // Put them in adequate data structures
+			rejeton2->recopieIndividu(rejeton2, parent2); 
 			crossPIX();									  // Otherwise PIX (see Vidal et al 2012 -- OR)
-			parent2 = population->getIndividuBinT();	  // Pick another individual per binary tournament
-			rejeton2->recopieIndividu(rejeton2, parent2); // Put it in adequate data structures
 		}
+
 		// SPLIT
 		rejeton->generalSplit();
 

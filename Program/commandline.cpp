@@ -93,6 +93,7 @@ commandline::commandline(int argc, char *argv[])
 	mutationProb = 0.25;
 	goodCutProb = 0.05;
 	poorCutProb = 0.20;
+	mutTournSize = 2;
 
 	// reading the commandline parameters
 	for (int i = 2; i < argc; i += 2)
@@ -119,6 +120,8 @@ commandline::commandline(int argc, char *argv[])
 			goodCutProb = atof(argv[i + 1]);
 		else if (string(argv[i]) == "-pcprob")
 			poorCutProb = atof(argv[i + 1]);
+		else if (string(argv[i]) == "-trnsize")
+			mutTournSize = atoi(argv[i + 1]);
 		else
 		{
 			cout << "Non-recognized command : " << string(argv[i]) << endl;
@@ -126,10 +129,13 @@ commandline::commandline(int argc, char *argv[])
 		}
 	}
 
+	// Bounds on parameters
 	if (fractionHD > 1.0)
 		fractionHD = 1.0;
 	if (fractionHD < 0.0)
 		fractionHD = 0.0;
+	if (mutTournSize > 25)
+		mutTournSize = 25;
 
 	if (type == -1)
 	{
@@ -162,6 +168,7 @@ commandline::commandline(int argc, char *argv[])
 	SetDefaultOutput(string(argv[1]));
 	command_ok = true;
 	cout << "Mutation Probability: " << mutationProb << '\n';
+	cout << "Mutation Tournament Size: " << mutTournSize << '\n';
 	cout << "HD Fraction: " << fractionHD << '\n';
 	cout << "Good Link Cut Probability: " << goodCutProb << '\n';
 	cout << "Poor Link Cut Probability: " << poorCutProb << '\n';
@@ -217,6 +224,11 @@ double commandline::get_goodCutProb()
 double commandline::get_poorCutProb()
 {
 	return poorCutProb;
+}
+
+int commandline::get_mutTournSize()
+{
+	return mutTournSize;
 }
 
 int commandline::get_cpu_time()

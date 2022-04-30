@@ -28,7 +28,6 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 	double temp, temp2;
 	bool feasibleFound = false;
 
-	
 	double nbHD{ceil(params->fractionHD * params->mu)};
 	cout << "Generating initial population, " << nbHD << " HD individuals\n";
 	// Create the trainer
@@ -387,6 +386,63 @@ Individu *Population::getIndividuBinT()
 	evalExtFit(invalides);
 
 	// Keeping the best one
+	if (individu1->fitnessEtendu < individu2->fitnessEtendu)
+		return individu1;
+	else
+		return individu2;
+}
+
+Individu *Population::getIndividuTournament(int tournSize)
+{
+	if (tournSize <= 2)
+		return getIndividuBinT();
+
+	evalExtFit(valides);
+	evalExtFit(invalides);
+	Individu *individu1;
+	Individu *individu2;
+
+	// Fisher-Yates shuffle to select tournSize random individuals from both subpopulations
+	vector<int> individusPlaces(valides->nbIndiv + invalides->nbIndiv);
+	iota(begin(individusPlaces), end(individusPlaces), 0);
+	int numRandom{tournSize};
+	int left{valides->nbIndiv + invalides->nbIndiv};
+	int r;
+	int begin{0};
+	while (numRandom--)
+	{
+		r = begin + (rand() % left);
+		swap(individusPlaces[begin], individusPlaces[r]);
+		++begin;
+		--left;
+	}
+	int minValide{valides->nbIndiv};
+	int minInvalide{invalides->nbIndiv};
+	for (int i{0}; i < tournSize; i++)
+	{
+		if (individusPlaces[i] < minValide)
+			minValide = individusPlaces[i];
+		else if (individusPlaces[i] >= valides->nbIndiv && individusPlaces[i] - valides->nbIndiv < minInvalide)
+			minInvalide = individusPlaces[i] - valides->nbIndiv;
+	}
+	// cout << valides->nbIndiv << ' ' << invalides->nbIndiv << " - ";
+	// cout << minValide << ' ' << minInvalide << '\n';
+
+	if (minInvalide == invalides->nbIndiv) // If no infeasible individual was selected in the tournament, return the best feasible individual in the tournament
+	{
+		individu1 = valides->individus[minValide];
+		return individu1;
+	}
+	if (minValide == valides->nbIndiv) // If no feasible individual was selected in the tournament, return the best infeasible individual in the tournament
+	{
+		individu2 = invalides->individus[minInvalide];
+		return individu2;
+	}
+
+	// Else return the best of the two
+	individu1 = valides->individus[minValide];
+	individu2 = invalides->individus[minInvalide];
+
 	if (individu1->fitnessEtendu < individu2->fitnessEtendu)
 		return individu1;
 	else

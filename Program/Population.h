@@ -103,6 +103,9 @@ public:
     // Get one individual per binary tournament
     Individu *getIndividuBinT();
 
+    // Get one individual per tournament size
+    Individu *getIndividuTournament(int tournSize);
+
     // Get one individual with uniform probability in a percentage of the best
     Individu *getIndividuPourc(int pourcentage);
 
