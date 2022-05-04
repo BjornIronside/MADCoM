@@ -6,12 +6,12 @@ from datetime import timedelta as td
 SOLVERS = {'madcom', 'madcom_hd', 'gencarp'}
 
 
-def results_parser(instance_list, start_date=None, end_date=None):
+def results_parser(instance_list, start_date=None, end_date=None, print_results=True):
     if not start_date:
         start_date = dt(2020, 1, 1)
     if not end_date:
         end_date = dt.now()
-
+    results = {}
     for instance in instance_list:
         instance_name = instance.strip().split('.')[0]
         if instance_name[:3] == 'Lpr' or instance_name[:4] == 'mval':
@@ -31,14 +31,24 @@ def results_parser(instance_list, start_date=None, end_date=None):
                 f = open(f"{instance_results_folder}/{result_filename}")
                 solution_values.append(f.readline().strip())
                 f.close()
-        print(f"{instance_name},{','.join(solution_values)}")
+        results[instance_name] = solution_values
+        if print_results:
+            print(f"{instance_name},{','.join(solution_values)}")
+    return results
 
 
-def logfile_parser(log_filename):
+def fetch_result(instance, date=None, tol=600):
+    if not date:
+        date = dt.now()
+    tolerance = td(seconds=tol)
+    return results_parser([instance], date - tolerance, date + tolerance, print_results=False)[instance[:-4]][0]
+
+
+def logfile_parser(log_filename, tol=10):
     instance_list = set()
     start_date = None
     end_date = None
-    tolerance = td(minutes=10)
+    tolerance = td(minutes=tol)
     with open(log_filename) as f:
         for line in f:
             spl = line.split()

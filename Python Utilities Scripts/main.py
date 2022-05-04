@@ -2,6 +2,7 @@ import os
 
 RESULTS_FOLDER = "../Results"
 INSTANCES_FOLDER = "../Instances"
+SOLVERS_FOLDER = "../Program"
 
 
 def create_results_folders():

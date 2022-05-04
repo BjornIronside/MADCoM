@@ -39,7 +39,8 @@ def generate_batch_file(config_filename, batch_filename, log_filename):
     for line in config_file:
         instance_name = line.strip()
         if instance_name not in all_instances:
-            raise Exception(f"Instance \"{instance_name}\" not found. Please check if the instance name is written correctly.")
+            raise Exception(f"Instance \"{instance_name}\" not found. Please check if the instance name is written "
+                            f"correctly.")
         instance_list.append(instance_name)
         if instance_name[:3] == 'Lpr' or instance_name[:4] == 'mval':  # MCARP Instances
             instance_types.append(36)
