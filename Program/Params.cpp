@@ -23,11 +23,11 @@ void Params::setMethodParams()
 	/* MAIN PARAMETERS OF THE METHOD */
 
 	isILS_general = false; // Are we running the ILS version of the code
-	mu = 25;			   // Population size
-	lambda = 40;		   // Number of individuals per generation
-	el = 12;			   // Number of elite
+	// mu = 25;			   // Population size
+	// lambda = 40;		   // Number of individuals per generation
+	// el = 12;			   // Number of elite
 
-	nbCountDistMeasure = 3; // Number of close individuals considered in the distance measure (diversity management)
+	// nbCountDistMeasure = 3; // Number of close individuals considered in the distance measure (diversity management)
 	granularity = 40;		// Restriction of the LS moves to 40 closest nodes
 	minValides = 0.15;		// Target proportion of feasible solution
 	maxValides = 0.20;		// Target proportion of feasible solution
@@ -688,12 +688,18 @@ Params::Params(commandline c, int veh, bool isSearchingFeasible) : nbVehiculesPe
 	type = c.get_type();
 	nbDepots = c.get_nbDep();
 
+	// Population Parameters
+	mu = c.get_mu();
+	lambda = c.get_lambda();
+	el = c.get_nElite();
+	nbCountDistMeasure = c.get_nDiver();
+
+	// Mutation Parameters
 	fractionHD = c.get_fractionHD();
 	mutationProb = c.get_mutationProb();
 	goodLinkCutProb = c.get_goodCutProb();
 	poorLinkCutProb = c.get_poorCutProb();
 	mutTournSize = c.get_mutTournSize();
-	cout << mutTournSize;
 
 	// Main constructor of Params
 	pathToInstance = c.get_path_to_instance();

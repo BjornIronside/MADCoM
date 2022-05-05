@@ -27,81 +27,89 @@ using namespace std;
 
 class commandline
 {
-    private:
+private:
+    // say if the commandline is valid
+    bool command_ok;
 
-        // say if the commandline is valid
-        bool command_ok;
+    // CPU time allowed
+    int cpu_time;
 
-        // CPU time allowed
-        int cpu_time;
+    // seed
+    int seed;
 
-		// seed
-		int seed;
+    // instance type, if given (see definitions in Params.h)
+    int type;
 
-		// instance type, if given (see definitions in Params.h)
-		int type;
+    // nbVehicles, if given (for the MM-kWRPP, the fleet size has to be specified)
+    int nbVeh;
 
-		// nbVehicles, if given (for the MM-kWRPP, the fleet size has to be specified)
-		int nbVeh ;
+    // nbDepots, if given (used to generate the MDCARP instances)
+    int nbDep;
 
-		// nbDepots, if given (used to generate the MDCARP instances)
-		int nbDep ;
+    // Fraction of initial population to generate using Hierarchical Decomposition
+    double fractionHD;
 
-        // Fraction of initial population to generate using Hierarchical Decomposition
-        double fractionHD;
+    // Mutation Probability
+    double mutationProb;
 
-        // Mutation Probability
-        double mutationProb;
+    // Cutting Probabilities
+    double goodCutProb;
+    double poorCutProb;
 
-        // Cutting Probabilities
-        double goodCutProb;
-        double poorCutProb;
+    // Mutation Tournament Size
+    int mutTournSize;
 
-        // Mutation Tournament Size
-        int mutTournSize;
+    // Population Parameters
+    int mu;
+    int lambda;
+    int nElite;
+    int nDiver;
 
-        // Results folder
-        string resultsFolder;
+    // Results folder
+    string resultsFolder;
 
-        // instance path
-        string instance_path;
+    // instance path
+    string instance_path;
 
-        // instance name
-        string instance_name;
+    // instance name
+    string instance_name;
 
-		// output path
-		string output_name;
+    // output path
+    string output_name;
 
-		// BKS path (used to replace it if a better solution is found)
-		string BKS_name;
+    // BKS path (used to replace it if a better solution is found)
+    string BKS_name;
 
-		// simple setters
-        void SetDefaultOutput(string to_parse);
+    // simple setters
+    void SetDefaultOutput(string to_parse);
 
-    public:
+public:
+    // constructor
+    commandline(int argc, char *argv[]);
 
-        // constructor
-        commandline(int argc, char* argv[]);
+    // destructor
+    ~commandline();
 
-        // destructor
-        ~commandline();
+    // Getters
+    string get_path_to_instance();
+    string get_path_to_solution();
+    string get_path_to_BKS();
+    int get_cpu_time();
+    int get_type();
+    int get_nbVeh();
+    int get_nbDep();
+    int get_seed();
+    double get_fractionHD();
+    double get_mutationProb();
+    double get_goodCutProb();
+    double get_poorCutProb();
+    int get_mutTournSize();
+    int get_mu();
+    int get_lambda();
+    int get_nElite();
+    int get_nDiver();
 
-        // Getters
-        string get_path_to_instance();
-        string get_path_to_solution();
-        string get_path_to_BKS();
-        int get_cpu_time();
-		int get_type();
-		int get_nbVeh();
-		int get_nbDep();
-        int get_seed();
-        double get_fractionHD();
-        double get_mutationProb();
-        double get_goodCutProb();
-        double get_poorCutProb();
-        int get_mutTournSize();
-
-        // say if the commandline is valid
-        bool is_valid();
+    // say if the commandline is valid
+    bool is_valid();
 };
 #endif

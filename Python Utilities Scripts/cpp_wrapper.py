@@ -4,8 +4,8 @@ from datetime import datetime as dt
 from main import INSTANCES_FOLDER, SOLVERS_FOLDER
 from utils import get_problem_type
 
-ALLOWED_ARGUMENTS = {'madcom': ('hdf', 'mutprob', 'gcprob', 'pcprob', 'trnsize'),
-                     'madcom_hd': ('hdf', 'mutprob', 'gcprob', 'pcprob', 'trnsize'),
+ALLOWED_ARGUMENTS = {'madcom': ('hdf', 'mutprob', 'gcprob', 'pcprob', 'trnsize', 'mu', 'lmbda', 'elite', 'div'),
+                     'madcom_hd': ('hdf', 'mutprob', 'gcprob', 'pcprob', 'trnsize', 'mu', 'lmbda', 'elite', 'div'),
                      'gencarp': []}
 
 
@@ -37,6 +37,7 @@ def run_solver(solver, instance, time_limit=600, **arguments):
     # Run solver
     date = dt.now()
     completed_process = subprocess.run(command, shell=True, cwd=SOLVERS_FOLDER, creationflags=subprocess.CREATE_NEW_CONSOLE)
+    # completed_process = subprocess.run(command, shell=True, cwd=SOLVERS_FOLDER)
 
     # # Check if everything went well
     # if completed_process.returncode:

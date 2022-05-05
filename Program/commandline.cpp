@@ -74,7 +74,7 @@ void commandline::SetDefaultOutput(string to_parse)
 
 commandline::commandline(int argc, char *argv[])
 {
-	if (argc % 2 != 0 || argc > 30 || argc < 2)
+	if (argc % 2 != 0 || argc > 40 || argc < 2)
 	{
 		cout << "incorrect command line" << endl;
 		command_ok = false;
@@ -94,6 +94,10 @@ commandline::commandline(int argc, char *argv[])
 	goodCutProb = 0.05;
 	poorCutProb = 0.20;
 	mutTournSize = 2;
+	mu = 25;
+	lambda = 40;
+	nElite = 12;
+	nDiver = 3;
 
 	// reading the commandline parameters
 	for (int i = 2; i < argc; i += 2)
@@ -122,6 +126,14 @@ commandline::commandline(int argc, char *argv[])
 			poorCutProb = atof(argv[i + 1]);
 		else if (string(argv[i]) == "-trnsize")
 			mutTournSize = atoi(argv[i + 1]);
+		else if (string(argv[i]) == "-mu")
+			mu = atoi(argv[i + 1]);
+		else if (string(argv[i]) == "-lmbda")
+			lambda = atoi(argv[i + 1]);
+		else if (string(argv[i]) == "-elite")
+			nElite = atoi(argv[i + 1]);
+		else if (string(argv[i]) == "-div")
+			nDiver = atoi(argv[i + 1]);
 		else
 		{
 			cout << "Non-recognized command : " << string(argv[i]) << endl;
@@ -136,6 +148,10 @@ commandline::commandline(int argc, char *argv[])
 		fractionHD = 0.0;
 	if (mutTournSize > 25)
 		mutTournSize = 25;
+	if (nElite > mu)
+		nElite = mu;
+	if (nDiver > mu)
+		nDiver = mu;
 
 	if (type == -1)
 	{
@@ -167,11 +183,16 @@ commandline::commandline(int argc, char *argv[])
 	}
 	SetDefaultOutput(string(argv[1]));
 	command_ok = true;
+	cout << "<| Parameters |>\n";
+	cout << "Population Size: " << mu << '\n';
+	cout << "N. Offspring: " << lambda << '\n';
+	cout << "N. Elite: " << nElite << '\n';
+	cout << "N. Individuals for Diversity: " << nDiver << '\n';
 	cout << "Mutation Probability: " << mutationProb << '\n';
 	cout << "Mutation Tournament Size: " << mutTournSize << '\n';
 	cout << "HD Fraction: " << fractionHD << '\n';
 	cout << "Good Link Cut Probability: " << goodCutProb << '\n';
-	cout << "Poor Link Cut Probability: " << poorCutProb << '\n';
+	cout << "Poor Link Cut Probability: " << poorCutProb << '\n' << '\n';
 }
 
 commandline::~commandline() {}
@@ -229,6 +250,26 @@ double commandline::get_poorCutProb()
 int commandline::get_mutTournSize()
 {
 	return mutTournSize;
+}
+
+int commandline::get_mu()
+{
+	return mu;
+}
+
+int commandline::get_lambda()
+{
+	return lambda;
+}
+
+int commandline::get_nElite()
+{
+	return nElite;
+}
+
+int commandline::get_nDiver()
+{
+	return nDiver;
 }
 
 int commandline::get_cpu_time()
