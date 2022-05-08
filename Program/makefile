@@ -1,12 +1,12 @@
 all : madcom
 
-CCC = g++
+CCC = i686-w64-mingw32-g++
 CCFLAGS = -O3 -Wall 
 LIBS= -lm
 TARGETDIR=.
 CPPFLAGS += \
          -I.
-        
+		
 OBJS2 = \
         $(TARGETDIR)/Client.o \
         $(TARGETDIR)/Vehicle.o \

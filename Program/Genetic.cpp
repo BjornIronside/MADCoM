@@ -183,6 +183,9 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 		cout << "Time Elapsed : " << clock() << endl;
 		cout << "Number of Iterations : " << nbIter << endl;
 	}
+
+	delete rejeton;
+	delete rejeton2;
 }
 
 void Genetic::evolveILS()

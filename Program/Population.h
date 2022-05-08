@@ -51,6 +51,9 @@ private:
     // Education procedure (LS)
     void education(Individu *indiv);
 
+    // Create trainer for education
+    void createTrainer();
+
     // Place an individual in the population, keeping it sorted by solution cost
     // Returns its position
     int placeIndividu(SousPop *pop, Individu *indiv);

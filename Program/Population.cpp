@@ -30,10 +30,9 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 
 	double nbHD{ceil(params->fractionHD * params->mu)};
 	cout << "Generating initial population, " << nbHD << " HD individuals\n";
+	
 	// Create the trainer
-	trainer = new Individu(params, true);
-	delete trainer->localSearch;
-	trainer->localSearch = new LocalSearch(params, trainer); // Initialize the LS structure
+	createTrainer();
 
 	// Creating the initial populations
 	for (int i = 0; i < params->mu && (!params->isSearchingFeasible || !feasibleFound); i++)
@@ -83,6 +82,8 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 
 	temp = params->penalityCapa;
 	temp2 = params->penalityLength;
+
+	delete trainer;
 }
 
 Population::~Population()
@@ -235,6 +236,8 @@ void Population::diversify()
 		invalides->nbIndiv--;
 	}
 
+	createTrainer();
+
 	for (int i = 0; i < params->mu; i++)
 	{
 		randomIndiv = new Individu(params, true);
@@ -262,6 +265,8 @@ void Population::diversify()
 		}
 		delete randomIndiv;
 	}
+
+	delete trainer;
 }
 
 void Population::clear()
@@ -500,6 +505,7 @@ void Population::ExportBest(string nomFichier)
 	ofstream myfile;
 	double temp, temp2;
 	Individu *bestValide = getIndividuBestValide();
+	createTrainer();
 
 	if (bestValide != NULL)
 	{
@@ -629,6 +635,7 @@ void Population::ExportBest(string nomFichier)
 	{
 		cout << "Impossible to find a feasible individual" << endl;
 	}
+	delete trainer;
 }
 
 bool Population::solutionChecker(vector<vector<vector<int>>> &allRoutes, vector<vector<vector<pair<int, int>>>> &allRoutesArcs, double expectedCost, double expectedMaxRoute)
@@ -921,6 +928,13 @@ void Population::education(Individu *indiv)
 	trainer->localSearch->runSearchTotal();
 	trainer->updateIndiv();
 	indiv->recopieIndividu(indiv, trainer);
+}
+
+void Population::createTrainer()
+{
+	trainer = new Individu(params, true);
+	delete trainer->localSearch;
+	trainer->localSearch = new LocalSearch(params, trainer); // Initialize the LS structure
 }
 
 void Population::updateNbValides(Individu *indiv)
