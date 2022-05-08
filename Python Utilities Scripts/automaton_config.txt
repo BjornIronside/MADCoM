@@ -2,7 +2,7 @@ SOLVERS: madcom
 RUNS: 5
 TIME_LIMIT: 1800
 PARAMETERS:
--hdf 0 0.5
+-trnsize 4 8 16 25
 INSTANCES:
 Beijing-3.txt
 Hefei-10.txt
