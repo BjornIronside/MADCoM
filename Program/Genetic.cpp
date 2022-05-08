@@ -65,27 +65,27 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 		{
 			if (dis(gen) < params->mutationProb) // Mutation
 			{
-				parent1 = population->getIndividuTournament(params->mutTournSize);  // Pick an individual using tournament of size mutTournSize
-				rejeton->recopieIndividu(rejeton, parent1);     					// Put it in adequate data structure
-				mutate();															// Mutation
+				parent1 = population->getIndividuTournament(params->mutTournSize); // Pick an individual using tournament of size mutTournSize
+				rejeton->recopieIndividu(rejeton, parent1);						   // Put it in adequate data structure
+				mutate();														   // Mutation
 			}
 
 			else // CROSSOVER
 			{
-				parent1 = population->getIndividuBinT();	  // Pick two individuals per binary tournament
-				parent2 = population->getIndividuBinT();	  
-				rejeton->recopieIndividu(rejeton, parent1);	  // Put them in adequate data structures
-				rejeton2->recopieIndividu(rejeton2, parent2); 
-				crossOX();									  // Pick OX crossover if its a single-period problem
+				parent1 = population->getIndividuBinT(); // Pick two individuals per binary tournament
+				parent2 = population->getIndividuBinT();
+				rejeton->recopieIndividu(rejeton, parent1); // Put them in adequate data structures
+				rejeton2->recopieIndividu(rejeton2, parent2);
+				crossOX(); // Pick OX crossover if its a single-period problem
 			}
 		}
 		else // CROSSOVER
 		{
-			parent1 = population->getIndividuBinT();	  // Pick two individuals per binary tournament
-			parent2 = population->getIndividuBinT();	  
-			rejeton->recopieIndividu(rejeton, parent1);	  // Put them in adequate data structures
-			rejeton2->recopieIndividu(rejeton2, parent2); 
-			crossPIX();									  // Otherwise PIX (see Vidal et al 2012 -- OR)
+			parent1 = population->getIndividuBinT(); // Pick two individuals per binary tournament
+			parent2 = population->getIndividuBinT();
+			rejeton->recopieIndividu(rejeton, parent1); // Put them in adequate data structures
+			rejeton2->recopieIndividu(rejeton2, parent2);
+			crossPIX(); // Otherwise PIX (see Vidal et al 2012 -- OR)
 		}
 
 		// SPLIT
@@ -554,7 +554,7 @@ Genetic::Genetic(Params *params, Population *population, clock_t ticks, bool tra
 		freqClient.push_back(params->cli[i].freq);
 
 	// Creating the Individuals that serve to perform the Local Search and other operations
-	cout << "Creating individuals for local search\n\n";
+	cout << "Creating individuals for local search\n";
 
 	rejeton = new Individu(params, true);
 	rejeton->localSearch = new LocalSearch(params, rejeton);
@@ -568,10 +568,10 @@ Genetic::Genetic(Params *params, Population *population, clock_t ticks, bool tra
 	// HGA Individus
 	else
 	{
-		rejeton2 = new Individu(params, true);
-		rejetonBestFound = new Individu(params, true);
+		rejeton2 = new Individu(params, false);
 	}
 }
+
 Genetic::~Genetic(void)
 {
 	delete rejeton;
