@@ -1,7 +1,7 @@
 all : madcom
 
-CCC = i686-w64-mingw32-g++
-CCFLAGS = -O3 -Wall 
+CCC = g++
+CCFLAGS = -O3 -Wall -m64
 LIBS= -lm
 TARGETDIR=.
 CPPFLAGS += \
