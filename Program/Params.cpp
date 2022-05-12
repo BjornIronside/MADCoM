@@ -28,11 +28,11 @@ void Params::setMethodParams()
 	// el = 12;			   // Number of elite
 
 	// nbCountDistMeasure = 3; // Number of close individuals considered in the distance measure (diversity management)
-	granularity = 40;		// Restriction of the LS moves to 40 closest nodes
-	minValides = 0.15;		// Target proportion of feasible solution
-	maxValides = 0.20;		// Target proportion of feasible solution
-	penalityCapa = 50;		// Initial penalties (will evolve during the search)
-	penalityLength = 50;	// Initial penalties (will evolve during the search)
+	granularity = 40;	 // Restriction of the LS moves to 40 closest nodes
+	minValides = 0.15;	 // Target proportion of feasible solution
+	maxValides = 0.20;	 // Target proportion of feasible solution
+	penalityCapa = 50;	 // Initial penalties (will evolve during the search)
+	penalityLength = 50; // Initial penalties (will evolve during the search)
 
 	useRCO_decomposition = true;
 	// mutationProb = 0.25;    // Probability of mutation
@@ -702,6 +702,7 @@ Params::Params(commandline c, int veh, bool isSearchingFeasible) : nbVehiculesPe
 	mutTournSize = c.get_mutTournSize();
 
 	// Main constructor of Params
+	instanceName = c.get_instance_name();
 	pathToInstance = c.get_path_to_instance();
 	pathToSolution = c.get_path_to_solution();
 	pathToBKS = c.get_path_to_BKS();
@@ -788,20 +789,59 @@ void Params::ar_InitializeDistanceNodes()
 
 void Params::ar_computeDistancesNodes()
 {
-	cout << "Applying Floyd-Warshall algorithm\n";
-	for (int ii = 0; ii <= ar_NodesNonRequired + ar_NodesRequired; ii++)
-		ar_distanceNodes[ii][ii] = 0;
-	// simple application of the Floyd Warshall algorithm
-	for (int k = 0; k <= ar_NodesNonRequired + ar_NodesRequired; k++)
+	// Check for file with node distance matrix
+	string nodeMatFilename{"../Instances/Pickles/"};
+	nodeMatFilename += instanceName;
+	nodeMatFilename += ".txt";
+	ifstream nodeMatFile{nodeMatFilename};
+
+	if (nodeMatFile)
 	{
+		cout << "Reading Node Distance Matrix from file\n";
 		for (int i = 0; i <= ar_NodesNonRequired + ar_NodesRequired; i++)
 		{
 			for (int j = 0; j <= ar_NodesNonRequired + ar_NodesRequired; j++)
 			{
-				if (ar_distanceNodes[i][k] + ar_distanceNodes[k][j] < ar_distanceNodes[i][j])
-					ar_distanceNodes[i][j] = ar_distanceNodes[i][k] + ar_distanceNodes[k][j];
+				nodeMatFile >> ar_distanceNodes[i][j];
 			}
 		}
+	}
+	else
+	{
+		cout << "Applying Floyd-Warshall algorithm\n";
+		for (int ii = 0; ii <= ar_NodesNonRequired + ar_NodesRequired; ii++)
+			ar_distanceNodes[ii][ii] = 0;
+		// simple application of the Floyd Warshall algorithm
+		for (int k = 0; k <= ar_NodesNonRequired + ar_NodesRequired; k++)
+		{
+			for (int i = 0; i <= ar_NodesNonRequired + ar_NodesRequired; i++)
+			{
+				for (int j = 0; j <= ar_NodesNonRequired + ar_NodesRequired; j++)
+				{
+					if (ar_distanceNodes[i][k] + ar_distanceNodes[k][j] < ar_distanceNodes[i][j])
+						ar_distanceNodes[i][j] = ar_distanceNodes[i][k] + ar_distanceNodes[k][j];
+				}
+			}
+		}
+
+		cout << "Saving Node Distance Matrix for faster preprocessing\n";
+		nodeMatFile.close();
+		ofstream outf{nodeMatFilename};
+
+		if (!outf)
+		{
+			// Print an error and exit
+			std::cerr << "Uh oh, file could not be opened for writing!\n";
+		}
+		for (auto row : ar_distanceNodes)
+		{
+			for (double d : row)
+			{
+				outf << d << ' ';
+			}
+			outf << '\n';
+		}
+		outf.close();
 	}
 
 	// Then, we would still like to include some distance information between services.

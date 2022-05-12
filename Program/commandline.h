@@ -94,6 +94,7 @@ public:
     string get_path_to_instance();
     string get_path_to_solution();
     string get_path_to_BKS();
+    string get_instance_name();
     int get_cpu_time();
     int get_type();
     int get_nbVeh();

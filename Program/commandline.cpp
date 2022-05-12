@@ -197,6 +197,11 @@ commandline::commandline(int argc, char *argv[])
 
 commandline::~commandline() {}
 
+string commandline::get_instance_name()
+{
+	return instance_name;
+}
+
 string commandline::get_path_to_instance()
 {
 	return instance_path;

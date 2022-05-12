@@ -57,7 +57,7 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 	rejeton->localSearch->nbTotalRISinceBeginning = 0;
 	rejeton->localSearch->nbTotalPISinceBeginning = 0;
 
-	cout << "| Start of GA | NbNodes : " << params->nbClients << " | NbVehicles : " << params->nbVehiculesPerDep << " | " << endl;
+	cout << "| Start of GA | Instance: " << params->instanceName << " | NbNodes : " << params->nbClients << " | NbVehicles : " << params->nbVehiculesPerDep << " | " << endl;
 
 	while (nbIterNonProd < maxIterNonProd && (clock() - debut <= ticks) && (!params->isSearchingFeasible || population->getIndividuBestValide() == NULL))
 	{

@@ -64,6 +64,9 @@ public:
 	// random seed
 	int seed;
 
+	// instance name
+	string instanceName;
+
 	// path to the instance
 	string pathToInstance;
 
