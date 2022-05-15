@@ -792,17 +792,20 @@ void Params::ar_computeDistancesNodes()
 	// Check for file with node distance matrix
 	string nodeMatFilename{"../Instances/Pickles/"};
 	nodeMatFilename += instanceName;
-	nodeMatFilename += ".txt";
-	ifstream nodeMatFile{nodeMatFilename};
+	nodeMatFilename += ".bin";
+	ifstream nodeMatFile{nodeMatFilename, ios::binary};
 
 	if (nodeMatFile)
 	{
 		cout << "Reading Node Distance Matrix from file\n";
 		for (int i = 0; i <= ar_NodesNonRequired + ar_NodesRequired; i++)
 		{
+			
 			for (int j = 0; j <= ar_NodesNonRequired + ar_NodesRequired; j++)
 			{
-				nodeMatFile >> ar_distanceNodes[i][j];
+				double d;
+				nodeMatFile.read(reinterpret_cast<char *>(&d), sizeof(d));
+				ar_distanceNodes[i][j] = d;
 			}
 		}
 	}
@@ -826,20 +829,16 @@ void Params::ar_computeDistancesNodes()
 
 		cout << "Saving Node Distance Matrix for faster preprocessing\n";
 		nodeMatFile.close();
-		ofstream outf{nodeMatFilename};
+		ofstream outf{nodeMatFilename, ios::binary};
 
 		if (!outf)
 		{
 			// Print an error and exit
 			std::cerr << "Uh oh, file could not be opened for writing!\n";
 		}
-		for (auto row : ar_distanceNodes)
+		for (auto &row : ar_distanceNodes)
 		{
-			for (double d : row)
-			{
-				outf << d << ' ';
-			}
-			outf << '\n';
+			outf.write(reinterpret_cast<const char *>(&row[0]), (ar_NodesNonRequired + ar_NodesRequired + 1) * sizeof(double));
 		}
 		outf.close();
 	}
