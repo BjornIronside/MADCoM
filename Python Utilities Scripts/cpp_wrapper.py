@@ -9,7 +9,7 @@ ALLOWED_ARGUMENTS = {'madcom': ('hdf', 'mutprob', 'gcprob', 'pcprob', 'trnsize',
                      'gencarp': []}
 
 
-def run_solver(solver, instance, time_limit=600, **arguments):
+def run_solver(solver, instance, time_limit=600, see_traces=True, **arguments):
     # Check solver exists
     if solver not in ALLOWED_ARGUMENTS.keys():
         raise Exception('Unrecognized solver.')
@@ -33,30 +33,28 @@ def run_solver(solver, instance, time_limit=600, **arguments):
             raise Exception(f'Invalid argument {arg} for solver {solver}')
         command += f" -{arg} {value}"
 
-
     # Run solver
     date = dt.now()
-    completed_process = subprocess.run(command, shell=True, cwd=SOLVERS_FOLDER, creationflags=subprocess.CREATE_NEW_CONSOLE)
-    # completed_process = subprocess.run(command, shell=True, cwd=SOLVERS_FOLDER)
-
-    # # Check if everything went well
-    # if completed_process.returncode:
-    #     raise Exception("Solver crashed.")
+    if see_traces:
+        completed_process = subprocess.run(command, shell=True, cwd=SOLVERS_FOLDER)
+    else:
+        completed_process = subprocess.run(command, shell=True, cwd=SOLVERS_FOLDER,
+                                           creationflags=subprocess.CREATE_NEW_CONSOLE)
 
     # Retrieve and return result of the run
-    result = fetch_result(instance_name, date, tol=time_limit / 2)
+    result = fetch_result(instance_name, date, tol=time_limit * 0.9)
     # If run is successful, return the cost as an int, else repeat
-    if result.isnumeric():
+    if result is not None:
         return int(result)
     return run_solver(solver, instance, time_limit, **arguments)
 
 
-def automaton_solver(solver, instance_list, time_limit, runs=1, **arguments):
+def automaton_solver(solver, instance_list, time_limit, runs=1, see_traces=True, **arguments):
     results = {}
     for instance in instance_list:
         instance_costs = []
-        for i in range(runs):
-            instance_costs.append(run_solver(solver, instance, time_limit, **arguments))
+        for _ in range(runs):
+            instance_costs.append(run_solver(solver, instance, time_limit, see_traces, **arguments))
         results[instance] = instance_costs
     return results
 
@@ -65,9 +63,14 @@ if __name__ == '__main__':
     solver = 'madcom'
     instance = 'E15.dat'
     instance_list = ['Hefei-6.txt', 'Beijing-3.txt']
+    instance_try = ['Beijing-9.txt', 'Beijing-10.txt', 'S2_g-6.txt']
     time_limit = 30
     arguments = {'hdf': 0.5, 'mutprob': 0.3, 'gcprob': 0.05, 'pcprob': 0.15, 'trnsize': 25}
 
-    result = run_solver(solver, instance, time_limit, **arguments)
-    # result = automaton_solver(solver, instance_list, time_limit / 2, **arguments)
-    print(result)
+    # result = run_solver(solver, instance, time_limit, **arguments)
+    result = automaton_solver(solver, instance_list, time_limit / 2, **arguments)
+    # print(result)
+    # for instance in instance_try:
+    #     for i in range(3):
+    #         result = run_solver(solver, instance, time_limit, **arguments)
+    #         print(result)

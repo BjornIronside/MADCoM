@@ -31,6 +31,8 @@ def results_parser(instance_list, start_date=None, end_date=None, print_results=
                 f = open(f"{instance_results_folder}/{result_filename}")
                 solution_values.append(f.readline().strip())
                 f.close()
+        if not len(solution_values):  # To avoid indexing errors when no file is found
+            solution_values.append(None)
         results[instance_name] = solution_values
         if print_results:
             print(f"{instance_name},{','.join(solution_values)}")

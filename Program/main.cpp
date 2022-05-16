@@ -67,8 +67,12 @@ int main(int argc, char *argv[])
 
 			// Running the algorithm
 			mutator = new Mutator(mesParametres);
+			clock_t popBegin = clock();
 			population = new Population(mesParametres, mutator);
-			Genetic solver(mesParametres, population, nb_ticks_allowed, true);
+			clock_t popEnd = clock();
+			clock_t popInitTime{popEnd - popBegin};
+			cout << "Population initialization time: " << (double)popInitTime / (double)CLOCKS_PER_SEC << " s" <<endl;
+			Genetic solver(mesParametres, population, nb_ticks_allowed - popInitTime, true);
 
 			solver.evolve(20000, 1); // First parameter (20000) controls the number of iterations without improvement before termination
 

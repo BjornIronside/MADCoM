@@ -18,7 +18,8 @@ def evaluate_config(mu, offspring_ratio, elite_fraction, div_fraction, mutprob, 
                                 trn_fraction)
 
     # Run solver with input parameters in the instance list
-    results = cpp_wrapper.automaton_solver(solver, instances_dict.keys(), time_limit, runs=runs, **parameters)
+    results = cpp_wrapper.automaton_solver(solver, instances_dict.keys(), time_limit, see_traces=False, runs=runs,
+                                           **parameters)
 
     # Calculate fitness = average gap across all runs and instances
     fitness = 0
@@ -130,7 +131,7 @@ if __name__ == "__main__":
     # instances = ['E15.dat', 'egl-e1-A.dat']
     n_iter = 50
     time_limit = 60
-    # optimizer = tune_solver(solver, instances, n_iter, time_limit=time_limit, verbose=2, save_logs=True)
-    log_file = "../Results/Calibration/Thu May  5 19_45_49 2022.json"
-    optimizer = resume_tuning(log_file, solver, instances, n_iter, time_limit=time_limit,
-                              verbose=2)
+    optimizer = tune_solver(solver, instances, n_iter, time_limit=time_limit, verbose=2, save_logs=True)
+    # log_file = "../Results/Calibration/Thu May  5 19_45_49 2022.json"
+    # optimizer = resume_tuning(log_file, solver, instances, n_iter, time_limit=time_limit,
+    #                           verbose=2)
