@@ -229,7 +229,7 @@ double SeqData::evaluation(SeqData *seq1, SeqData *seq2, Vehicle *vehicle, doubl
 
 	myloadex = max(seq1->load + seq2->load - vehicle->vehicleCapacity, 0.0);
 	mytminex = max(mydist - vehicle->maxRouteTime, 0.0);
-	
+
 	return mydist + myloadex * params->penalityCapa + mytminex * params->penalityLength;
 }
 

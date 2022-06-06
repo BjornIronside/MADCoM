@@ -55,7 +55,7 @@ void Params::preleveDonnees()
 {
 	// Main method to read a problem instance
 	vector<Vehicle> tempI;
-	double vc;
+	double vc, fixedCost;
 	string contenu, useless2;
 	nbTotalServices = 0;
 	totalDemand = 0;
@@ -267,14 +267,17 @@ void Params::preleveDonnees()
 		fichier >> useless2;
 		fichier >> useless2;
 		fichier >> nbVehiculesPerDep;
-		nbVehiculesPerDep++;
+		// nbVehiculesPerDep++;
 		fichier >> useless2;
 		fichier >> useless2;
 		fichier >> vc;
 
-		getline(fichier, contenu);
-		getline(fichier, contenu); // Dumping Cost, for future implementation
+		fichier >> useless2;
+		fichier >> useless2;
+		fichier >> fixedCost; // Dumping Cost, for future implementation
 
+		getline(fichier, contenu);
+		cout << contenu;
 		ar_NodesRequired = 0;
 
 		ar_InitializeDistanceNodes();
@@ -321,7 +324,7 @@ void Params::preleveDonnees()
 		{
 			for (int j = 0; j < nbVehiculesPerDep; j++)
 			{
-				ordreVehicules[kk].push_back(Vehicle(i, 100000000, vc)); // Duration constraint set to a high value
+				ordreVehicules[kk].push_back(Vehicle(i, 100000000, vc, fixedCost)); // Duration constraint set to a high value
 				dayCapacity[kk] += vc;
 			}
 		}
@@ -596,7 +599,7 @@ void Params::getClient(int i, Client *myCli)
 			myCli->ar_nodeType = AR_CLIENT_EDGE;
 		}
 	}
-	else if (type == 36) // NEARP instances (we don't really read the file here but at least initialize the structures)
+	else if (type == 36) // MCARP instances (we don't really read the file here but at least initialize the structures)
 	{
 		myCli->ar_nodesExtr0 = -1;
 		myCli->ar_nodesExtr1 = -1;
@@ -800,7 +803,7 @@ void Params::ar_computeDistancesNodes()
 		cout << "Reading Node Distance Matrix from file\n";
 		for (int i = 0; i <= ar_NodesNonRequired + ar_NodesRequired; i++)
 		{
-			
+
 			for (int j = 0; j <= ar_NodesNonRequired + ar_NodesRequired; j++)
 			{
 				double d;

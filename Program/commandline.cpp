@@ -152,6 +152,10 @@ commandline::commandline(int argc, char *argv[])
 		nElite = mu;
 	if (nDiver > mu)
 		nDiver = mu;
+	if (goodCutProb <= 0)
+		goodCutProb = 0.01;
+	if (poorCutProb < goodCutProb)
+		poorCutProb = goodCutProb;
 
 	if (type == -1)
 	{

@@ -251,6 +251,7 @@ int Individu::splitSimple(int k)
 			// Extend this route to the next visit
 			seq[j + 1]->concatOneAfter(seq[j], chromT[k][j], this, k);
 			cost = seq[0]->evaluation(seq[j + 1], myseq, &params->ordreVehicules[k][0], mydist, mytminex, myloadex); // and evaluate
+			cost += params->ordreVehicules[k][0].vehicleCost;														 // Add vehicle fixed cost
 			// Test if this label is better
 			if (potentiels[0][i].evaluation + cost < potentiels[0][j + 1].evaluation)
 			{
@@ -313,7 +314,7 @@ void Individu::splitLF(int k)
 		for (int j = i; j < (int)chromT[k].size() && seq[j]->load <= params->ordreVehicules[k][0].vehicleCapacity * params->borne; j++)
 		{
 			seq[j + 1]->concatOneAfter(seq[j], chromT[k][j], this, k);
-			coutArcsSplit[i][j + 1].evaluation = seq[j + 1]->evaluation(seq[j + 1], myseq, &params->ordreVehicules[k][0], mydist, mytminex, myloadex);
+			coutArcsSplit[i][j + 1].evaluation = seq[j + 1]->evaluation(seq[j + 1], myseq, &params->ordreVehicules[k][0], mydist, mytminex, myloadex) + params->ordreVehicules[k][0].vehicleCost;
 			coutArcsSplit[i][j + 1].capacityViol = myloadex;
 			coutArcsSplit[i][j + 1].distance = mydist;
 			coutArcsSplit[i][j + 1].lengthViol = mytminex;
@@ -416,7 +417,7 @@ void Individu::measureSol()
 	}
 
 	// To avoid any problem of numerical imprecision
-	coutSol.evaluation = coutSol.distance + params->penalityCapa * coutSol.capacityViol + params->penalityLength * coutSol.lengthViol;
+	coutSol.evaluation = coutSol.distance + params->penalityCapa * coutSol.capacityViol + params->penalityLength * coutSol.lengthViol + params->ordreVehicules[1][0].vehicleCost * coutSol.routes;
 }
 
 void Individu::initPot(int day)

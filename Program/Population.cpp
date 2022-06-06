@@ -38,7 +38,7 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 	for (int i = 0; i < params->mu && (!params->isSearchingFeasible || !feasibleFound); i++)
 	{
 		randomIndiv = new Individu(params, true);
-		if (i <= nbHD)
+		if (i < nbHD)
 		{
 			mutator->generate(randomIndiv);
 		}
@@ -530,11 +530,11 @@ void Population::ExportBest(string nomFichier)
 		myfile.precision(10);
 		cout.precision(10);
 
-		// Writing the distance
+		// Writing the cost
 		if (params->type != 35)
 		{
-			cout << "Writing the best solution : distance : " << trainer->coutSol.distance;
-			myfile << trainer->coutSol.distance << endl;
+			cout << "Writing the best solution : cost : " << trainer->coutSol.evaluation;
+			myfile << trainer->coutSol.evaluation << endl;
 		}
 		else
 		{
@@ -595,11 +595,11 @@ void Population::ExportBest(string nomFichier)
 					if (loc->routes[k][i].depot->pred->seq0_i->bestCostArcs[0][0].size() != rout.size())
 						throw string("Issue : mismatch between the route size and the number of arcs reported by the SeqData");
 
-					myfile << " " << loc->routes[k][i].depot->cour;																								 // Printing the depot
-					myfile << " " << (k - 1) % params->ancienNbDays + 1;																						 // Printing the day
-					myfile << " " << compteur;																													 // Printing the index of the route
-					myfile << " " << loc->routes[k][i].depot->pred->seq0_i->load;																				 // Printing the total demand
-					myfile << " " << loc->routes[k][i].depot->pred->seq0_i->evaluation(loc->routes[k][i].depot->pred->seq0_i, loc->routes[k][i].vehicle) << " "; // Printing the total cost of this route
+					myfile << " " << loc->routes[k][i].depot->cour;																								 											// Printing the depot
+					myfile << " " << (k - 1) % params->ancienNbDays + 1;																						 											// Printing the day
+					myfile << " " << compteur;																													 											// Printing the index of the route
+					myfile << " " << loc->routes[k][i].depot->pred->seq0_i->load;																				 											// Printing the total demand
+					myfile << " " << loc->routes[k][i].depot->pred->seq0_i->evaluation(loc->routes[k][i].depot->pred->seq0_i, loc->routes[k][i].vehicle) +  loc->routes[k][i].vehicle->vehicleCost << " ";  // Printing the total cost of this route
 
 					myfile << " " << (int)rout.size();		   // Printing the number of customers in the route
 					for (int j = 0; j < (int)rout.size(); j++) // Printing the visits and their orientation
@@ -780,7 +780,7 @@ void Population::ExportBKS(string nomFichier)
 		// If the problem is a classic CVRP, CARP, MDCARP which seeks to optimize the distance
 		if (params->type != 32 && params->type != 35 && getIndividuBestValide() != NULL && getIndividuBestValide()->coutSol.evaluation < fit - 0.001)
 		{
-			cout << "!!! New BKS !!! : distance = " << getIndividuBestValide()->coutSol.evaluation << " " << endl;
+			cout << "!!! New BKS !!! : cost = " << getIndividuBestValide()->coutSol.evaluation << " " << endl;
 			ExportBest(nomFichier);
 		}
 		// If its a PCARP, main objective is fleet size, and then distance counts
@@ -953,7 +953,7 @@ void Population::afficheEtat(int nbIter)
 	cout << "It " << nbIter << " | Best ";
 
 	if (getIndividuBestValide() != NULL)
-		cout << getIndividuBestValide()->coutSol.distance << " " << getIndividuBestValide()->coutSol.routes << " ";
+		cout << getIndividuBestValide()->coutSol.evaluation << " " << getIndividuBestValide()->coutSol.routes << " ";
 	else
 		cout << "NO-VALID ";
 

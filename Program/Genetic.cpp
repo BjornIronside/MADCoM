@@ -557,7 +557,7 @@ Genetic::Genetic(Params *params, Population *population, clock_t ticks, bool tra
 		freqClient.push_back(params->cli[i].freq);
 
 	// Creating the Individuals that serve to perform the Local Search and other operations
-	cout << "Creating individuals for local search\n";
+	cout << "Creating individuals for local search\n\n";
 
 	rejeton = new Individu(params, true);
 	rejeton->localSearch = new LocalSearch(params, rejeton);
