@@ -90,13 +90,13 @@ commandline::commandline(int argc, char *argv[])
 	nbVeh = -1;
 	nbDep = -1;
 	fractionHD = 1.0;
-	mutationProb = 0.25;
+	mutationProb = 0.40;
 	goodCutProb = 0.05;
-	poorCutProb = 0.20;
-	mutTournSize = 2;
-	mu = 25;
-	lambda = 40;
-	nElite = 12;
+	poorCutProb = 0.15;
+	mutTournSize = 15;
+	mu = 20;
+	lambda = 35;
+	nElite = 10;
 	nDiver = 3;
 
 	// reading the commandline parameters
@@ -187,16 +187,16 @@ commandline::commandline(int argc, char *argv[])
 	}
 	SetDefaultOutput(string(argv[1]));
 	command_ok = true;
-	cout << "<| Parameters |>\n";
-	cout << "Population Size: " << mu << '\n';
-	cout << "N. Offspring: " << lambda << '\n';
-	cout << "N. Elite: " << nElite << '\n';
-	cout << "N. Individuals for Diversity: " << nDiver << '\n';
-	cout << "Mutation Probability: " << mutationProb << '\n';
-	cout << "Mutation Tournament Size: " << mutTournSize << '\n';
-	cout << "HD Fraction: " << fractionHD << '\n';
-	cout << "Good Link Cut Probability: " << goodCutProb << '\n';
-	cout << "Poor Link Cut Probability: " << poorCutProb << '\n' << '\n';
+	// 	cout << "<| Parameters |>\n";
+	// 	cout << "Population Size: " << mu << '\n';
+	// 	cout << "N. Offspring: " << lambda << '\n';
+	// 	cout << "N. Elite: " << nElite << '\n';
+	// 	cout << "N. Individuals for Diversity: " << nDiver << '\n';
+	// 	cout << "Mutation Probability: " << mutationProb << '\n';
+	// 	cout << "Mutation Tournament Size: " << mutTournSize << '\n';
+	// 	cout << "HD Fraction: " << fractionHD << '\n';
+	// 	cout << "Good Link Cut Probability: " << goodCutProb << '\n';
+	// 	cout << "Poor Link Cut Probability: " << poorCutProb << '\n' << '\n';
 }
 
 commandline::~commandline() {}
