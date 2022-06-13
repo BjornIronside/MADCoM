@@ -44,9 +44,9 @@ def run_solver(solver, instance, time_limit=600, see_traces=True, **arguments):
     # Retrieve and return result of the run
     result = fetch_result(instance_name, date, tol=time_limit * 0.9)
     # If run is successful, return the cost as an int, else repeat
-    if result is not None:
+    if result is not None and len(result):
         return int(result)
-    return run_solver(solver, instance, time_limit, **arguments)
+    return run_solver(solver, instance, time_limit, see_traces=see_traces, **arguments)
 
 
 def automaton_solver(solver, instance_list, time_limit, runs=1, see_traces=True, **arguments):

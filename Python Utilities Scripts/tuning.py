@@ -127,11 +127,21 @@ def resume_tuning(log_file, solver, instances, n_iter, time_limit=30 * 60, runs=
 
 if __name__ == "__main__":
     solver = 'madcom'
-    instances = ['egl-g2-D.dat', 'Hefei-6.txt', 'Beijing-2.txt']
+    # instances = ['egl-g2-D.dat', 'Hefei-6.txt', 'Beijing-2.txt']
     # instances = ['E15.dat', 'egl-e1-A.dat']
+    instances = ['egl-g2-E.dat',
+                 'F1_g-4.txt',
+                 'Hefei-10.txt',
+                 'Beijing-6.txt',
+                 'Beijing-8.txt',
+                 'S2_g-6.txt',
+                 'N5_g-5.txt',
+                 'O1_p-2.txt',
+                 'K5_g-6.txt',
+                 'O1_g-4.txt']
     n_iter = 50
-    time_limit = 60
-    optimizer = tune_solver(solver, instances, n_iter, time_limit=time_limit, verbose=2, save_logs=True)
-    # log_file = "../Results/Calibration/Thu May  5 19_45_49 2022.json"
-    # optimizer = resume_tuning(log_file, solver, instances, n_iter, time_limit=time_limit,
-    #                           verbose=2)
+    time_limit = 40 * 60
+    # optimizer = tune_solver(solver, instances, n_iter, time_limit=time_limit, verbose=2, save_logs=True)
+    log_file = "../Results/Calibration/Mon May 16 18_53_49 2022.json"
+    optimizer = resume_tuning(log_file, solver, instances, n_iter, time_limit=time_limit,
+                              verbose=2)
