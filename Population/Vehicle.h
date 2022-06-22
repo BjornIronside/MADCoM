@@ -21,33 +21,33 @@
 
 #include "Params.h"
 
-class Params ;
+class Params;
 
 class Vehicle
 {
 
 private:
-
-// Access to the parameters of the problem
-Params * params ;
+    // Access to the parameters of the problem
+    Params *params;
 
 public:
+    // Associated depot number
+    int depotNumber;
 
-// Associated depot number
-int depotNumber ;     
+    // Limit of driving + service time
+    double maxRouteTime;
 
-// Limit of driving + service time
-double maxRouteTime ;
+    // Capacity limit
+    double vehicleCapacity;
 
-// Capacity limit
-double vehicleCapacity ;
+    // Fixed Cost
+    double vehicleCost;
 
-// Constructor
-Vehicle(int depotNumber,double maxRouteTime,double vehicleCapacity);
+    // Constructor
+    Vehicle(int depotNumber, double maxRouteTime, double vehicleCapacity, double vehicleCost);
 
-// Destructor
-~Vehicle(void);
-
+    // Destructor
+    ~Vehicle(void);
 };
 
 #endif

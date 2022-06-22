@@ -27,62 +27,94 @@ using namespace std;
 
 class commandline
 {
-    private:
+private:
+    // say if the commandline is valid
+    bool command_ok;
 
-        // say if the commandline is valid
-        bool command_ok;
+    // CPU time allowed
+    int cpu_time;
 
-        // CPU time allowed
-        int cpu_time;
+    // seed
+    int seed;
 
-		// seed
-		int seed;
+    // instance type, if given (see definitions in Params.h)
+    int type;
 
-		// instance type, if given (see definitions in Params.h)
-		int type;
+    // nbVehicles, if given (for the MM-kWRPP, the fleet size has to be specified)
+    int nbVeh;
 
-		// nbVehicles, if given (for the MM-kWRPP, the fleet size has to be specified)
-		int nbVeh ;
+    // nbDepots, if given (used to generate the MDCARP instances)
+    int nbDep;
 
-		// nbDepots, if given (used to generate the MDCARP instances)
-		int nbDep ;
+    // Fraction of initial population to generate using Hierarchical Decomposition
+    double fractionHD;
 
-        // Results folder
-        string resultsFolder;
+    // Mutation Probability
+    double mutationProb;
 
-        // instance path
-        string instance_path;
+    // Cutting Probabilities
+    double goodCutProb;
+    double poorCutProb;
 
-        // instance name
-        string instance_name;
+    // Mutation Tournament Size
+    int mutTournSize;
 
-		// output path
-		string output_name;
+    // Population Parameters
+    int mu;
+    int lambda;
+    int nElite;
+    int nDiver;
 
-		// BKS path (used to replace it if a better solution is found)
-		string BKS_name;
+    // Results folder
+    string resultsFolder;
 
-		// simple setters
-        void SetDefaultOutput(string to_parse);
+    // instance path
+    string instance_path;
 
-    public:
+    // instance name
+    string instance_name;
 
-        // constructor
-        commandline(int argc, char* argv[]);
+    // output path
+    string output_name;
 
-        // destructor
-        ~commandline();
+    // BKS path (used to replace it if a better solution is found)
+    string BKS_name;
 
-        string get_path_to_instance();
-        string get_path_to_solution();
-        string get_path_to_BKS();
-        int get_cpu_time();
-		int get_type();
-		int get_nbVeh();
-		int get_nbDep();
-        int get_seed();
+    // Populations stats filename
+    string popstats_name;
 
-        // say if the commandline is valid
-        bool is_valid();
+    // simple setters
+    void SetDefaultOutput(string to_parse);
+
+public:
+    // constructor
+    commandline(int argc, char *argv[]);
+
+    // destructor
+    ~commandline();
+
+    // Getters
+    string get_path_to_instance();
+    string get_path_to_solution();
+    string get_path_to_BKS();
+    string get_path_to_popstats();
+    string get_instance_name();
+    int get_cpu_time();
+    int get_type();
+    int get_nbVeh();
+    int get_nbDep();
+    int get_seed();
+    double get_fractionHD();
+    double get_mutationProb();
+    double get_goodCutProb();
+    double get_poorCutProb();
+    int get_mutTournSize();
+    int get_mu();
+    int get_lambda();
+    int get_nElite();
+    int get_nDiver();
+
+    // say if the commandline is valid
+    bool is_valid();
 };
 #endif

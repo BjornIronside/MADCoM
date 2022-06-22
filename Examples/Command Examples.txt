@@ -1,6 +1,7 @@
 >Setup Terminal
 cd C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM
 cd C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM\Program
+cd C:\Users\diogo\OneDrive\Documentos\IST\Master Thesis\MADCoM\Population
 --------
 >Example Runs Commands
 madcom "..\Instances\CARP\F9_g-6.txt" -type 30
@@ -19,3 +20,9 @@ r "..\Instances\CARP\F9_g-6.txt" -type 30
 r "..\Instances\CARP\gdb10.dat" -type 30
 
 r "..\Instances\CARP\Beijing-3.txt" -type 30
+
+---------
+>Population Analysis Commands
+popanalysis "..\Instances\CARP\F9_g-6.txt" -type 30 -mu 100
+
+popanalysis "..\Instances\CARP\S2_g-6.txt" -type 30 -mu 100

@@ -1,7 +1,7 @@
 all : popanalysis 
 
 CCC = g++
-CCFLAGS = -O3 -Wall 
+CCFLAGS = -O3 -Wall -m64
 LIBS= -lm
 TARGETDIR=.
 CPPFLAGS += \

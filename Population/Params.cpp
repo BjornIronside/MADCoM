@@ -23,24 +23,22 @@ void Params::setMethodParams()
 	/* MAIN PARAMETERS OF THE METHOD */
 
 	isILS_general = false; // Are we running the ILS version of the code
-	mu = 25;			   // Population size
-	lambda = 40;		   // Number of individuals per generation
-	el = 12;			   // Number of elite
+	// mu = 25;			   // Population size
+	// lambda = 40;		   // Number of individuals per generation
+	// el = 12;			   // Number of elite
 
-	nbCountDistMeasure = 3; // Number of close individuals considered in the distance measure (diversity management)
-	granularity = 40;		// Restriction of the LS moves to 40 closest nodes
-	minValides = 0.15;		// Target proportion of feasible solution
-	maxValides = 0.20;		// Target proportion of feasible solution
-	penalityCapa = 50;		// Initial penalties (will evolve during the search)
-	penalityLength = 50;	// Initial penalties (will evolve during the search)
+	// nbCountDistMeasure = 3; // Number of close individuals considered in the distance measure (diversity management)
+	granularity = 40;	 // Restriction of the LS moves to 40 closest nodes
+	minValides = 0.15;	 // Target proportion of feasible solution
+	maxValides = 0.20;	 // Target proportion of feasible solution
+	penalityCapa = 50;	 // Initial penalties (will evolve during the search)
+	penalityLength = 50; // Initial penalties (will evolve during the search)
 
-	fractionHD = 0.5;
-	useRCO_decomposition = false; 
-	mutationProb = 0.25;    // Probability of mutation
-	beta = 0.10;			// Number of virtual tasks in the next layer of hierarchical decomposition is between [1, beta*nbVT]
-	goodLinkCutProb = 0.05; // Probability of cutting a good link
-	poorLinkCutProb = 0.20; // Probability of cutting a poor link
-
+	useRCO_decomposition = true;
+	// mutationProb = 0.25;    // Probability of mutation
+	beta = 0.10; // Number of virtual tasks in the next layer of hierarchical decomposition is between [1, beta*nbVT]
+	// goodLinkCutProb = 0.05; // Probability of cutting a good link
+	// poorLinkCutProb = 0.20; // Probability of cutting a poor link
 
 	// The ELS/ILS requires slightly different parameter setting to get the right number of children and solutions, as specified in Prins 2009
 	if (isILS_general)
@@ -53,11 +51,11 @@ void Params::setMethodParams()
 	}
 }
 
-void Params::preleveDonnees(string nomInstance)
+void Params::preleveDonnees()
 {
 	// Main method to read a problem instance
 	vector<Vehicle> tempI;
-	double vc;
+	double vc, fixedCost;
 	string contenu, useless2;
 	nbTotalServices = 0;
 	totalDemand = 0;
@@ -269,14 +267,17 @@ void Params::preleveDonnees(string nomInstance)
 		fichier >> useless2;
 		fichier >> useless2;
 		fichier >> nbVehiculesPerDep;
-		nbVehiculesPerDep++;
+		// nbVehiculesPerDep++;
 		fichier >> useless2;
 		fichier >> useless2;
 		fichier >> vc;
 
-		getline(fichier, contenu);
-		getline(fichier, contenu); // Dumping Cost, for future implementation
+		fichier >> useless2;
+		fichier >> useless2;
+		fichier >> fixedCost; // Dumping Cost, for future implementation
 
+		getline(fichier, contenu);
+		cout << contenu;
 		ar_NodesRequired = 0;
 
 		ar_InitializeDistanceNodes();
@@ -323,7 +324,7 @@ void Params::preleveDonnees(string nomInstance)
 		{
 			for (int j = 0; j < nbVehiculesPerDep; j++)
 			{
-				ordreVehicules[kk].push_back(Vehicle(i, 100000000, vc)); // Duration constraint set to a high value
+				ordreVehicules[kk].push_back(Vehicle(i, 100000000, vc, fixedCost)); // Duration constraint set to a high value
 				dayCapacity[kk] += vc;
 			}
 		}
@@ -419,7 +420,6 @@ void Params::calculeStructures()
 		cli[i].computeVisitsDyn(nbDays, ancienNbDays);
 		cli[i].computeJourSuiv(nbDays, ancienNbDays);
 	}
-	
 }
 
 void Params::getClient(int i, Client *myCli)
@@ -599,7 +599,7 @@ void Params::getClient(int i, Client *myCli)
 			myCli->ar_nodeType = AR_CLIENT_EDGE;
 		}
 	}
-	else if (type == 36) // NEARP instances (we don't really read the file here but at least initialize the structures)
+	else if (type == 36) // MCARP instances (we don't really read the file here but at least initialize the structures)
 	{
 		myCli->ar_nodesExtr0 = -1;
 		myCli->ar_nodesExtr1 = -1;
@@ -686,27 +686,45 @@ void Params::setPatterns_PCARP(Client *myCli)
 	}
 }
 
-Params::Params(string nomInstance, string nomSolution, string nomBKS, int seedRNG, int type, int nbVeh, int nbDep, bool isSearchingFeasible) : type(type), nbVehiculesPerDep(nbVeh), nbDepots(nbDep), isSearchingFeasible(isSearchingFeasible)
+Params::Params(commandline c, int veh, bool isSearchingFeasible) : nbVehiculesPerDep(veh), isSearchingFeasible(isSearchingFeasible)
 {
+	type = c.get_type();
+	nbDepots = c.get_nbDep();
+
+	// Population Parameters
+	mu = c.get_mu();
+	lambda = c.get_lambda();
+	el = c.get_nElite();
+	nbCountDistMeasure = c.get_nDiver();
+
+	// Mutation Parameters
+	fractionHD = c.get_fractionHD();
+	mutationProb = c.get_mutationProb();
+	goodLinkCutProb = c.get_goodCutProb();
+	poorLinkCutProb = c.get_poorCutProb();
+	mutTournSize = c.get_mutTournSize();
+
 	// Main constructor of Params
-	pathToInstance = nomInstance;
-	pathToSolution = nomSolution;
-	pathToBKS = nomBKS;
+	instanceName = c.get_instance_name();
+	pathToInstance = c.get_path_to_instance();
+	pathToSolution = c.get_path_to_solution();
+	pathToBKS = c.get_path_to_BKS();
+	pathToPopstats = c.get_path_to_popstats();
 	borne = 2.0;
 	sizeSD = 10;
 
-	seed = seedRNG;
+	seed = c.get_seed();
 	if (seed == 0) // using the time to generate a seed when seed = 0
 		srand((unsigned int)time(NULL));
 	else
 		srand(seed);
 
 	// Opening the instance file
-	fichier.open(nomInstance.c_str());
+	fichier.open(c.get_path_to_instance().c_str());
 
 	// Reading the instance file
 	if (fichier.is_open())
-		preleveDonnees(nomInstance);
+		preleveDonnees();
 	else
 		throw string(" Impossible to find instance file ");
 
@@ -775,20 +793,58 @@ void Params::ar_InitializeDistanceNodes()
 
 void Params::ar_computeDistancesNodes()
 {
-	cout << "Applying Floyd-Warshall algorithm\n";
-	for (int ii = 0; ii <= ar_NodesNonRequired + ar_NodesRequired; ii++)
-		ar_distanceNodes[ii][ii] = 0;
-	// simple application of the Floyd Warshall algorithm
-	for (int k = 0; k <= ar_NodesNonRequired + ar_NodesRequired; k++)
+	// Check for file with node distance matrix
+	string nodeMatFilename{"../Instances/Pickles/"};
+	nodeMatFilename += instanceName;
+	nodeMatFilename += ".bin";
+	ifstream nodeMatFile{nodeMatFilename, ios::binary};
+
+	if (nodeMatFile)
 	{
+		cout << "Reading Node Distance Matrix from file\n";
 		for (int i = 0; i <= ar_NodesNonRequired + ar_NodesRequired; i++)
 		{
+
 			for (int j = 0; j <= ar_NodesNonRequired + ar_NodesRequired; j++)
 			{
-				if (ar_distanceNodes[i][k] + ar_distanceNodes[k][j] < ar_distanceNodes[i][j])
-					ar_distanceNodes[i][j] = ar_distanceNodes[i][k] + ar_distanceNodes[k][j];
+				double d;
+				nodeMatFile.read(reinterpret_cast<char *>(&d), sizeof(d));
+				ar_distanceNodes[i][j] = d;
 			}
 		}
+	}
+	else
+	{
+		cout << "Applying Floyd-Warshall algorithm\n";
+		for (int ii = 0; ii <= ar_NodesNonRequired + ar_NodesRequired; ii++)
+			ar_distanceNodes[ii][ii] = 0;
+		// simple application of the Floyd Warshall algorithm
+		for (int k = 0; k <= ar_NodesNonRequired + ar_NodesRequired; k++)
+		{
+			for (int i = 0; i <= ar_NodesNonRequired + ar_NodesRequired; i++)
+			{
+				for (int j = 0; j <= ar_NodesNonRequired + ar_NodesRequired; j++)
+				{
+					if (ar_distanceNodes[i][k] + ar_distanceNodes[k][j] < ar_distanceNodes[i][j])
+						ar_distanceNodes[i][j] = ar_distanceNodes[i][k] + ar_distanceNodes[k][j];
+				}
+			}
+		}
+
+		cout << "Saving Node Distance Matrix for faster preprocessing\n";
+		nodeMatFile.close();
+		ofstream outf{nodeMatFilename, ios::binary};
+
+		if (!outf)
+		{
+			// Print an error and exit
+			std::cerr << "Uh oh, file could not be opened for writing!\n";
+		}
+		for (auto &row : ar_distanceNodes)
+		{
+			outf.write(reinterpret_cast<const char *>(&row[0]), (ar_NodesNonRequired + ar_NodesRequired + 1) * sizeof(double));
+		}
+		outf.close();
 	}
 
 	// Then, we would still like to include some distance information between services.

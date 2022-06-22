@@ -28,23 +28,38 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 	double temp, temp2;
 	bool feasibleFound = false;
 
-	cout << "Generating initial population\n";
 	double nbHD{ceil(params->fractionHD * params->mu)};
+	cout << "Generating initial population, " << nbHD << " HD individuals\n";
 
 	// Create the trainer
-	trainer = new Individu(params, true);
-	delete trainer->localSearch;
-	trainer->localSearch = new LocalSearch(params, trainer); // Initialize the LS structure
+	createTrainer();
+
+	// Clocks for timing
+	clock_t begin;
+	clock_t end;
 
 	// Creating the initial populations
 	for (int i = 0; i < params->mu && (!params->isSearchingFeasible || !feasibleFound); i++)
 	{
+		cout << i;
 		randomIndiv = new Individu(params, true);
-		if (i <= nbHD)
+		if (i < nbHD)
+		{
+			begin = clock();
 			mutator->generate(randomIndiv);
+			end = clock();
+			randomIndiv->durationHD = (double)(end - begin) / (double)CLOCKS_PER_SEC;
+			cout << 'm';
+			cout << randomIndiv->durationHD << ' ';
+		}
+		begin = clock();
 		education(randomIndiv);
+		end = clock();
+		randomIndiv->durationLS = (double)(end - begin) / (double)CLOCKS_PER_SEC;
 		addIndividu(randomIndiv);
 		updateNbValides(randomIndiv);
+		cout << 'e';
+		cout << randomIndiv->durationLS << ' ';
 		if (!randomIndiv->estValide)
 		{
 			temp = params->penalityCapa;
@@ -62,7 +77,9 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 			trainer->generalSplit();
 			trainer->recopieIndividu(randomIndiv, trainer);
 			addIndividu(randomIndiv);
+			cout << 'r';
 		}
+		cout << '\n';
 		if (randomIndiv->estValide)
 			feasibleFound = true;
 		delete randomIndiv;
@@ -82,6 +99,44 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 
 	temp = params->penalityCapa;
 	temp2 = params->penalityLength;
+
+	string filename{params->pathToPopstats};
+	// filename += params->instanceName;
+	// filename += ".csv";
+	ofstream statsFile{filename};
+	if (!statsFile)
+		// Print an error and exit
+		std::cerr << "Uh oh, file could not be opened for writing!\n";
+
+	statsFile << "id,cost,hd_time,ls_time,diversity" << endl;
+	cout << valides->nbIndiv << ' ' << invalides->nbIndiv << endl;
+	// SAVE POP STATS
+	if (valides->nbIndiv > 4)
+	{
+		for (int i = 0; i < valides->nbIndiv; i++)
+		{
+			Individu *ind = valides->individus[i];
+			statsFile << i << ','
+					  << ind->coutSol.evaluation << ','
+					  << ind->durationHD << ','
+					  << ind->durationLS << ','
+					  << ind->distPlusProche(params->nbCountDistMeasure) << endl;
+		}
+	}
+	if (invalides->nbIndiv > 4)
+	{
+		for (int i = valides->nbIndiv; i < valides->nbIndiv + invalides->nbIndiv; i++)
+		{
+			Individu *ind = invalides->individus[i-valides->nbIndiv];
+			statsFile << i << ','
+					  << ind->coutSol.evaluation << ','
+					  << ind->durationHD << ','
+					  << ind->durationLS << ','
+					  << ind->distPlusProche(params->nbCountDistMeasure) / (params->nbClients - 1) << endl;
+		}
+	}
+	statsFile.close();
+	delete trainer;
 }
 
 Population::~Population()
@@ -234,6 +289,8 @@ void Population::diversify()
 		invalides->nbIndiv--;
 	}
 
+	createTrainer();
+
 	for (int i = 0; i < params->mu; i++)
 	{
 		randomIndiv = new Individu(params, true);
@@ -261,6 +318,8 @@ void Population::diversify()
 		}
 		delete randomIndiv;
 	}
+
+	delete trainer;
 }
 
 void Population::clear()
@@ -391,6 +450,63 @@ Individu *Population::getIndividuBinT()
 		return individu2;
 }
 
+Individu *Population::getIndividuTournament(int tournSize)
+{
+	if (tournSize <= 2)
+		return getIndividuBinT();
+
+	evalExtFit(valides);
+	evalExtFit(invalides);
+	Individu *individu1;
+	Individu *individu2;
+
+	// Fisher-Yates shuffle to select tournSize random individuals from both subpopulations
+	vector<int> individusPlaces(valides->nbIndiv + invalides->nbIndiv);
+	iota(begin(individusPlaces), end(individusPlaces), 0);
+	int numRandom{tournSize};
+	int left{valides->nbIndiv + invalides->nbIndiv};
+	int r;
+	int begin{0};
+	while (numRandom--)
+	{
+		r = begin + (rand() % left);
+		swap(individusPlaces[begin], individusPlaces[r]);
+		++begin;
+		--left;
+	}
+	int minValide{valides->nbIndiv};
+	int minInvalide{invalides->nbIndiv};
+	for (int i{0}; i < tournSize; i++)
+	{
+		if (individusPlaces[i] < minValide)
+			minValide = individusPlaces[i];
+		else if (individusPlaces[i] >= valides->nbIndiv && individusPlaces[i] - valides->nbIndiv < minInvalide)
+			minInvalide = individusPlaces[i] - valides->nbIndiv;
+	}
+	// cout << valides->nbIndiv << ' ' << invalides->nbIndiv << " - ";
+	// cout << minValide << ' ' << minInvalide << '\n';
+
+	if (minInvalide == invalides->nbIndiv) // If no infeasible individual was selected in the tournament, return the best feasible individual in the tournament
+	{
+		individu1 = valides->individus[minValide];
+		return individu1;
+	}
+	if (minValide == valides->nbIndiv) // If no feasible individual was selected in the tournament, return the best infeasible individual in the tournament
+	{
+		individu2 = invalides->individus[minInvalide];
+		return individu2;
+	}
+
+	// Else return the best of the two
+	individu1 = valides->individus[minValide];
+	individu2 = invalides->individus[minInvalide];
+
+	if (individu1->fitnessEtendu < individu2->fitnessEtendu)
+		return individu1;
+	else
+		return individu2;
+}
+
 Individu *Population::getIndividuPourc(int pourcentage)
 {
 	int place;
@@ -442,6 +558,7 @@ void Population::ExportBest(string nomFichier)
 	ofstream myfile;
 	double temp, temp2;
 	Individu *bestValide = getIndividuBestValide();
+	createTrainer();
 
 	if (bestValide != NULL)
 	{
@@ -466,11 +583,11 @@ void Population::ExportBest(string nomFichier)
 		myfile.precision(10);
 		cout.precision(10);
 
-		// Writing the distance
+		// Writing the cost
 		if (params->type != 35)
 		{
-			cout << "Writing the best solution : distance : " << trainer->coutSol.distance;
-			myfile << trainer->coutSol.distance << endl;
+			cout << "Writing the best solution : cost : " << trainer->coutSol.evaluation;
+			myfile << trainer->coutSol.evaluation << endl;
 		}
 		else
 		{
@@ -531,11 +648,11 @@ void Population::ExportBest(string nomFichier)
 					if (loc->routes[k][i].depot->pred->seq0_i->bestCostArcs[0][0].size() != rout.size())
 						throw string("Issue : mismatch between the route size and the number of arcs reported by the SeqData");
 
-					myfile << " " << loc->routes[k][i].depot->cour;																								 // Printing the depot
-					myfile << " " << (k - 1) % params->ancienNbDays + 1;																						 // Printing the day
-					myfile << " " << compteur;																													 // Printing the index of the route
-					myfile << " " << loc->routes[k][i].depot->pred->seq0_i->load;																				 // Printing the total demand
-					myfile << " " << loc->routes[k][i].depot->pred->seq0_i->evaluation(loc->routes[k][i].depot->pred->seq0_i, loc->routes[k][i].vehicle) << " "; // Printing the total cost of this route
+					myfile << " " << loc->routes[k][i].depot->cour;																																		  // Printing the depot
+					myfile << " " << (k - 1) % params->ancienNbDays + 1;																																  // Printing the day
+					myfile << " " << compteur;																																							  // Printing the index of the route
+					myfile << " " << loc->routes[k][i].depot->pred->seq0_i->load;																														  // Printing the total demand
+					myfile << " " << loc->routes[k][i].depot->pred->seq0_i->evaluation(loc->routes[k][i].depot->pred->seq0_i, loc->routes[k][i].vehicle) + loc->routes[k][i].vehicle->vehicleCost << " "; // Printing the total cost of this route
 
 					myfile << " " << (int)rout.size();		   // Printing the number of customers in the route
 					for (int j = 0; j < (int)rout.size(); j++) // Printing the visits and their orientation
@@ -571,6 +688,7 @@ void Population::ExportBest(string nomFichier)
 	{
 		cout << "Impossible to find a feasible individual" << endl;
 	}
+	delete trainer;
 }
 
 bool Population::solutionChecker(vector<vector<vector<int>>> &allRoutes, vector<vector<vector<pair<int, int>>>> &allRoutesArcs, double expectedCost, double expectedMaxRoute)
@@ -715,7 +833,7 @@ void Population::ExportBKS(string nomFichier)
 		// If the problem is a classic CVRP, CARP, MDCARP which seeks to optimize the distance
 		if (params->type != 32 && params->type != 35 && getIndividuBestValide() != NULL && getIndividuBestValide()->coutSol.evaluation < fit - 0.001)
 		{
-			cout << "!!! New BKS !!! : distance = " << getIndividuBestValide()->coutSol.evaluation << " " << endl;
+			cout << "!!! New BKS !!! : cost = " << getIndividuBestValide()->coutSol.evaluation << " " << endl;
 			ExportBest(nomFichier);
 		}
 		// If its a PCARP, main objective is fleet size, and then distance counts
@@ -865,6 +983,13 @@ void Population::education(Individu *indiv)
 	indiv->recopieIndividu(indiv, trainer);
 }
 
+void Population::createTrainer()
+{
+	trainer = new Individu(params, true);
+	delete trainer->localSearch;
+	trainer->localSearch = new LocalSearch(params, trainer); // Initialize the LS structure
+}
+
 void Population::updateNbValides(Individu *indiv)
 {
 	listeValiditeCharge.push_back(indiv->coutSol.capacityViol < 0.001);
@@ -881,7 +1006,7 @@ void Population::afficheEtat(int nbIter)
 	cout << "It " << nbIter << " | Best ";
 
 	if (getIndividuBestValide() != NULL)
-		cout << getIndividuBestValide()->coutSol.distance << " " << getIndividuBestValide()->coutSol.routes << " ";
+		cout << getIndividuBestValide()->coutSol.evaluation << " " << getIndividuBestValide()->coutSol.routes << " ";
 	else
 		cout << "NO-VALID ";
 

@@ -2,20 +2,32 @@
 
 void Mutator::mutate(Individu *indi)
 {
+    // cout << "Mutation on Individual with Cost: " << indi->coutSol.evaluation << '\n';
     // Copy pointer
     mutant = indi;
+    bool success{false};
+    int attempts{0};
 
-    // Mutation
-    if (params->useRCO_decomposition)
-        rcoDecompose();
-    else
-        randomDecompose();
-    hierarchicalDecomposition();
-    updateMutant();
+    while (!success && attempts < 10)
+    {
+        attempts += 1;
+        // Mutation
+        if (params->useRCO_decomposition)
+            rcoDecompose();
+        else
+            randomDecompose();
+        hierarchicalDecomposition();
+        success = updateMutant();
 
-    // Clean up for next mutation
-    clearStructures();
-    virtualTaskSet.clear();
+        //if (!success)
+          //  cout << "Failed mutation! Attempt nº" << attempts << ". Retrying...\n";
+
+        // Clean up for next mutation
+        clearStructures();
+        virtualTaskSet.clear();
+    }
+
+    nbMutations += 1;
 }
 
 void Mutator::generate(Individu *indi)
@@ -60,7 +72,9 @@ void Mutator::hierarchicalDecomposition()
         {
             generateDistMatrix();
             cluster();
+            // cout << "cluster";
             groupVirtualTasks();
+            // cout << "grouped";
         }
 
         // Clearing for next iteration
@@ -306,6 +320,7 @@ void Mutator::cluster()
     double sharedAccumulator;
     int idxMin{0};
     double minDeltaTD;
+    bool generating{nbVT == params->nbClients};
 
     // Clustering loop
     while (true)
@@ -322,7 +337,10 @@ void Mutator::cluster()
             sharedAccumulator = 0.0;
             for (int xo{0}; xo < nbVT; xo++)
             {
-                doj = distMatrix[xo][xc];
+                if (generating)
+                    doj = params->timeCost[xo + 1][xc + 1];
+                else
+                    doj = distMatrix[xo][xc];
                 if (doj < distNearest[xo])
                 {
                     sharedAccumulator += doj - distNearest[xo];
@@ -344,6 +362,7 @@ void Mutator::cluster()
                     idxMin = i;
                 }
             }
+            
             deltaTD[idxMin] += sharedAccumulator;
             if (deltaTD[idxMin] < 0)
             {
@@ -355,7 +374,7 @@ void Mutator::cluster()
                 improved = true;
             }
         }
-        if (!improved)
+        if (!improved || td <= 0)
             break;
     }
 }
@@ -449,6 +468,7 @@ void Mutator::updateAuxStructures()
 {
     int i;
     double dist2Medoid;
+    // double tdCheck{0};
     // Reset removal loss
     for (int j{0}; j < nbClusters; j++)
     {
@@ -460,8 +480,8 @@ void Mutator::updateAuxStructures()
     {
         for (int xo{0}; xo < nbVT; xo++)
         {
-            distNearest[xo] = 1.e20;
-            distSecond[xo] = 1.e20;
+            distNearest[xo] = 1.e30;
+            distSecond[xo] = 1.e30;
             i = 0;
             for (int mi : medoids)
             {
@@ -482,8 +502,10 @@ void Mutator::updateAuxStructures()
                 }
                 i++;
             }
+            // tdCheck += distNearest[xo];
             removalLoss[nearest[xo]] += distSecond[xo] - distNearest[xo];
         }
+        // cout << ' ' << tdCheck << ' ';
     }
     // Standard Case
     else
@@ -692,6 +714,7 @@ Mutator::Mutator(Params *params) : params(params)
     nbRandomCuts = 0;
     nbPoorCuts = 0;
     nbGoodCuts = 0;
+    nbMutations = 0;
 }
 
 Mutator::~Mutator()

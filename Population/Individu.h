@@ -224,5 +224,9 @@ public:
 	void printRoutes();
 	void printGiantTour();
 
+	// Duration of operators for stats, in seconds
+	double durationHD;
+	double durationLS;
+
 };
 #endif

@@ -1,0 +1,24 @@
+NAME : example.txt
+UPPER BOUND : 83
+NODES : 6
+REQ_EDGES : 1
+NOREQ_EDGES : 1
+REQ_ARCS : 4
+NOREQ_ARCS : 3
+VEHICLES : 3
+CAPACITY : 10
+DUMPING_COST : 5
+LIST_REQ_EDGES :
+( 0, 4)   serv_cost 7    trav_cost 4    demand 5
+LIST_NOREQ_EDGES :
+( 0, 1)   cost 2
+LIST_REQ_ARCS : 
+( 1, 2)   serv_cost 6   trav_cost 4   demand 4
+( 5, 2)   serv_cost 5   trav_cost 3   demand 2
+( 2, 3)   serv_cost 5   trav_cost 3   demand 4
+( 3, 5)   serv_cost 6   trav_cost 4   demand 4
+LIST_NOREQ_ARCS : 
+( 5, 0)   cost 3
+( 5, 4)   cost 5
+( 4, 3)   cost 7
+DEPOT : 0

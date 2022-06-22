@@ -29,6 +29,7 @@
 #include <algorithm>
 #include "Client.h"
 #include "Vehicle.h"
+#include "commandline.h"
 using namespace std;
 
 // little function used to clear some arrays
@@ -63,6 +64,9 @@ public:
 	// random seed
 	int seed;
 
+	// instance name
+	string instanceName;
+
 	// path to the instance
 	string pathToInstance;
 
@@ -71,6 +75,9 @@ public:
 
 	// path to the BKS (just to read the value and overwrite if needed)
 	string pathToBKS;
+
+	// path to population stats file
+	string pathToPopstats;
 
 	// Problem type
 	/*
@@ -192,6 +199,8 @@ public:
 	double fractionHD;
 	// Which decomposition algorithm to use: true->RCO, false->random
 	bool useRCO_decomposition;
+	// Mutation Tournament Size
+	int mutTournSize;
 	// Probability of mutation
 	double mutationProb; // Default 0.25
 	// Number of virtual tasks in the next layer of hierarchical decomposition is between [1, beta*nbVT]
@@ -209,7 +218,7 @@ public:
 	void setMethodParams();
 
 	// get the data from the stream
-	void preleveDonnees(string nomInstance);
+	void preleveDonnees();
 	void ar_parseOtherLinesCARP(); // some sub-procedures when reading the various instance formats
 	void ar_parseOtherLinesNEARP();
 	void ar_computeDistancesNodes();
@@ -236,7 +245,7 @@ public:
 	void shuffleProches();
 
 	// constructor
-	Params(string nomInstance, string nomSolution, string nomBKS, int seedRNG, int type, int nbVeh, int nbDep, bool isSearchingFeasible);
+	Params(commandline c, int veh, bool isSearchingFeasible);
 
 	// destructor
 	~Params(void);
