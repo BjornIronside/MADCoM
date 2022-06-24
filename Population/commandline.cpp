@@ -98,6 +98,7 @@ commandline::commandline(int argc, char *argv[])
 	lambda = 35;
 	nElite = 10;
 	nDiver = 3;
+	hdvar = 1;
 	string extra{""};
 
 	// reading the commandline parameters
@@ -137,6 +138,8 @@ commandline::commandline(int argc, char *argv[])
 			nDiver = atoi(argv[i + 1]);
 		else if (string(argv[i]) == "-psf")
 			extra = string(argv[i + 1]);
+		else if (string(argv[i]) == "-hdvar")
+			hdvar = atoi(argv[i + 1]);
 		else
 		{
 			cout << "Non-recognized command : " << string(argv[i]) << endl;
@@ -310,4 +313,9 @@ bool commandline::is_valid()
 string commandline::get_path_to_popstats()
 {
 	return popstats_name;
+}
+
+int commandline::get_HD_variant()
+{
+	return hdvar;
 }

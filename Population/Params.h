@@ -199,6 +199,9 @@ public:
 	double fractionHD;
 	// Which decomposition algorithm to use: true->RCO, false->random
 	bool useRCO_decomposition;
+	// HD variant
+	// 0 - standard no limit, 1 - limit of sqrt(n), 2 - limit of 10
+	int hdVariant;
 	// Mutation Tournament Size
 	int mutTournSize;
 	// Probability of mutation

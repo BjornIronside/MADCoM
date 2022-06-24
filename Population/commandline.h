@@ -56,6 +56,9 @@ private:
     double goodCutProb;
     double poorCutProb;
 
+    // Hierachical Decomposition Variant
+    int hdvar;
+
     // Mutation Tournament Size
     int mutTournSize;
 
@@ -113,6 +116,7 @@ public:
     int get_lambda();
     int get_nElite();
     int get_nDiver();
+    int get_HD_variant();
 
     // say if the commandline is valid
     bool is_valid();

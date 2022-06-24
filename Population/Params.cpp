@@ -703,6 +703,7 @@ Params::Params(commandline c, int veh, bool isSearchingFeasible) : nbVehiculesPe
 	goodLinkCutProb = c.get_goodCutProb();
 	poorLinkCutProb = c.get_poorCutProb();
 	mutTournSize = c.get_mutTournSize();
+	hdVariant = c.get_HD_variant();
 
 	// Main constructor of Params
 	instanceName = c.get_instance_name();

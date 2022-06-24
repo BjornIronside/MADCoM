@@ -698,7 +698,13 @@ void Mutator::computeTaskRankMatrix()
 Mutator::Mutator(Params *params) : params(params)
 {
     cout << "Initializing mutator\n";
-    maxClusters = max((int)sqrt(params->nbClients), 1);
+    if (params->hdVariant == 0)
+        maxClusters =params->nbClients;
+    else if(params->hdVariant == 1)
+        maxClusters = max((int)sqrt(params->nbClients), 1);
+    else if (params->hdVariant == 2)
+        maxClusters = 10;
+    cout << "Maximum Clusters: " << maxClusters << endl;
     beta = params->beta;
     goodLinkCutProb = params->goodLinkCutProb;
     poorLinkCutProb = params->poorLinkCutProb;
