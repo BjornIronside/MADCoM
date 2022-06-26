@@ -120,19 +120,19 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 					  << ind->coutSol.evaluation << ','
 					  << ind->durationHD << ','
 					  << ind->durationLS << ','
-					  << ind->distPlusProche(params->nbCountDistMeasure) << endl;
+					  << ind->distPlusProche(params->nbCountDistMeasure) * (2 * params->nbClients) / (params->nbClients - 1) * 100.0 << endl;
 		}
 	}
 	if (invalides->nbIndiv > 4)
 	{
 		for (int i = valides->nbIndiv; i < valides->nbIndiv + invalides->nbIndiv; i++)
 		{
-			Individu *ind = invalides->individus[i-valides->nbIndiv];
+			Individu *ind = invalides->individus[i - valides->nbIndiv];
 			statsFile << i << ','
 					  << ind->coutSol.evaluation << ','
 					  << ind->durationHD << ','
 					  << ind->durationLS << ','
-					  << ind->distPlusProche(params->nbCountDistMeasure) / (params->nbClients - 1) << endl;
+					  << ind->distPlusProche(params->nbCountDistMeasure) * (2 * params->nbClients) / (params->nbClients - 1) * 100.0 << endl;
 		}
 	}
 	statsFile.close();
