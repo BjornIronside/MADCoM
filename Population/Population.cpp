@@ -49,7 +49,7 @@ Population::Population(Params *params, Mutator *mutator) : params(params), mutat
 			mutator->generate(randomIndiv);
 			end = clock();
 			randomIndiv->durationHD = (double)(end - begin) / (double)CLOCKS_PER_SEC;
-			cout << 'm';
+			cout << " m";
 			cout << randomIndiv->durationHD << ' ';
 		}
 		begin = clock();

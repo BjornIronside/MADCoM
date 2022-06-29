@@ -93,6 +93,7 @@ public:
 
     // Order virtual tasks in the same cluster according to Best Insertion Heuristic
     void groupVirtualTasks();
+    int selectFirstVT(vector<int> &group, vector<bool> &placed);
 
     // Initialize virtual task set and distance matrix
     void initializeAuxStructures();

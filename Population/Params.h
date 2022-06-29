@@ -200,8 +200,10 @@ public:
 	// Which decomposition algorithm to use: true->RCO, false->random
 	bool useRCO_decomposition;
 	// HD variant
-	// 0 - standard no limit, 1 - limit of sqrt(n), 2 - limit of 10
+	// 0 - standard no limit | 1 - limit of sqrt(n) | 2 - limit of 10
 	int hdVariant;
+	// 0 - closest to depot | 1 - medoid | 2 - closest to another medoid
+	int selectionMethod;
 	// Mutation Tournament Size
 	int mutTournSize;
 	// Probability of mutation

@@ -58,6 +58,7 @@ private:
 
     // Hierachical Decomposition Variant
     int hdvar;
+    int selmet;
 
     // Mutation Tournament Size
     int mutTournSize;
@@ -117,6 +118,7 @@ public:
     int get_nElite();
     int get_nDiver();
     int get_HD_variant();
+    int get_VT_selection_method();
 
     // say if the commandline is valid
     bool is_valid();

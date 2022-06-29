@@ -19,8 +19,8 @@ void Mutator::mutate(Individu *indi)
         hierarchicalDecomposition();
         success = updateMutant();
 
-        //if (!success)
-          //  cout << "Failed mutation! Attempt nº" << attempts << ". Retrying...\n";
+        // if (!success)
+        //   cout << "Failed mutation! Attempt nº" << attempts << ". Retrying...\n";
 
         // Clean up for next mutation
         clearStructures();
@@ -362,7 +362,7 @@ void Mutator::cluster()
                     idxMin = i;
                 }
             }
-            
+
             deltaTD[idxMin] += sharedAccumulator;
             if (deltaTD[idxMin] < 0)
             {
@@ -552,7 +552,7 @@ void Mutator::groupVirtualTasks()
     }
 
     int i;
-    int lastNode;
+    int lastService;
     double minDist;
     double dist;
     int bestVT{-1};
@@ -567,9 +567,17 @@ void Mutator::groupVirtualTasks()
         vector<bool> placed(clusterSize, false);
 
         // Start by finding the closest virtual task to the depot node
-        lastNode = 0;
+        bestVT = selectFirstVT(group, placed);
+        // Adding each service in the virtual task to the new virtual task
+        for (auto t : virtualTaskSet[bestVT])
+        {
+            newVirtualTaskSet.back().push_back(t);
+        }
+        // save the last service of the selected VT;
+        lastService = virtualTaskSet[bestVT].back();
+
         // Every virtual task needs to be placed
-        for (int j{0}; j < clusterSize; j++)
+        for (int j{0}; j < clusterSize - 1; j++)
         {
             i = -1;
             minDist = 1.e20;
@@ -580,7 +588,7 @@ void Mutator::groupVirtualTasks()
                 if (placed[i])
                     continue;
                 // Distance from last service in new VT to the first service of the current VT
-                dist = params->timeCost[lastNode][virtualTaskSet[vtidx].front()];
+                dist = params->timeCost[lastService][virtualTaskSet[vtidx].front()];
                 if (dist < minDist)
                 {
                     minDist = dist;
@@ -588,19 +596,95 @@ void Mutator::groupVirtualTasks()
                     idxBestVT = i;
                 }
             }
-            // Adding each service in the virtual task to the new virtual task
-            for (auto t : virtualTaskSet[bestVT])
+            // Check if a virtual task was selected to be added
+            if (minDist != 1.e20)
             {
-                newVirtualTaskSet.back().push_back(t);
+                // Adding each service in the virtual task to the new virtual task
+                for (auto t : virtualTaskSet[bestVT])
+                {
+                    newVirtualTaskSet.back().push_back(t);
+                }
+                // The best VT is now placed
+                placed[idxBestVT] = true;
+                // lastService is now the last service of the newly added virtual task
+                lastService = virtualTaskSet[bestVT].back();
             }
-            // The best VT is now placed
-            placed[idxBestVT] = true;
-            // Last node is now the last service of the newly added virtual task
-            lastNode = virtualTaskSet[bestVT].back();
         }
     }
     virtualTaskSet = newVirtualTaskSet;
     nbVT = nbClusters;
+}
+
+int Mutator::selectFirstVT(vector<int> &group, vector<bool> &placed)
+{
+    int bestVT{-1};
+    int idxBestVT{-1};
+    int i{-1};
+    double minDist{1.e20};
+    double dist{0};
+
+    // First is the Closest to depot
+    if (params->selectionMethod == 0 || nbClusters == 1)
+    {
+        for (int vtidx : group)
+        {
+            // Distance from the depot to the first service of the current VT
+            dist = params->timeCost[0][virtualTaskSet[vtidx].front()];
+            i++;
+            // Find the closest
+            if (dist < minDist)
+            {
+                minDist = dist;
+                bestVT = vtidx;
+                idxBestVT = i;
+            }
+        }
+    }
+    // First is the Medoid
+    else if (params->selectionMethod == 1)
+    {
+        bool found{false};
+        // Faster to compute by using distNearest == 0, must ensure all distances are greater than zero
+        for (int vtidx : group)
+        {
+            i++;
+            for (int med : medoids)
+            {
+                if (vtidx == med)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (found)
+            {
+                bestVT = vtidx;
+                idxBestVT = i;
+                break;
+            }
+        }
+    }
+    // First is the closest to another medoid
+    else if (params->selectionMethod == 2)
+    {
+        for (int vtidx : group)
+        {
+            i++;
+            // Distance is the distance to the second closest medoid
+            dist = distSecond[vtidx];
+            // Find the closest
+            if (dist < minDist)
+            {
+                minDist = dist;
+                bestVT = vtidx;
+                idxBestVT = i;
+            }
+        }
+    }
+    // Say that the first VT is now placed
+    placed[idxBestVT] = true;
+    // return the index to the best VT
+    return bestVT;
 }
 
 void Mutator::printVTSet()
@@ -699,8 +783,8 @@ Mutator::Mutator(Params *params) : params(params)
 {
     cout << "Initializing mutator\n";
     if (params->hdVariant == 0)
-        maxClusters =params->nbClients;
-    else if(params->hdVariant == 1)
+        maxClusters = params->nbClients;
+    else if (params->hdVariant == 1)
         maxClusters = max((int)sqrt(params->nbClients), 1);
     else if (params->hdVariant == 2)
         maxClusters = 10;

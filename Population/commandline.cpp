@@ -99,6 +99,7 @@ commandline::commandline(int argc, char *argv[])
 	nElite = 10;
 	nDiver = 3;
 	hdvar = 1;
+	selmet = 0;
 	string extra{""};
 
 	// reading the commandline parameters
@@ -140,6 +141,8 @@ commandline::commandline(int argc, char *argv[])
 			extra = string(argv[i + 1]);
 		else if (string(argv[i]) == "-hdvar")
 			hdvar = atoi(argv[i + 1]);
+		else if (string(argv[i]) == "-selmet")
+			selmet = atoi(argv[i + 1]);
 		else
 		{
 			cout << "Non-recognized command : " << string(argv[i]) << endl;
@@ -318,4 +321,9 @@ string commandline::get_path_to_popstats()
 int commandline::get_HD_variant()
 {
 	return hdvar;
+}
+
+int commandline::get_VT_selection_method()
+{
+	return selmet;
 }
