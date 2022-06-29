@@ -1,11 +1,17 @@
-SOLVERS: madcom
-RUNS: 5
-TIME_LIMIT: 1800
+SOLVERS: popanalysis
+RUNS: 1
+TIME_LIMIT: 2400
 PARAMETERS:
--trnsize 4 8 16 25
+-mu 100
+-hdf 1
+-psf "ten"
+-hdvar 2
 INSTANCES:
-Beijing-3.txt
 Hefei-10.txt
-Beijing-5.txt
-egl-g2-E.dat
-F1_g-6.txt
+Beijing-6.txt
+Beijing-8.txt
+S2_g-6.txt
+N5_g-5.txt
+O1_p-2.txt
+K5_g-6.txt
+O1_g-4.txt

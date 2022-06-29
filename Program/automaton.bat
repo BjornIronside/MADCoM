@@ -1,326 +1,38 @@
 ECHO OFF
 
-::madcom -trnsize 4 
-ECHO madcom -trnsize 4 
-ECHO madcom -trnsize 4  >> log.txt
+::madcom -mu 25 -lmbda 40 -elite 12 
+ECHO madcom -mu 25 -lmbda 40 -elite 12 
+ECHO madcom -mu 25 -lmbda 40 -elite 12  >> ../Program/original_params.txt
 
-ECHO %DATE% %TIME% - Beijing-3 Run 1/5
-ECHO %DATE% %TIME% - Beijing-3 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Beijing-3 Run 2/5
-ECHO %DATE% %TIME% - Beijing-3 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Beijing-3 Run 3/5
-ECHO %DATE% %TIME% - Beijing-3 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Beijing-3 Run 4/5
-ECHO %DATE% %TIME% - Beijing-3 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Beijing-3 Run 5/5
-ECHO %DATE% %TIME% - Beijing-3 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Hefei-10 Run 1/5
-ECHO %DATE% %TIME% - Hefei-10 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Hefei-10 Run 2/5
-ECHO %DATE% %TIME% - Hefei-10 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Hefei-10 Run 3/5
-ECHO %DATE% %TIME% - Hefei-10 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Hefei-10 Run 4/5
-ECHO %DATE% %TIME% - Hefei-10 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Hefei-10 Run 5/5
-ECHO %DATE% %TIME% - Hefei-10 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Beijing-5 Run 1/5
-ECHO %DATE% %TIME% - Beijing-5 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Beijing-5 Run 2/5
-ECHO %DATE% %TIME% - Beijing-5 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Beijing-5 Run 3/5
-ECHO %DATE% %TIME% - Beijing-5 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Beijing-5 Run 4/5
-ECHO %DATE% %TIME% - Beijing-5 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - Beijing-5 Run 5/5
-ECHO %DATE% %TIME% - Beijing-5 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - egl-g2-E Run 1/5
-ECHO %DATE% %TIME% - egl-g2-E Run 1/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - egl-g2-E Run 2/5
-ECHO %DATE% %TIME% - egl-g2-E Run 2/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - egl-g2-E Run 3/5
-ECHO %DATE% %TIME% - egl-g2-E Run 3/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - egl-g2-E Run 4/5
-ECHO %DATE% %TIME% - egl-g2-E Run 4/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - egl-g2-E Run 5/5
-ECHO %DATE% %TIME% - egl-g2-E Run 5/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - F1_g-6 Run 1/5
-ECHO %DATE% %TIME% - F1_g-6 Run 1/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - F1_g-6 Run 2/5
-ECHO %DATE% %TIME% - F1_g-6 Run 2/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - F1_g-6 Run 3/5
-ECHO %DATE% %TIME% - F1_g-6 Run 3/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - F1_g-6 Run 4/5
-ECHO %DATE% %TIME% - F1_g-6 Run 4/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 4 
-ECHO %DATE% %TIME% - F1_g-6 Run 5/5
-ECHO %DATE% %TIME% - F1_g-6 Run 5/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 4 
-
-
-::madcom -trnsize 8 
-ECHO madcom -trnsize 8 
-ECHO madcom -trnsize 8  >> log.txt
-
-ECHO %DATE% %TIME% - Beijing-3 Run 1/5
-ECHO %DATE% %TIME% - Beijing-3 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Beijing-3 Run 2/5
-ECHO %DATE% %TIME% - Beijing-3 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Beijing-3 Run 3/5
-ECHO %DATE% %TIME% - Beijing-3 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Beijing-3 Run 4/5
-ECHO %DATE% %TIME% - Beijing-3 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Beijing-3 Run 5/5
-ECHO %DATE% %TIME% - Beijing-3 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Hefei-10 Run 1/5
-ECHO %DATE% %TIME% - Hefei-10 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Hefei-10 Run 2/5
-ECHO %DATE% %TIME% - Hefei-10 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Hefei-10 Run 3/5
-ECHO %DATE% %TIME% - Hefei-10 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Hefei-10 Run 4/5
-ECHO %DATE% %TIME% - Hefei-10 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Hefei-10 Run 5/5
-ECHO %DATE% %TIME% - Hefei-10 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Beijing-5 Run 1/5
-ECHO %DATE% %TIME% - Beijing-5 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Beijing-5 Run 2/5
-ECHO %DATE% %TIME% - Beijing-5 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Beijing-5 Run 3/5
-ECHO %DATE% %TIME% - Beijing-5 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Beijing-5 Run 4/5
-ECHO %DATE% %TIME% - Beijing-5 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - Beijing-5 Run 5/5
-ECHO %DATE% %TIME% - Beijing-5 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - egl-g2-E Run 1/5
-ECHO %DATE% %TIME% - egl-g2-E Run 1/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - egl-g2-E Run 2/5
-ECHO %DATE% %TIME% - egl-g2-E Run 2/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - egl-g2-E Run 3/5
-ECHO %DATE% %TIME% - egl-g2-E Run 3/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - egl-g2-E Run 4/5
-ECHO %DATE% %TIME% - egl-g2-E Run 4/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - egl-g2-E Run 5/5
-ECHO %DATE% %TIME% - egl-g2-E Run 5/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - F1_g-6 Run 1/5
-ECHO %DATE% %TIME% - F1_g-6 Run 1/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - F1_g-6 Run 2/5
-ECHO %DATE% %TIME% - F1_g-6 Run 2/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - F1_g-6 Run 3/5
-ECHO %DATE% %TIME% - F1_g-6 Run 3/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - F1_g-6 Run 4/5
-ECHO %DATE% %TIME% - F1_g-6 Run 4/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 8 
-ECHO %DATE% %TIME% - F1_g-6 Run 5/5
-ECHO %DATE% %TIME% - F1_g-6 Run 5/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 8 
-
-
-::madcom -trnsize 16 
-ECHO madcom -trnsize 16 
-ECHO madcom -trnsize 16  >> log.txt
-
-ECHO %DATE% %TIME% - Beijing-3 Run 1/5
-ECHO %DATE% %TIME% - Beijing-3 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Beijing-3 Run 2/5
-ECHO %DATE% %TIME% - Beijing-3 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Beijing-3 Run 3/5
-ECHO %DATE% %TIME% - Beijing-3 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Beijing-3 Run 4/5
-ECHO %DATE% %TIME% - Beijing-3 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Beijing-3 Run 5/5
-ECHO %DATE% %TIME% - Beijing-3 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Hefei-10 Run 1/5
-ECHO %DATE% %TIME% - Hefei-10 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Hefei-10 Run 2/5
-ECHO %DATE% %TIME% - Hefei-10 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Hefei-10 Run 3/5
-ECHO %DATE% %TIME% - Hefei-10 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Hefei-10 Run 4/5
-ECHO %DATE% %TIME% - Hefei-10 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Hefei-10 Run 5/5
-ECHO %DATE% %TIME% - Hefei-10 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Beijing-5 Run 1/5
-ECHO %DATE% %TIME% - Beijing-5 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Beijing-5 Run 2/5
-ECHO %DATE% %TIME% - Beijing-5 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Beijing-5 Run 3/5
-ECHO %DATE% %TIME% - Beijing-5 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Beijing-5 Run 4/5
-ECHO %DATE% %TIME% - Beijing-5 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - Beijing-5 Run 5/5
-ECHO %DATE% %TIME% - Beijing-5 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - egl-g2-E Run 1/5
-ECHO %DATE% %TIME% - egl-g2-E Run 1/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - egl-g2-E Run 2/5
-ECHO %DATE% %TIME% - egl-g2-E Run 2/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - egl-g2-E Run 3/5
-ECHO %DATE% %TIME% - egl-g2-E Run 3/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - egl-g2-E Run 4/5
-ECHO %DATE% %TIME% - egl-g2-E Run 4/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - egl-g2-E Run 5/5
-ECHO %DATE% %TIME% - egl-g2-E Run 5/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - F1_g-6 Run 1/5
-ECHO %DATE% %TIME% - F1_g-6 Run 1/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - F1_g-6 Run 2/5
-ECHO %DATE% %TIME% - F1_g-6 Run 2/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - F1_g-6 Run 3/5
-ECHO %DATE% %TIME% - F1_g-6 Run 3/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - F1_g-6 Run 4/5
-ECHO %DATE% %TIME% - F1_g-6 Run 4/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 16 
-ECHO %DATE% %TIME% - F1_g-6 Run 5/5
-ECHO %DATE% %TIME% - F1_g-6 Run 5/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 16 
-
-
-::madcom -trnsize 25 
-ECHO madcom -trnsize 25 
-ECHO madcom -trnsize 25  >> log.txt
-
-ECHO %DATE% %TIME% - Beijing-3 Run 1/5
-ECHO %DATE% %TIME% - Beijing-3 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Beijing-3 Run 2/5
-ECHO %DATE% %TIME% - Beijing-3 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Beijing-3 Run 3/5
-ECHO %DATE% %TIME% - Beijing-3 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Beijing-3 Run 4/5
-ECHO %DATE% %TIME% - Beijing-3 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Beijing-3 Run 5/5
-ECHO %DATE% %TIME% - Beijing-3 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Beijing-3.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Hefei-10 Run 1/5
-ECHO %DATE% %TIME% - Hefei-10 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Hefei-10 Run 2/5
-ECHO %DATE% %TIME% - Hefei-10 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Hefei-10 Run 3/5
-ECHO %DATE% %TIME% - Hefei-10 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Hefei-10 Run 4/5
-ECHO %DATE% %TIME% - Hefei-10 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Hefei-10 Run 5/5
-ECHO %DATE% %TIME% - Hefei-10 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Beijing-5 Run 1/5
-ECHO %DATE% %TIME% - Beijing-5 Run 1/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Beijing-5 Run 2/5
-ECHO %DATE% %TIME% - Beijing-5 Run 2/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Beijing-5 Run 3/5
-ECHO %DATE% %TIME% - Beijing-5 Run 3/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Beijing-5 Run 4/5
-ECHO %DATE% %TIME% - Beijing-5 Run 4/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - Beijing-5 Run 5/5
-ECHO %DATE% %TIME% - Beijing-5 Run 5/5 >> log.txt
-madcom "../Instances/CARP/Beijing-5.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - egl-g2-E Run 1/5
-ECHO %DATE% %TIME% - egl-g2-E Run 1/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - egl-g2-E Run 2/5
-ECHO %DATE% %TIME% - egl-g2-E Run 2/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - egl-g2-E Run 3/5
-ECHO %DATE% %TIME% - egl-g2-E Run 3/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - egl-g2-E Run 4/5
-ECHO %DATE% %TIME% - egl-g2-E Run 4/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - egl-g2-E Run 5/5
-ECHO %DATE% %TIME% - egl-g2-E Run 5/5 >> log.txt
-madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - F1_g-6 Run 1/5
-ECHO %DATE% %TIME% - F1_g-6 Run 1/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - F1_g-6 Run 2/5
-ECHO %DATE% %TIME% - F1_g-6 Run 2/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - F1_g-6 Run 3/5
-ECHO %DATE% %TIME% - F1_g-6 Run 3/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - F1_g-6 Run 4/5
-ECHO %DATE% %TIME% - F1_g-6 Run 4/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 25 
-ECHO %DATE% %TIME% - F1_g-6 Run 5/5
-ECHO %DATE% %TIME% - F1_g-6 Run 5/5 >> log.txt
-madcom "../Instances/CARP/F1_g-6.txt" -type 30 -t 1800 -trnsize 25 
+ECHO %DATE% %TIME% - egl-g2-E Run 1/1
+ECHO %DATE% %TIME% - egl-g2-E Run 1/1 >> ../Program/original_params.txt
+madcom "../Instances/CARP/egl-g2-E.dat" -type 30 -t 2400 -mu 25 -lmbda 40 -elite 12 
+ECHO %DATE% %TIME% - F1_g-4 Run 1/1
+ECHO %DATE% %TIME% - F1_g-4 Run 1/1 >> ../Program/original_params.txt
+madcom "../Instances/CARP/F1_g-4.txt" -type 30 -t 2400 -mu 25 -lmbda 40 -elite 12 
+ECHO %DATE% %TIME% - Hefei-10 Run 1/1
+ECHO %DATE% %TIME% - Hefei-10 Run 1/1 >> ../Program/original_params.txt
+madcom "../Instances/CARP/Hefei-10.txt" -type 30 -t 2400 -mu 25 -lmbda 40 -elite 12 
+ECHO %DATE% %TIME% - Beijing-6 Run 1/1
+ECHO %DATE% %TIME% - Beijing-6 Run 1/1 >> ../Program/original_params.txt
+madcom "../Instances/CARP/Beijing-6.txt" -type 30 -t 2400 -mu 25 -lmbda 40 -elite 12 
+ECHO %DATE% %TIME% - Beijing-8 Run 1/1
+ECHO %DATE% %TIME% - Beijing-8 Run 1/1 >> ../Program/original_params.txt
+madcom "../Instances/CARP/Beijing-8.txt" -type 30 -t 2400 -mu 25 -lmbda 40 -elite 12 
+ECHO %DATE% %TIME% - S2_g-6 Run 1/1
+ECHO %DATE% %TIME% - S2_g-6 Run 1/1 >> ../Program/original_params.txt
+madcom "../Instances/CARP/S2_g-6.txt" -type 30 -t 2400 -mu 25 -lmbda 40 -elite 12 
+ECHO %DATE% %TIME% - N5_g-5 Run 1/1
+ECHO %DATE% %TIME% - N5_g-5 Run 1/1 >> ../Program/original_params.txt
+madcom "../Instances/CARP/N5_g-5.txt" -type 30 -t 2400 -mu 25 -lmbda 40 -elite 12 
+ECHO %DATE% %TIME% - O1_p-2 Run 1/1
+ECHO %DATE% %TIME% - O1_p-2 Run 1/1 >> ../Program/original_params.txt
+madcom "../Instances/CARP/O1_p-2.txt" -type 30 -t 2400 -mu 25 -lmbda 40 -elite 12 
+ECHO %DATE% %TIME% - K5_g-6 Run 1/1
+ECHO %DATE% %TIME% - K5_g-6 Run 1/1 >> ../Program/original_params.txt
+madcom "../Instances/CARP/K5_g-6.txt" -type 30 -t 2400 -mu 25 -lmbda 40 -elite 12 
+ECHO %DATE% %TIME% - O1_g-4 Run 1/1
+ECHO %DATE% %TIME% - O1_g-4 Run 1/1 >> ../Program/original_params.txt
+madcom "../Instances/CARP/O1_g-4.txt" -type 30 -t 2400 -mu 25 -lmbda 40 -elite 12 
 
 
