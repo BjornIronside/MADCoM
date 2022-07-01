@@ -4,8 +4,8 @@ TIME_LIMIT: 2400
 PARAMETERS:
 -mu 100
 -hdf 1
--psf "ten"
--hdvar 2
+-psf "medoid"
+-selmet 1
 INSTANCES:
 Hefei-10.txt
 Beijing-6.txt
