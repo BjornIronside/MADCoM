@@ -1,17 +1,15 @@
-SOLVERS: popanalysis
-RUNS: 1
-TIME_LIMIT: 2400
+SOLVERS: madcom
+RUNS: 10
+TIME_LIMIT: 3600
 PARAMETERS:
--mu 100
--hdf 1
--psf "medoid"
--selmet 1
 INSTANCES:
-Hefei-10.txt
+Beijing-1.txt
+Beijing-2.txt
+Beijing-3.txt
+Beijing-4.txt
+Beijing-5.txt
 Beijing-6.txt
+Beijing-7.txt
 Beijing-8.txt
-S2_g-6.txt
-N5_g-5.txt
-O1_p-2.txt
-K5_g-6.txt
-O1_g-4.txt
+Beijing-9.txt
+Beijing-10.txt

@@ -1,0 +1,2 @@
+CALL medoid_initialization.bat
+CALL second_initialization.bat

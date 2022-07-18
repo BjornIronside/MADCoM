@@ -75,8 +75,8 @@ if __name__ == '__main__':
                         config_filename='automaton_config.txt',
                         # config_filename='test_config.txt',
                         # batch_filename='automaton.bat',
-                        # batch_filename='../Program/mval_instances.bat',
-                        batch_filename='../Population/medoid_initialization.bat',
-                        #log_filename='mval_instances.txt'
-                        log_filename='../Population/medoid_initialization.txt'
+                        batch_filename='../Program/beijing_instances.bat',
+                        # batch_filename='../Population/medoid_initialization.bat',
+                        log_filename='beijing_instances.txt'
+                        # log_filename='../Population/medoid_initialization.txt'
     )

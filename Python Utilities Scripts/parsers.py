@@ -12,6 +12,7 @@ def results_parser(instance_list, start_date=None, end_date=None, print_results=
     if not end_date:
         end_date = dt.now()
     results = {}
+    # instance_list.sort()
     for instance in instance_list:
         instance_name = instance.strip().split('.')[0]
         if instance_name[:3] == 'Lpr' or instance_name[:4] == 'mval':
@@ -57,7 +58,7 @@ def logfile_parser(log_filename, tol=10):
             # Beginning of solver results
             if spl[0] in SOLVERS:
                 if len(instance_list) and start_date is not None and end_date is not None:
-                    results_parser(instance_list, start_date - tolerance, end_date + tolerance)
+                    results_parser(sorted(list(instance_list)), start_date - tolerance, end_date + tolerance)
                     instance_list = set()
                     start_date = None
                     end_date = None
@@ -73,7 +74,7 @@ def logfile_parser(log_filename, tol=10):
                 instance_list.add(spl[-3])
         # Last block of runs
         if len(instance_list) and start_date is not None and end_date is not None:
-            results_parser(instance_list, start_date - tolerance, end_date + tolerance)
+            results_parser(sorted(list(instance_list)), start_date - tolerance, end_date + tolerance)
             instance_list = set()
             start_date = None
             end_date = None
@@ -91,4 +92,4 @@ if __name__ == '__main__':
     # end_date = dt.now()
     # results_parser(instance_list, start_date, end_date)
 
-    logfile_parser('../Program/original_params.txt')
+    logfile_parser('../Program/beijing_instances.txt')
