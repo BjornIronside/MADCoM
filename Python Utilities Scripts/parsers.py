@@ -92,4 +92,4 @@ if __name__ == '__main__':
     # end_date = dt.now()
     # results_parser(instance_list, start_date, end_date)
 
-    logfile_parser('../Program/beijing_instances.txt')
+    logfile_parser('../Program/kw_NO_instances.txt')

@@ -1,15 +1,7 @@
 SOLVERS: madcom
 RUNS: 10
-TIME_LIMIT: 3600
+TIME_LIMIT: 1200
 PARAMETERS:
 INSTANCES:
-Beijing-1.txt
-Beijing-2.txt
-Beijing-3.txt
-Beijing-4.txt
-Beijing-5.txt
-Beijing-6.txt
-Beijing-7.txt
-Beijing-8.txt
-Beijing-9.txt
-Beijing-10.txt
+O1_g-4.txt
+O1_g-6.txt
