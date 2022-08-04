@@ -75,8 +75,8 @@ if __name__ == '__main__':
                         config_filename='automaton_config.txt',
                         # config_filename='test_config.txt',
                         # batch_filename='automaton.bat',
-                        batch_filename='../Program/kw_KO5_instances.bat',
+                        batch_filename='../Program/uhgs_mval_instances.bat',
                         # batch_filename='../Population/medoid_initialization.bat',
-                        log_filename='kw_KO_instances_limited.txt'
+                        log_filename='uhgs_mval_instances_limited.txt'
                         # log_filename='../Population/medoid_initialization.txt'
     )

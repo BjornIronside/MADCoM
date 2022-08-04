@@ -1,7 +1,18 @@
 SOLVERS: madcom
 RUNS: 10
-TIME_LIMIT: 1200
+TIME_LIMIT: 3600
 PARAMETERS:
+-hdf 0
+-mutprob 0
+-mu 25
+-lmbda 40
+-elite 12
+-div 3
 INSTANCES:
-O1_g-4.txt
-O1_g-6.txt
+mval1C.txt
+mval4D.txt
+mval5D.txt
+mval6C.txt
+mval8C.txt
+mval9D.txt
+mval10D.txt
