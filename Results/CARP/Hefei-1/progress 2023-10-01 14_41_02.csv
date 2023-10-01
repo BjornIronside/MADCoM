@@ -1,0 +1,10 @@
+n_iter,elapsed_time,cost,n_routes,mechanism
+0,0.632,248820,0,initialization
+20,0.822,247312,7,crossover
+149,1.948,247146,7,crossover
+243,2.83,246567,7,crossover
+369,4.037,246473,7,crossover
+381,4.154,246323,7,crossover
+430,4.631,246221,7,crossover
+798,9.434,245801,7,crossover
+2125,26.436,245596,7,crossover

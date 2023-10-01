@@ -60,7 +60,7 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 	if (population->getIndividuBestValide() != NULL)
 	{
 		bestSolFeasibility = population->getIndividuBestValide()->coutSol;
-		progressFile << nbIter << ',' << (double)clock() / (double)CLOCKS_PER_SEC << ',' << population->getIndividuBestValide()->coutSol.evaluation << ',' << rejeton->coutSol.routes << ",initialization";
+		progressFile << nbIter << ',' << (double)clock() / (double)CLOCKS_PER_SEC << ',' << population->getIndividuBestValide()->coutSol.evaluation << ',' << rejeton->coutSol.routes << ",initialization" << endl;
 	}
 	else
 		bestSolFeasibility = population->getIndividuBestInvalide()->coutSol;
@@ -138,12 +138,12 @@ void Genetic::evolveHGA(int maxIterNonProd, int nbRec)
 				if (rejeton->isMutant)
 				{
 					cout << "BY MUTATION ";
-					progressFile << "mutation";
+					progressFile << "mutation" << endl;
 				}
 				else
 				{
 					cout << "BY CROSSOVER ";
-					progressFile << "crossover";
+					progressFile << "crossover" << endl;
 				}
 				cout << population->getIndividuBestValide()->coutSol.evaluation << " distance : " << rejeton->coutSol.distance << " nbRoutes : " << rejeton->coutSol.routes << endl
 					 << endl;

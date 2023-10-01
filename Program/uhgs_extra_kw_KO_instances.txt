@@ -1,0 +1,4 @@
+madcom -hdf 0 -mutprob 0 -mu 25 -lmbda 40 -elite 12 -div 3  
+Mon 02/27/2023  8:21:10.14 - O1_p-2 Run 1/1 
+Mon 02/27/2023  8:51:32.03 - O1_p-4 Run 1/1 
+Mon 02/27/2023  9:34:31.48 - K2_g-4 Run 1/1 
