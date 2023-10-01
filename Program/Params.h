@@ -76,6 +76,9 @@ public:
 	// path to the BKS (just to read the value and overwrite if needed)
 	string pathToBKS;
 
+	// path to progress file
+	string pathToProgressFile;
+
 	// Problem type
 	/*
 	type =     // This lists the problems which can be solved with this algorithm

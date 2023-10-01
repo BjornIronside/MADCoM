@@ -274,7 +274,7 @@ void Params::preleveDonnees()
 
 		fichier >> useless2;
 		fichier >> useless2;
-		fichier >> fixedCost; // Dumping Cost, for future implementation
+		fichier >> fixedCost; 
 
 		getline(fichier, contenu);
 		cout << contenu;
@@ -709,6 +709,7 @@ Params::Params(commandline c, int veh, bool isSearchingFeasible) : nbVehiculesPe
 	pathToInstance = c.get_path_to_instance();
 	pathToSolution = c.get_path_to_solution();
 	pathToBKS = c.get_path_to_BKS();
+	pathToProgressFile = c.get_path_to_progress_file();
 	borne = 2.0;
 	sizeSD = 10;
 

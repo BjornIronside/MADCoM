@@ -51,6 +51,7 @@ void commandline::SetDefaultOutput(string to_parse)
 		output_name += instance_name;
 		output_name += '/';
 		BKS_name = output_name;
+		progress_file_name = output_name;
 
 		// Setting output file with name of time of execution
 		time_t rawtime;
@@ -64,6 +65,10 @@ void commandline::SetDefaultOutput(string to_parse)
 		output_name += ".txt";
 
 		BKS_name += "bks.txt";
+
+		progress_file_name += "progress ";
+		progress_file_name += strTime;
+		progress_file_name += ".csv";
 	}
 	else
 	{
@@ -219,6 +224,11 @@ string commandline::get_path_to_solution()
 string commandline::get_path_to_BKS()
 {
 	return BKS_name;
+}
+
+string commandline::get_path_to_progress_file()
+{
+	return progress_file_name;
 }
 
 int commandline::get_type()

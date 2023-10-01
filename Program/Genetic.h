@@ -30,6 +30,8 @@
 #include <list>
 #include <math.h>
 #include <random>
+#include <fstream>
+#include <iostream>
 using namespace std;
 
 class Genetic

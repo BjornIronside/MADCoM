@@ -80,6 +80,9 @@ private:
     // BKS path (used to replace it if a better solution is found)
     string BKS_name;
 
+    // progress file path
+    string progress_file_name;
+
     // simple setters
     void SetDefaultOutput(string to_parse);
 
@@ -94,6 +97,7 @@ public:
     string get_path_to_instance();
     string get_path_to_solution();
     string get_path_to_BKS();
+    string get_path_to_progress_file();
     string get_instance_name();
     int get_cpu_time();
     int get_type();
