@@ -47,11 +47,11 @@ def fetch_result(instance, date=None, tol=600):
     return results_parser([instance], date - tolerance, date + tolerance, print_results=False)[instance[:-4]][0]
 
 
-def logfile_parser(log_filename, tol=10):
+def logfile_parser(log_filename, tol=100):
     instance_list = set()
     start_date = None
     end_date = None
-    tolerance = td(minutes=tol)
+    tolerance = td(seconds=tol)
     with open(log_filename) as f:
         for line in f:
             spl = line.split()
@@ -79,6 +79,31 @@ def logfile_parser(log_filename, tol=10):
             start_date = None
             end_date = None
 
+def logfile_parser_individual_runs(log_filename, tol=2):
+    instance_list = set()
+    start_date = None
+    end_date = None
+    tolerance = td(seconds=tol)
+    with open(log_filename) as f:
+        # First line is solver parameters
+        line = f.readline()
+        print(line.strip())
+        # Print results of each run for each instance
+        current_instance = None
+        for line in f:
+            spl = line.split()
+            instance = spl[-3]
+            run_date = dt.strptime(f"{spl[-6]} {spl[-5].split('.')[0]}", "%m/%d/%Y %H:%M:%S")
+
+            # Fetch result
+            result = results_parser([instance], run_date - tolerance, run_date + tolerance, print_results=False)
+            if instance != current_instance:
+                print(f"\n{instance},{result[instance][0]}", end='')
+                current_instance = instance
+            else:
+                print(f",{result[instance][0]}", end='')
+
+
 
 if __name__ == '__main__':
     # instance_list = [
@@ -92,4 +117,9 @@ if __name__ == '__main__':
     # end_date = dt.now()
     # results_parser(instance_list, start_date, end_date)
 
-    logfile_parser('../Program/uhgs_extra_kw_KO_instances.txt')
+    tol = 5
+    logfile_parser_individual_runs('../Program/madcom_long_runs.txt', tol=tol)
+    print('\n\n\n')
+    logfile_parser_individual_runs('../Program/uhgs_long_runs.txt', tol=tol)
+
+

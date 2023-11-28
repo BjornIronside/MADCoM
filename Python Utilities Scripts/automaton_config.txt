@@ -1,14 +1,13 @@
 SOLVERS: madcom
 RUNS: 10
-TIME_LIMIT: 1200
+TIME_LIMIT: 21600
 PARAMETERS:
--hdf 0
--mutprob 0
--mu 25
--lmbda 40
--elite 12
--div 3
 INSTANCES:
+Hefei-10.txt
+Beijing-6.txt
+Beijing-8.txt
+S2_g-6.txt
+N5_g-5.txt
 O1_p-2.txt
-O1_p-4.txt
-K2_g-4.txt
+K5_g-6.txt
+O1_g-4.txt
