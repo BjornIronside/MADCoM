@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5c7f7b71-c7d7-4814-b7aa-1146016d7fa8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Population/Results/.ipynb_checkpoints/HD Variants Analysis-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Population/Results/.ipynb_checkpoints/HD Variants Analysis-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/Results/HD Variants Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Population/Results/HD Variants Analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_medoid_Beijing-6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_medoid_Beijing-8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_medoid_Hefei-10.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_medoid_K5_g-6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_medoid_N5_g-5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_medoid_O1_g-4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_medoid_O1_p-2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_medoid_S2_g-6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_second_Beijing-6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_second_Beijing-8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_second_Hefei-10.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_second_K5_g-6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_second_N5_g-5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_second_O1_g-4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_second_O1_p-2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population/popstats_second_S2_g-6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program/Params.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Program/Params.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program/gencarp.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program/madcom.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Program/madcom.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/Excel Sheets/Final Results.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Results/Excel Sheets/Final Results.xlsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IBVFjbQjOjOtfKfySuItCH0jAN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/diogo/OneDrive - Universidade de Lisboa/Master Thesis/Code",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5c7f7b71-c7d7-4814-b7aa-1146016d7fa8" name="Changes" comment="" />
+      <created>1669654862355</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1669654862355</updated>
+      <workItem from="1669654863523" duration="671000" />
+      <workItem from="1669735297232" duration="332000" />
+      <workItem from="1676849838422" duration="14000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

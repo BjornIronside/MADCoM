@@ -1,8 +1,0 @@
-SOLVERS: madcom
-RUNS: 10
-TIME_LIMIT: 3600
-PARAMETERS: -hdf 0
-INSTANCES:
-Hefei-10.txt
-Beijing-6.txt
-Beijing-8.txt

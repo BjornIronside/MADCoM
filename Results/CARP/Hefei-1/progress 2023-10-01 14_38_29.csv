@@ -1,2 +1,0 @@
-n_iter,elapsed_time,cost,n_routes,mechanism
-0,0.774,254985,0,initialization3,0.815,251619,7,crossover64,1.343,250788,7,crossover76,1.454,250621,7,crossover87,1.536,249985,7,crossover161,2.158,248482,7,crossover183,2.364,248071,7,crossover226,2.752,247787,7,crossover295,3.42,247564,7,crossover430,4.855,247339,7,crossover442,4.994,247085,7,crossover490,5.502,246715,7,crossover603,7.024,246385,7,crossover1003,12.377,246347,7,crossover1169,14.739,246323,7,crossover1174,14.82,246221,7,crossover1495,19.239,246216,7,crossover2256,29.38,246191,7,crossover

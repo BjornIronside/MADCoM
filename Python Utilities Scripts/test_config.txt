@@ -1,9 +1,0 @@
-SOLVERS: madcom
-RUNS: 2
-TIME_LIMIT: 30
-PARAMETERS:
--hdf 0 0.5
--mutprob 0.24 0.76
-INSTANCES:
-egl-g1-B.dat
-egl-g2-E.dat

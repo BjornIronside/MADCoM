@@ -1,2 +1,0 @@
-CALL uhgs_lpr_instances.bat
-CALL uhgs_mval_instances.bat

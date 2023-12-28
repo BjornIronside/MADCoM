@@ -1,2 +1,0 @@
-CALL uhgs_beijing_instances_continue.bat
-CALL uhgs_hefei_instances.bat
